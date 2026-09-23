@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор выгоды — BodyWay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/calculator.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="header__logo">
+      <img src="assets/icons/logo-black.svg" alt="BodyWay" class="header__logo-img">
+    </a>
+
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--dropdown">
+          <a href="uslugi.html" class="nav__link">Услуги</a>
+          <ul class="dropdown">
+            <li class="dropdown__item"><a href="uslugi.html#otdelnye" class="dropdown__link">Отдельные услуги</a></li>
+            <li class="dropdown__item"><a href="uslugi.html#meropriyatiya" class="dropdown__link">Well-being сопровождение мероприятий</a></li>
+            <li class="dropdown__item"><a href="uslugi.html#personalnye" class="dropdown__link">Персональные программы под ключ</a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a href="stati.html" class="nav__link">Статьи</a></li>
+        <li class="nav__item"><a href="komanda.html" class="nav__link">Команда</a></li>
+        <li class="nav__item"><a href="kvizy.html" class="nav__link">Квизы</a></li>
+        <li class="nav__item"><a href="kontakty.html" class="nav__link">Контакты</a></li>
+        <li class="nav__item"><a href="faq.html" class="nav__link">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <a href="kontakty.html" class="btn btn--navy">
+      <span>Заказать</span>
+      <img src="assets/icons/arrow-light.svg" alt="" class="btn__arrow">
+    </a>
+  </div>
+</header>
+
+<main class="calc">
+  <div class="container calc__top">
+    <a href="index.html" class="calc__back">
+      <span>← На главную</span>
+    </a>
+
+    <div class="calc__intro">
+      <div class="calc__intro-text">
+        <h1 class="calc__title">
+          <span class="calc__title-accent">Калькулятор выгоды</span>
+          от внедрения well-being услуг
+        </h1>
+        <p class="calc__intro-desc">Заполните четыре коротких шага — и получите персональный расчёт потенциальной экономии и роста эффективности для вашей компании.</p>
+      </div>
+      <div class="calc__intro-media">
+        <img src="assets/img/why-us.jpg" alt="" class="calc__intro-img">
+      </div>
+    </div>
+
+    <ol class="calc__stepper" id="calcStepper">
+      <li class="calc__step" data-step="1">
+        <span class="calc__step-circle">1</span>
+        <span class="calc__step-label">О компании</span>
+      </li>
+      <li class="calc__step" data-step="2">
+        <span class="calc__step-circle">2</span>
+        <span class="calc__step-label">Программа</span>
+      </li>
+      <li class="calc__step" data-step="3">
+        <span class="calc__step-circle">3</span>
+        <span class="calc__step-label">Настройки</span>
+      </li>
+      <li class="calc__step" data-step="4">
+        <span class="calc__step-circle">4</span>
+        <span class="calc__step-label">Результат</span>
+      </li>
+    </ol>
+
+    <div class="calc__card">
+
+      <!-- STEP 1 -->
+      <section class="calc__panel" data-panel="1">
+        <div class="calc__panel-info">
+          <h2 class="calc__panel-title">01. Данные<br>о компании</h2>
+          <p class="calc__panel-desc">Данные о вашей компании нужны, чтобы оценить текущие затраты и потенциал экономии.</p>
+        </div>
+        <div class="calc__panel-body">
+        <div class="calc-field-group">
+          <label class="calc-field">
+            <span class="calc-field__label">
+              <img src="assets/icons/icon-salary.svg" alt="" class="calc-field__label-icon">
+              Средняя зарплата сотрудника
+            </span>
+            <span class="calc-field__input-box">
+              <input type="number" id="calcSalary" class="calc-field__input" placeholder="Например: 120 000" min="10000" step="1000">
+              <span class="calc-field__suffix">₽</span>
+            </span>
+          </label>
+          <label class="calc-field">
+            <span class="calc-field__label">
+              <img src="assets/icons/icon-team-navy.svg" alt="" class="calc-field__label-icon">
+              Количество сотрудников
+            </span>
+            <span class="calc-field__input-box">
+              <input type="number" id="calcEmployees" class="calc-field__input" placeholder="Например: 100" min="1">
+              <span class="calc-field__suffix">человек</span>
+            </span>
+          </label>
+          <label class="calc-field">
+            <span class="calc-field__label">
+              <img src="assets/icons/icon-refresh.svg" alt="" class="calc-field__label-icon">
+              Текучесть кадров в год
+            </span>
+            <span class="calc-field__input-box">
+              <input type="number" id="calcTurnover" class="calc-field__input" placeholder="Например: 15" min="0" max="100" step="0.1">
+              <span class="calc-field__suffix">%</span>
+            </span>
+          </label>
+        </div>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="calc__panel" data-panel="2" hidden>
+        <div class="calc__panel-info">
+          <h2 class="calc__panel-title">02. Выберите<br>программу</h2>
+          <p class="calc__panel-desc">Включите услуги, которые хотите внедрить. Можно выбрать одну или сразу все.</p>
+        </div>
+        <div class="calc-services" id="calcServices">
+          <div class="calc-service" data-service="massage">
+            <h3 class="calc-service__title">Выездной массаж</h3>
+            <p class="calc-service__price">от 2 500 ₽/ сеанс</p>
+            <p class="calc-service__desc">Снимает усталость, повышает энергию и работоспособность сотрудников</p>
+            <button type="button" class="calc-toggle calc-toggle--on" data-service-toggle="massage" aria-label="Включить/выключить"><span class="calc-toggle__knob"></span></button>
+          </div>
+          <div class="calc-service" data-service="yoga">
+            <h3 class="calc-service__title">Йога</h3>
+            <p class="calc-service__price">от 6 500 ₽/ сеанс</p>
+            <p class="calc-service__desc">Снимает усталость, повышает энергию и работоспособность сотрудников</p>
+            <button type="button" class="calc-toggle calc-toggle--on" data-service-toggle="yoga" aria-label="Включить/выключить"><span class="calc-toggle__knob"></span></button>
+          </div>
+          <div class="calc-service" data-service="bos">
+            <h3 class="calc-service__title">Психолог / БОС*</h3>
+            <p class="calc-service__price">от 6 500 ₽/ сеанс</p>
+            <p class="calc-service__desc">Понижает уровень стресса и помогает справиться с выгоранием.</p>
+            <p class="calc-service__note">* БОС — аппарат биологической обратной связи</p>
+            <button type="button" class="calc-toggle" data-service-toggle="bos" aria-label="Включить/выключить"><span class="calc-toggle__knob"></span></button>
+          </div>
+          <div class="calc-service" data-service="nutrition">
+            <h3 class="calc-service__title">Нутрициолог</h3>
+            <p class="calc-service__price">от 6 000 ₽/ сеанс</p>
+            <p class="calc-service__desc">Помогает формировать полезные привычки и поддерживать энергию в течение дня.</p>
+            <button type="button" class="calc-toggle" data-service-toggle="nutrition" aria-label="Включить/выключить"><span class="calc-toggle__knob"></span></button>
+          </div>
+          <div class="calc-service" data-service="aroma">
+            <h3 class="calc-service__title">Ароматерапия</h3>
+            <p class="calc-service__price">от 2 500 ₽/ сеанс</p>
+            <p class="calc-service__desc">Снимает усталость, повышает энергию и работоспособность сотрудников</p>
+            <button type="button" class="calc-toggle" data-service-toggle="aroma" aria-label="Включить/выключить"><span class="calc-toggle__knob"></span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="calc__panel" data-panel="3" hidden>
+        <div class="calc__panel-info">
+          <h2 class="calc__panel-title">03. Условия<br>программы</h2>
+          <p class="calc__panel-desc">Укажите параметры для каждой выбранной услуги.</p>
+        </div>
+        <div class="calc-config" id="calcConfig"></div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section class="calc__panel" data-panel="4" hidden>
+        <div class="calc__panel-info">
+          <h2 class="calc__panel-title">04. Выгода<br>для вас</h2>
+          <p class="calc__panel-desc">Результат подсчёта выгоды для вашей компании после введения well-being услуг от BodyWay.</p>
+          <button type="button" class="calc__pdf-btn" id="calcPdfBtn">
+            <span>Скачать результаты в PDF</span>
+            <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+          </button>
+        </div>
+        <div class="calc-results" id="calcResults"></div>
+      </section>
+
+      <div class="calc__actions" id="calcActions">
+        <button type="button" class="calc__back-step" id="calcBackBtn" hidden>Назад</button>
+        <button type="button" class="btn btn--navy" id="calcNextBtn">
+          <span>Далее</span>
+          <img src="assets/icons/arrow-light.svg" alt="" class="btn__arrow">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <form class="calc__contact" id="calcContactForm">
+      <h3 class="calc__contact-title">Остались ещё вопросы? С радостью ответим на них!</h3>
+      <label class="form-card__field">
+        <input type="text" name="name" placeholder="Ваше имя" class="form-card__input">
+      </label>
+      <label class="form-card__field">
+        <select name="contact" class="form-card__input form-card__select">
+          <option value="" disabled selected hidden>Где с вами связаться?</option>
+          <option value="whatsapp">WhatsApp</option>
+          <option value="telegram">Telegram</option>
+          <option value="phone">По телефону</option>
+          <option value="max">Max</option>
+        </select>
+      </label>
+      <label class="form-card__field">
+        <input type="tel" name="phone" placeholder="Ваш номер телефона" class="form-card__input">
+      </label>
+      <button type="submit" class="btn btn--cream btn--full">
+        <span>Отправить заявку</span>
+        <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+      </button>
+    </form>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__columns">
+      <div class="footer__col">
+        <h5 class="footer__heading">Услуги</h5>
+        <a href="uslugi.html" class="footer__link">Выездной массаж</a>
+        <a href="uslugi.html" class="footer__link">Йога в офисе</a>
+        <a href="uslugi.html" class="footer__link">Психолог</a>
+        <a href="uslugi.html" class="footer__link">Нутрициолог</a>
+        <a href="uslugi.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Статьи</h5>
+        <a href="stati.html" class="footer__link">Выездной массаж</a>
+        <a href="stati.html" class="footer__link">Йога в офисе</a>
+        <a href="stati.html" class="footer__link">Психолог</a>
+        <a href="stati.html" class="footer__link">Нутрициолог</a>
+        <a href="stati.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Квизы</h5>
+        <a href="kvizy.html" class="footer__link">Выездной массаж</a>
+        <a href="kvizy.html" class="footer__link">Йога в офисе</a>
+        <a href="kvizy.html" class="footer__link">Психолог</a>
+        <a href="kvizy.html" class="footer__link">Нутрициолог</a>
+        <a href="kvizy.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Контакты</h5>
+        <a href="kontakty.html" class="footer__link">Выездной массаж</a>
+        <a href="kontakty.html" class="footer__link">Йога в офисе</a>
+        <a href="kontakty.html" class="footer__link">Психолог</a>
+        <a href="kontakty.html" class="footer__link">Нутрициолог</a>
+        <a href="kontakty.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">FAQ</h5>
+        <a href="faq.html" class="footer__link">Выездной массаж</a>
+        <a href="faq.html" class="footer__link">Йога в офисе</a>
+        <a href="faq.html" class="footer__link">Психолог</a>
+        <a href="faq.html" class="footer__link">Нутрициолог</a>
+        <a href="faq.html" class="footer__link">Ароматерапия</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <img src="assets/icons/logo-white.svg" alt="BodyWay" class="footer__logo">
+      <a href="kontakty.html" class="btn btn--cream">
+        <span>Заказать</span>
+        <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+      </a>
+    </div>
+  </div>
+  <div class="footer__stripe"></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/calculator.js"></script>
+</body>
+</html>
