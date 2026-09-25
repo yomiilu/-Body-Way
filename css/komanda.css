@@ -1,0 +1,241 @@
+/* ===== Intro ===== */
+
+.team-intro {
+  padding-top: 2.5vw;
+}
+
+.team-intro__desc {
+  font-size: 1.111vw;
+  line-height: 1.5;
+  max-width: 32vw;
+  color: var(--color-ink);
+  margin-top: 1.25vw;
+}
+
+/* ===== Team grid ===== */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.667vw 2.153vw;
+}
+
+.team-card {
+  display: flex;
+  align-items: stretch;
+  height: 19.1vw;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.team-card__photo {
+  flex: 0 0 21.32vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-navy);
+}
+
+.team-card__photo-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.111vw;
+  color: rgba(255, 252, 247, 0.5);
+  text-transform: uppercase;
+}
+
+.team-card__info {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--color-gray);
+  padding: 2.222vw 1.667vw;
+}
+
+.team-card__role {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.389vw;
+  color: var(--color-navy);
+  margin-bottom: 0.417vw;
+}
+
+.team-card__name {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.944vw;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin-bottom: 1.111vw;
+}
+
+.team-card__exp {
+  font-size: 1.111vw;
+  color: var(--color-ink);
+  margin-bottom: 0.556vw;
+}
+
+.team-card__note {
+  font-size: 1.111vw;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+/* ===== Partners ===== */
+
+.partners-section {
+  padding-bottom: 5.556vw;
+}
+
+.partner-card {
+  display: flex;
+  align-items: stretch;
+  max-width: 46.18vw;
+  height: 22.01vw;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.partner-card__photo {
+  flex: 0 0 16.46vw;
+  background-color: #515561;
+}
+
+.partner-card__info {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--color-navy);
+  padding: 2.569vw 2.222vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.partner-card__name {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 2.431vw;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-cream-soft);
+  margin-bottom: 1.25vw;
+}
+
+.partner-card__role {
+  font-size: 1.111vw;
+  color: var(--color-cream-soft);
+  margin-bottom: 1.667vw;
+}
+
+.partner-card__btn {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.694vw;
+  height: 3.819vw;
+  padding: 0 1.667vw;
+  border-radius: var(--radius-lg);
+  border: 0.07vw solid var(--color-navy);
+  background-color: var(--color-gray);
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+  font-size: 1.111vw;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.partner-card__btn:hover {
+  opacity: 0.8;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 900px) {
+  .team-intro {
+    padding-top: 5vw;
+  }
+
+  .section__title {
+    font-size: 7vw;
+    margin-bottom: 4vw;
+  }
+
+  .team-intro__desc {
+    max-width: none;
+    font-size: 3.3vw;
+    line-height: 1.5;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 4vw;
+  }
+
+  .team-card {
+    height: 55vw;
+    border-radius: 4vw;
+  }
+
+  .team-card__photo {
+    flex: 0 0 44%;
+  }
+
+  .team-card__photo-label {
+    font-size: 3.4vw;
+  }
+
+  .team-card__info {
+    padding: 4.5vw 3.5vw 2.2vw;
+    overflow: hidden;
+  }
+
+  .team-card__role {
+    font-size: 3.1vw;
+    margin-bottom: 0.8vw;
+  }
+
+  .team-card__name {
+    font-size: 5.5vw;
+    margin-bottom: 4.5vw;
+  }
+
+  .team-card__exp {
+    font-size: 3.3vw;
+    margin-bottom: 1vw;
+  }
+
+  .team-card__note {
+    font-size: 3.3vw;
+    line-height: 1.5;
+  }
+
+  .partner-card {
+    max-width: none;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .partner-card__photo {
+    flex-basis: auto;
+    height: 26vw;
+  }
+
+  .partner-card__info {
+    padding: 5vw 4vw;
+  }
+
+  .partner-card__name {
+    font-size: 5.1vw;
+    margin-bottom: 2.5vw;
+  }
+
+  .partner-card__role {
+    font-size: 3.1vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .partner-card__btn {
+    height: 9.5vw;
+    padding: 0 4.5vw;
+    font-size: 2.7vw;
+  }
+}

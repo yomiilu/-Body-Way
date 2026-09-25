@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/komanda.css">
 </head>
 <body>
 
@@ -35,16 +36,209 @@
       </ul>
     </nav>
 
-    <a href="kontakty.html" class="btn btn--navy">
-      <span>Заказать</span>
-      <img src="assets/icons/arrow-light.svg" alt="" class="btn__arrow">
-    </a>
+    <div class="header__right">
+      <a href="kontakty.html" class="btn btn--navy">
+        <span>Заказать</span>
+        <img src="assets/icons/arrow-light.svg" alt="" class="btn__arrow">
+      </a>
+      <button type="button" class="header__burger" id="headerBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li class="mobile-nav__group">
+        <a href="uslugi.html" class="mobile-nav__link">Услуги</a>
+        <ul class="mobile-nav__sublist">
+          <li><a href="uslugi.html#otdelnye" class="mobile-nav__sublink">Отдельные услуги</a></li>
+          <li><a href="uslugi.html#meropriyatiya" class="mobile-nav__sublink">Well-being сопровождение мероприятий</a></li>
+          <li><a href="uslugi.html#personalnye" class="mobile-nav__sublink">Персональные программы под ключ</a></li>
+        </ul>
+      </li>
+      <li><a href="stati.html" class="mobile-nav__link">Статьи</a></li>
+      <li><a href="komanda.html" class="mobile-nav__link mobile-nav__link--current">Команда</a></li>
+      <li><a href="kvizy.html" class="mobile-nav__link">Квизы</a></li>
+      <li><a href="kontakty.html" class="mobile-nav__link">Контакты</a></li>
+      <li><a href="faq.html" class="mobile-nav__link">FAQ</a></li>
+    </ul>
+  </nav>
 </header>
 
-<main class="empty-main">
-  <h1 class="empty-main__title">Команда</h1>
+<main>
+
+  <section class="section team-intro">
+    <div class="container">
+      <h1 class="section__title">01. Наша команда</h1>
+      <p class="team-intro__desc">Наши сотрудники — профессионалы своего дела с большим опытом, которым вы можете доверять. Каждый из них имеет медицинскую книжку и проходит регулярное обучение.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 2.222vw;">
+    <div class="container">
+      <div class="team-grid">
+
+        <div class="team-card reveal">
+          <div class="team-card__photo"><span class="team-card__photo-label">Фото</span></div>
+          <div class="team-card__info">
+            <p class="team-card__role">Массажист</p>
+            <h3 class="team-card__name">Дмитрий</h3>
+            <p class="team-card__exp">Опыт работы — 10 лет</p>
+            <p class="team-card__note">Серебряный призёр чемпионата РФ «Точка Роста» — 2025</p>
+          </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card__photo"><span class="team-card__photo-label">Фото</span></div>
+          <div class="team-card__info">
+            <p class="team-card__role">Массажист</p>
+            <h3 class="team-card__name">Александр</h3>
+            <p class="team-card__exp">Опыт работы — 15 лет</p>
+            <p class="team-card__note">Александр — профессиональный массажист с опытом работы в топ-корпорациях.</p>
+          </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card__photo"><span class="team-card__photo-label">Фото</span></div>
+          <div class="team-card__info">
+            <p class="team-card__role">Массажист</p>
+            <h3 class="team-card__name">Даниил</h3>
+            <p class="team-card__exp">Опыт работы — 6 лет</p>
+            <p class="team-card__note">Специализируется на снятии мышечных зажимов и восстановлении после нагрузки.</p>
+          </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card__photo"><span class="team-card__photo-label">Фото</span></div>
+          <div class="team-card__info">
+            <p class="team-card__role">Массажист</p>
+            <h3 class="team-card__name">Алина</h3>
+            <p class="team-card__exp">Опыт работы — 11 лет</p>
+            <p class="team-card__note">Алина — профессиональный массажист, специалист по расслабляющим техникам.</p>
+          </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card__photo"><span class="team-card__photo-label">Фото</span></div>
+          <div class="team-card__info">
+            <p class="team-card__role">Психолог</p>
+            <h3 class="team-card__name">Виктория</h3>
+            <p class="team-card__exp">Опыт работы — 7 лет</p>
+            <p class="team-card__note">Магистр психологии, клинический психолог.</p>
+          </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card__photo"><span class="team-card__photo-label">Фото</span></div>
+          <div class="team-card__info">
+            <p class="team-card__role">Нутрициолог</p>
+            <h3 class="team-card__name">Катерина</h3>
+            <p class="team-card__exp">Опыт работы — 7 лет</p>
+            <p class="team-card__note">Интегративный нутрициолог.</p>
+          </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card__photo"><span class="team-card__photo-label">Фото</span></div>
+          <div class="team-card__info">
+            <p class="team-card__role">Ароматерапевт</p>
+            <h3 class="team-card__name">Виктория</h3>
+            <p class="team-card__exp">Опыт работы — 7 лет</p>
+            <p class="team-card__note">Подбирает ароматические композиции под задачи команды и особенности помещения.</p>
+          </div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card__photo"><span class="team-card__photo-label">Фото</span></div>
+          <div class="team-card__info">
+            <p class="team-card__role">Йога-инструктор</p>
+            <h3 class="team-card__name">Катерина</h3>
+            <p class="team-card__exp">Опыт работы — 7 лет</p>
+            <p class="team-card__note">Ведёт групповые и индивидуальные занятия для офисных команд.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section partners-section">
+    <div class="container">
+      <h2 class="section__title">02. Партнёры</h2>
+      <div class="partner-card reveal">
+        <div class="partner-card__photo"></div>
+        <div class="partner-card__info">
+          <h3 class="partner-card__name">Ганиев Борис Геннадьевич</h3>
+          <p class="partner-card__role">Врач иглорефлексотерапевт</p>
+          <a href="kontakty.html" class="partner-card__btn">
+            <span>Узнать подробнее</span>
+            <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__columns">
+      <div class="footer__col">
+        <h5 class="footer__heading">Услуги</h5>
+        <a href="uslugi.html" class="footer__link">Выездной массаж</a>
+        <a href="uslugi.html" class="footer__link">Йога в офисе</a>
+        <a href="uslugi.html" class="footer__link">Психолог</a>
+        <a href="uslugi.html" class="footer__link">Нутрициолог</a>
+        <a href="uslugi.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Статьи</h5>
+        <a href="stati.html" class="footer__link">Выездной массаж</a>
+        <a href="stati.html" class="footer__link">Йога в офисе</a>
+        <a href="stati.html" class="footer__link">Психолог</a>
+        <a href="stati.html" class="footer__link">Нутрициолог</a>
+        <a href="stati.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Квизы</h5>
+        <a href="kvizy.html" class="footer__link">Выездной массаж</a>
+        <a href="kvizy.html" class="footer__link">Йога в офисе</a>
+        <a href="kvizy.html" class="footer__link">Психолог</a>
+        <a href="kvizy.html" class="footer__link">Нутрициолог</a>
+        <a href="kvizy.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Контакты</h5>
+        <a href="kontakty.html" class="footer__link">Выездной массаж</a>
+        <a href="kontakty.html" class="footer__link">Йога в офисе</a>
+        <a href="kontakty.html" class="footer__link">Психолог</a>
+        <a href="kontakty.html" class="footer__link">Нутрициолог</a>
+        <a href="kontakty.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">FAQ</h5>
+        <a href="faq.html" class="footer__link">Выездной массаж</a>
+        <a href="faq.html" class="footer__link">Йога в офисе</a>
+        <a href="faq.html" class="footer__link">Психолог</a>
+        <a href="faq.html" class="footer__link">Нутрициолог</a>
+        <a href="faq.html" class="footer__link">Ароматерапия</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <img src="assets/icons/logo-white.svg" alt="BodyWay" class="footer__logo">
+      <a href="kontakty.html" class="btn btn--cream">
+        <span>Заказать</span>
+        <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+      </a>
+    </div>
+  </div>
+  <div class="footer__stripe"></div>
+</footer>
 
 <script src="js/main.js"></script>
 </body>

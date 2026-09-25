@@ -35,11 +35,36 @@
       </ul>
     </nav>
 
-    <a href="kontakty.html" class="btn btn--navy">
-      <span>Заказать</span>
-      <img src="assets/icons/arrow-light.svg" alt="" class="btn__arrow">
-    </a>
+    <div class="header__right">
+      <a href="kontakty.html" class="btn btn--navy">
+        <span>Заказать</span>
+        <img src="assets/icons/arrow-light.svg" alt="" class="btn__arrow">
+      </a>
+      <button type="button" class="header__burger" id="headerBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav__list">
+      <li class="mobile-nav__group">
+        <a href="uslugi.html" class="mobile-nav__link">Услуги</a>
+        <ul class="mobile-nav__sublist">
+          <li><a href="uslugi.html#otdelnye" class="mobile-nav__sublink">Отдельные услуги</a></li>
+          <li><a href="uslugi.html#meropriyatiya" class="mobile-nav__sublink">Well-being сопровождение мероприятий</a></li>
+          <li><a href="uslugi.html#personalnye" class="mobile-nav__sublink">Персональные программы под ключ</a></li>
+        </ul>
+      </li>
+      <li><a href="stati.html" class="mobile-nav__link mobile-nav__link--current">Статьи</a></li>
+      <li><a href="komanda.html" class="mobile-nav__link">Команда</a></li>
+      <li><a href="kvizy.html" class="mobile-nav__link">Квизы</a></li>
+      <li><a href="kontakty.html" class="mobile-nav__link">Контакты</a></li>
+      <li><a href="faq.html" class="mobile-nav__link">FAQ</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main class="empty-main">

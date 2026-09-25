@@ -2,7 +2,26 @@ document.addEventListener('DOMContentLoaded', function () {
   initDropdown();
   initScrollReveal();
   initGallery();
+  initMobileMenu();
 });
+
+function initMobileMenu() {
+  var header = document.querySelector('.header');
+  var burger = document.getElementById('headerBurger');
+  if (!header || !burger) return;
+
+  burger.addEventListener('click', function () {
+    var isOpen = header.classList.toggle('header--menu-open');
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.mobile-nav__link, .mobile-nav__sublink').forEach(function (link) {
+    link.addEventListener('click', function () {
+      header.classList.remove('header--menu-open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
 
 function initDropdown() {
   var items = document.querySelectorAll('.nav__item--dropdown');
