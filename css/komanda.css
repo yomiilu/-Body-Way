@@ -2,6 +2,7 @@
 
 .team-intro {
   padding-top: 2.5vw;
+  padding-bottom: 1.5vw;
 }
 
 .team-intro__desc {
@@ -83,6 +84,7 @@
 /* ===== Partners ===== */
 
 .partners-section {
+  padding-top: 1.5vw;
   padding-bottom: 5.556vw;
 }
 
@@ -152,6 +154,7 @@
 @media (max-width: 900px) {
   .team-intro {
     padding-top: 5vw;
+    padding-bottom: 5.556vw;
   }
 
   .section__title {

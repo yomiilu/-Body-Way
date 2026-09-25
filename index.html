@@ -130,10 +130,8 @@
       <h2 class="section__title section__title--light reveal">02. Мы предлагаем</h2>
 
       <div class="offer">
-        <div class="offer__services reveal">
-          <h3 class="offer__services-title">Уникальные well-being услуги</h3>
-
-          <div class="service">
+        <div class="offer__row">
+          <div class="service reveal">
             <div class="service__head">
               <span class="service__num">1</span>
               <h4 class="service__title">Отдельные услуги</h4>
@@ -188,7 +186,7 @@
             </a>
           </div>
 
-          <div class="service">
+          <div class="service reveal">
             <div class="service__head">
               <span class="service__num">2</span>
               <h4 class="service__title">Well-being сопровождение мероприятий</h4>
@@ -208,7 +206,7 @@
             </a>
           </div>
 
-          <div class="service">
+          <div class="service reveal">
             <div class="service__head">
               <span class="service__num">3</span>
               <h4 class="service__title">Персональные программы «под ключ»</h4>
@@ -221,7 +219,7 @@
           </div>
         </div>
 
-        <div class="offer__cards">
+        <div class="offer__row">
           <div class="offer-card reveal">
             <h3 class="offer-card__title">Профессиональные кадры</h3>
             <p class="offer-card__desc">В нашей команде собственные специалисты и высококвалифицированные партнёры.</p>
@@ -353,43 +351,64 @@
           <p class="steps__intro-text">Узнайте потенциальный ROI программ и получите индивидуальное предложение с помощью уникального калькулятора выгоды.</p>
         </div>
 
-        <div class="steps__ctas">
+        <ol class="steps__stepper reveal">
+          <li class="steps__step">
+            <span class="steps__step-circle">1</span>
+          </li>
+          <li class="steps__step">
+            <span class="steps__step-circle">2</span>
+          </li>
+          <li class="steps__step">
+            <span class="steps__step-circle">3</span>
+          </li>
+        </ol>
+
+        <div class="steps__row">
           <a href="calculator.html" class="cta-card reveal">
             <span class="cta-card__text">Рассчитать выгоду для компании</span>
             <img src="assets/icons/icon-consult.svg" alt="" class="cta-card__icon">
           </a>
+
+          <div class="flip-card reveal" id="kpFlipCard">
+            <div class="flip-card__inner">
+              <div class="flip-card__face flip-card__face--front cta-card" id="kpFlipTrigger">
+                <span class="cta-card__text">Получите коммерческое предложение</span>
+                <img src="assets/icons/icon-consult.svg" alt="" class="cta-card__icon">
+              </div>
+
+              <form class="flip-card__face flip-card__face--back form-card" action="#" method="post">
+                <label class="form-card__field">
+                  <input type="text" name="name" placeholder="Ваше ФИО" class="form-card__input">
+                </label>
+                <label class="form-card__field">
+                  <input type="text" name="company" placeholder="Название организации" class="form-card__input">
+                </label>
+                <label class="form-card__field">
+                  <select name="contact" class="form-card__input form-card__select">
+                    <option value="" disabled selected hidden>Как с вами связаться?</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="telegram">Telegram</option>
+                    <option value="phone">По телефону</option>
+                    <option value="max">Max</option>
+                  </select>
+                </label>
+                <label class="form-card__checkbox">
+                  <input type="checkbox" name="consent" checked>
+                  <span>Я согласен(-а) на обработку персональных данных</span>
+                </label>
+                <button type="submit" class="btn btn--cream btn--full">
+                  <span>Получить КП</span>
+                  <img src="assets/icons/arrow-dark-2.svg" alt="" class="btn__arrow">
+                </button>
+              </form>
+            </div>
+          </div>
+
           <a href="kontakty.html" class="cta-card reveal">
             <span class="cta-card__text">Обсудите детали с&nbsp;нашим специалистом</span>
             <img src="assets/icons/icon-consult.svg" alt="" class="cta-card__icon">
           </a>
         </div>
-
-        <form class="form-card reveal" action="#" method="post">
-          <h3 class="form-card__title">Получите коммерческое предложение</h3>
-          <label class="form-card__field">
-            <input type="text" name="name" placeholder="Ваше ФИО" class="form-card__input">
-          </label>
-          <label class="form-card__field">
-            <input type="text" name="company" placeholder="Название организации" class="form-card__input">
-          </label>
-          <label class="form-card__field">
-            <select name="contact" class="form-card__input form-card__select">
-              <option value="" disabled selected hidden>Как с вами связаться?</option>
-              <option value="whatsapp">WhatsApp</option>
-              <option value="telegram">Telegram</option>
-              <option value="phone">По телефону</option>
-              <option value="max">Max</option>
-            </select>
-          </label>
-          <label class="form-card__checkbox">
-            <input type="checkbox" name="consent" checked>
-            <span>Я согласен(-а) на обработку персональных данных</span>
-          </label>
-          <button type="submit" class="btn btn--cream btn--full">
-            <span>Получить КП</span>
-            <img src="assets/icons/arrow-dark-2.svg" alt="" class="btn__arrow">
-          </button>
-        </form>
       </div>
     </div>
   </section>

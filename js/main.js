@@ -3,7 +3,18 @@ document.addEventListener('DOMContentLoaded', function () {
   initScrollReveal();
   initGallery();
   initMobileMenu();
+  initKpFlipCard();
 });
+
+function initKpFlipCard() {
+  var card = document.getElementById('kpFlipCard');
+  var trigger = document.getElementById('kpFlipTrigger');
+  if (!card || !trigger) return;
+
+  trigger.addEventListener('click', function () {
+    card.classList.add('flip-card--flipped');
+  });
+}
 
 function initMobileMenu() {
   var header = document.querySelector('.header');
