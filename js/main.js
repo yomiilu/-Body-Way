@@ -9,11 +9,20 @@ document.addEventListener('DOMContentLoaded', function () {
 function initKpFlipCard() {
   var card = document.getElementById('kpFlipCard');
   var trigger = document.getElementById('kpFlipTrigger');
+  var backFace = card ? card.querySelector('.flip-card__face--back') : null;
   if (!card || !trigger) return;
 
   trigger.addEventListener('click', function () {
     card.classList.add('flip-card--flipped');
   });
+
+  if (backFace) {
+    backFace.addEventListener('click', function (e) {
+      if (!e.target.closest('input, select, button, label')) {
+        card.classList.remove('flip-card--flipped');
+      }
+    });
+  }
 }
 
 function initMobileMenu() {

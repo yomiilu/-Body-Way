@@ -777,7 +777,7 @@ button, input {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 3.2vw;
+  gap: 5vw;
   max-width: 42vw;
   width: 100%;
 }
@@ -933,6 +933,14 @@ button, input {
   align-items: stretch;
 }
 
+.steps__row-item {
+  display: contents;
+}
+
+.steps__row-num {
+  display: none;
+}
+
 .cta-card {
   display: flex;
   flex-direction: column;
@@ -982,6 +990,8 @@ button, input {
   height: 100%;
   transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .flip-card--flipped .flip-card__inner {
@@ -993,6 +1003,7 @@ button, input {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  will-change: transform;
 }
 
 .flip-card__face--front {
@@ -1001,6 +1012,20 @@ button, input {
 
 .flip-card__face--back {
   transform: rotateY(180deg);
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.flip-card--flipped .flip-card__face--front {
+  pointer-events: none;
+}
+
+.flip-card--flipped .flip-card__face--back {
+  pointer-events: auto;
+}
+
+.flip-card__face--front.cta-card:hover {
+  transform: none;
 }
 
 .form-card {
@@ -1283,25 +1308,342 @@ button, input {
     gap: 3vw;
   }
 
+  .hero {
+    min-height: calc(100vh - var(--header-h));
+    min-height: calc(100svh - var(--header-h));
+  }
+
+  .hero__card {
+    width: calc(100% - 8vw);
+    max-width: none;
+    padding: 7vw 6vw;
+  }
+
+  .hero__title {
+    font-size: 6vw;
+    line-height: 1.3;
+    margin-bottom: 3vw;
+  }
+
+  .hero__text {
+    font-size: 3.4vw;
+    max-width: none;
+    margin-bottom: 4vw;
+  }
+
+  /* ===== 01 Why us (mobile) ===== */
+
   .why {
     grid-template-columns: 1fr;
+    gap: 7vw;
   }
 
-  .offer__row,
-  .steps__row {
+  .why__col .section__title {
+    font-size: 7vw;
+    margin-top: 6vw;
+    margin-bottom: 4vw;
+  }
+
+  .why__img {
+    height: 55vw;
+  }
+
+  .timeline {
+    width: 100%;
+    margin-left: 0;
+    gap: 5vw;
+  }
+
+  .timeline::before {
+    left: 4.2vw;
+    top: 4.2vw;
+    bottom: 4.2vw;
+    height: auto;
+  }
+
+  .timeline__item {
+    gap: 3.5vw;
+  }
+
+  .timeline__num {
+    width: 8.4vw;
+    height: 8.4vw;
+    font-size: 3.6vw;
+  }
+
+  .timeline__body {
+    width: auto;
+    flex: 1;
+    padding: 3.5vw 4vw;
+  }
+
+  .timeline__title {
+    font-size: 4vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .timeline__text {
+    font-size: 3.3vw;
+  }
+
+  /* ===== 02 Offer (mobile) ===== */
+
+  .section--offer .section__title {
+    font-size: 7vw;
+    margin-top: 6vw;
+    margin-bottom: 4vw;
+  }
+
+  .offer {
+    gap: 5vw;
+  }
+
+  .offer__row {
     grid-template-columns: 1fr;
+    gap: 5vw;
   }
 
-  .flip-card {
-    min-height: 82vw;
+  .service {
+    padding: 5vw 5vw;
+  }
+
+  .service__head {
+    gap: 2.5vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .service__num {
+    width: 7.5vw;
+    height: 7.5vw;
+    font-size: 3.4vw;
+  }
+
+  .service__title {
+    font-size: 4vw;
+  }
+
+  .service__desc {
+    font-size: 3.3vw;
+    padding: 3.5vw 4vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .service__list {
+    padding: 2.5vw 4vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .service__list-item {
+    gap: 3vw;
+    font-size: 3.3vw;
+    padding: 2.5vw 1vw;
+  }
+
+  .service__icon {
+    width: 5.5vw;
+    height: 5.5vw;
+  }
+
+  .service__list-arrow {
+    width: 6.5vw;
+    height: 2.6vw;
+  }
+
+  .service__link {
+    gap: 2vw;
+    font-size: 3.3vw;
+  }
+
+  .service__link-icon {
+    width: 6.5vw;
+    height: 6.5vw;
+  }
+
+  .tags {
+    gap: 2.2vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .tags__item {
+    font-size: 3vw;
+    padding: 2vw 3.5vw;
+  }
+
+  .offer-card {
+    padding: 5vw 5vw;
+  }
+
+  .offer-card__title {
+    font-size: 4.4vw;
+    margin-bottom: 2.5vw;
+  }
+
+  .offer-card__desc {
+    font-size: 3.3vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .check-list {
+    gap: 2.5vw;
+    margin-bottom: 4vw;
+  }
+
+  .check-list__item {
+    gap: 2.5vw;
+    font-size: 3.2vw;
+  }
+
+  .check-list__icon {
+    width: 4.5vw;
+    height: 4.5vw;
+  }
+
+  /* ===== 03 Need (mobile) ===== */
+
+  .need {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6vw;
+  }
+
+  .need .section__title {
+    font-size: 7vw;
+    margin-top: 6vw;
+    margin-bottom: 0;
   }
 
   .need-list {
     max-width: none;
+    gap: 9vw;
+  }
+
+  .need-list::before {
+    left: 4.5vw;
+    top: 4.5vw;
+    bottom: 4.5vw;
+  }
+
+  .need-list__item {
+    gap: 3.5vw;
+  }
+
+  .need-list__icon {
+    width: 9vw;
+    height: 9vw;
+  }
+
+  .need-list__icon-img {
+    width: 4.6vw;
+  }
+
+  .need-list__text {
+    font-size: 3.8vw;
   }
 
   .gallery {
-    grid-template-columns: repeat(2, 1fr);
+    margin-top: 5vw;
+    padding: 3vw 0;
+  }
+
+  .gallery__item {
+    width: 55vw;
+    height: 66vw;
+  }
+
+  /* ===== 04 Steps (mobile) ===== */
+
+  .steps {
+    gap: 6vw;
+  }
+
+  .steps__intro .section__title {
+    font-size: 7vw;
+    margin-top: 6vw;
+    margin-bottom: 3vw;
+  }
+
+  .steps__intro-text {
+    font-size: 3.3vw;
+    max-width: none;
+  }
+
+  .steps__stepper {
+    display: none;
+  }
+
+  .steps__row {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    gap: 5vw;
+  }
+
+  .steps__row::before {
+    content: '';
+    position: absolute;
+    left: 4.2vw;
+    top: 4.2vw;
+    bottom: 4.2vw;
+    width: 0.14vw;
+    background-color: var(--color-navy);
+    opacity: 0.35;
+    z-index: 0;
+  }
+
+  .steps__row-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 3vw;
+  }
+
+  .steps__row-num {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 8.4vw;
+    height: 8.4vw;
+    border-radius: 50%;
+    border: 0.07vw solid var(--color-navy);
+    background-color: var(--color-gray);
+    color: var(--color-navy);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 3.6vw;
+  }
+
+  .steps__row-item > a,
+  .steps__row-item > .flip-card {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cta-card {
+    padding: 5vw 5vw 6vw;
+  }
+
+  .cta-card__icon {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .cta-card__text {
+    font-size: 3.8vw;
+    max-width: none;
+    margin-bottom: 3vw;
+  }
+
+  .flip-card {
+    height: 34vw;
+    transform: none !important;
+    transition: height 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  }
+
+  .flip-card--flipped {
+    height: 82vw;
   }
 
   .btn {
@@ -1340,6 +1682,7 @@ button, input {
   }
 
   .footer {
+    margin-top: 8vw;
     padding-top: 9vw;
   }
 
