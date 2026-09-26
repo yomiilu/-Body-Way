@@ -108,6 +108,12 @@ function initCalculator() {
     nextBtn.hidden = step === 4;
     actionsWrap.classList.toggle('calc__actions--split', step > 1);
 
+    if (step === 4) {
+      pdfBtn.insertAdjacentElement('afterend', backBtn);
+    } else if (backBtn.parentElement !== actionsWrap) {
+      actionsWrap.insertBefore(backBtn, actionsWrap.firstChild);
+    }
+
     if (step === 3) renderConfigStep();
     if (step === 4) renderResults();
   }
@@ -166,7 +172,7 @@ function initCalculator() {
           '<span class="calc-counter__label">' + svc.fieldA.label + '</span>' +
           '<div class="calc-counter__control">' +
             '<span class="calc-counter__btn" data-dir="-1">−</span>' +
-            '<span class="calc-counter__value" data-value>' + cfg.a + '</span>' +
+            '<input type="number" class="calc-counter__value" data-value min="1" value="' + cfg.a + '">' +
             '<span class="calc-counter__btn" data-dir="1">+</span>' +
           '</div>' +
         '</div>' +
@@ -174,7 +180,7 @@ function initCalculator() {
           '<span class="calc-counter__label">' + svc.fieldB.label + '</span>' +
           '<div class="calc-counter__control">' +
             '<span class="calc-counter__btn" data-dir="-1">−</span>' +
-            '<span class="calc-counter__value" data-value>' + cfg.b + '</span>' +
+            '<input type="number" class="calc-counter__value" data-value min="1" value="' + cfg.b + '">' +
             '<span class="calc-counter__btn" data-dir="1">+</span>' +
           '</div>' +
         '</div>';
@@ -187,8 +193,20 @@ function initCalculator() {
             var dir = parseInt(btn.dataset.dir, 10);
             var next = Math.max(1, cfg[field] + dir);
             cfg[field] = next;
-            valueEl.textContent = next;
+            valueEl.value = next;
           });
+        });
+
+        valueEl.addEventListener('input', function () {
+          var v = parseInt(valueEl.value, 10);
+          if (!isNaN(v) && v >= 1) cfg[field] = v;
+        });
+
+        valueEl.addEventListener('blur', function () {
+          var v = parseInt(valueEl.value, 10);
+          if (isNaN(v) || v < 1) v = 1;
+          cfg[field] = v;
+          valueEl.value = v;
         });
       });
 
@@ -320,9 +338,32 @@ function initCalculator() {
       '</div>';
   }
 
-  if (pdfBtn) {
+  /* ---------- PDF download confirmation ---------- */
+
+  var pdfModal = document.getElementById('pdfConfirmModal');
+  var pdfOverlay = document.getElementById('pdfConfirmOverlay');
+  var pdfConfirmBtn = document.getElementById('pdfConfirmDownload');
+  var pdfCancelBtn = document.getElementById('pdfConfirmCancel');
+
+  function closePdfModal() {
+    pdfModal.hidden = true;
+  }
+
+  if (pdfBtn && pdfModal) {
     pdfBtn.addEventListener('click', function () {
+      pdfModal.hidden = false;
+    });
+
+    pdfOverlay.addEventListener('click', closePdfModal);
+    pdfCancelBtn.addEventListener('click', closePdfModal);
+
+    pdfConfirmBtn.addEventListener('click', function () {
+      closePdfModal();
       window.print();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !pdfModal.hidden) closePdfModal();
     });
   }
 

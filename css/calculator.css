@@ -342,7 +342,7 @@
 
 .calc-counter {
   flex-shrink: 0;
-  width: 12.36vw;
+  width: 14vw;
 }
 
 .calc-counter__label {
@@ -362,7 +362,7 @@
 }
 
 .calc-counter__btn {
-  font-size: 1.667vw;
+  font-size: 1.25vw;
   font-weight: 500;
   color: var(--color-ink);
   cursor: pointer;
@@ -371,8 +371,34 @@
 }
 
 .calc-counter__value {
-  font-size: 1.667vw;
+  width: 3.06vw;
+  height: 2.222vw;
+  border: 0.07vw solid #344d95;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.25vw;
   font-weight: 500;
+  text-align: center;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  -moz-appearance: textfield;
+}
+
+.calc-counter__value:hover {
+  background-color: var(--color-white);
+}
+
+.calc-counter__value:focus {
+  outline: none;
+  border-color: var(--color-navy);
+  background-color: var(--color-white);
+}
+
+.calc-counter__value::-webkit-outer-spin-button,
+.calc-counter__value::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* ===== Step 4 results ===== */
@@ -493,6 +519,11 @@
   cursor: pointer;
 }
 
+.calc__panel-info .calc__back-step {
+  display: flex;
+  margin-top: 1.111vw;
+}
+
 /* ===== Contact form (reuses .form-card look on light bg) ===== */
 
 .calc__contact {
@@ -514,28 +545,338 @@
   margin-bottom: 0.556vw;
 }
 
+/* ===== Modal ===== */
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(37, 37, 37, 0.55);
+}
+
+.modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 36vw;
+  background-color: var(--color-cream);
+  border-radius: var(--radius-md);
+  padding: 2.222vw;
+  box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.25);
+}
+
+.modal__title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.667vw;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  margin-bottom: 1.111vw;
+}
+
+.modal__text {
+  font-size: 1.111vw;
+  line-height: 1.5;
+  color: var(--color-ink);
+  margin-bottom: 1.667vw;
+}
+
+.modal__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.111vw;
+}
+
 /* ===== Responsive ===== */
 
 @media (max-width: 900px) {
+  .calc__top {
+    padding-top: 5vw;
+  }
+
+  .calc__back {
+    height: 8vw;
+    padding: 0 4vw;
+    font-size: 2.8vw;
+    margin-bottom: 5vw;
+  }
+
   .calc__intro,
   .calc__panel {
     grid-template-columns: 1fr;
   }
 
+  .calc__intro {
+    gap: 6vw;
+    margin-bottom: 8vw;
+  }
+
+  .calc__title {
+    font-size: 7vw;
+    margin-bottom: 3vw;
+  }
+
+  .calc__intro-desc {
+    font-size: 3.3vw;
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  .calc__intro-img {
+    height: 60vw;
+  }
+
+  .calc__stepper {
+    max-width: none;
+  }
+
+  .calc__step-circle {
+    width: 8vw;
+    height: 8vw;
+    font-size: 3.4vw;
+  }
+
+  .calc__step-label {
+    font-size: 2.6vw;
+  }
+
+  .calc__card {
+    padding: 6vw 5vw;
+  }
+
+  .calc__panel {
+    gap: 6vw;
+  }
+
+  .calc__panel-title {
+    font-size: 7vw;
+    margin-bottom: 3vw;
+  }
+
+  .calc__panel-desc {
+    font-size: 3.3vw;
+    line-height: 1.5;
+  }
+
+  .calc__panel-body,
+  .calc-config {
+    margin-left: 0;
+  }
+
+  .calc-field {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 3vw;
+    padding: 4vw 3.5vw;
+  }
+
+  .calc-field__label {
+    flex: 0 0 100%;
+    font-size: 3.3vw;
+    white-space: normal;
+  }
+
+  .calc-field__label-icon {
+    width: 4.5vw;
+    height: 4.5vw;
+  }
+
+  .calc-field__input-box {
+    width: 100%;
+    height: 10vw;
+    padding: 0 3.5vw;
+  }
+
+  .calc-field__input {
+    font-size: 3.3vw;
+  }
+
+  .calc-field__suffix {
+    font-size: 3.3vw;
+  }
+
   .calc-services {
     grid-template-columns: 1fr;
+    gap: 4vw;
+  }
+
+  .calc-service {
+    padding: 4vw 4.5vw;
+  }
+
+  .calc-service__title {
+    font-size: 4.2vw;
+    padding-right: 9vw;
+  }
+
+  .calc-service__price {
+    font-size: 3.3vw;
+  }
+
+  .calc-service__desc {
+    font-size: 3.3vw;
+    line-height: 1.5;
+  }
+
+  .calc-service__note {
+    font-size: 2.6vw;
+    margin-top: 2vw;
+    padding-top: 2vw;
+  }
+
+  .calc-toggle {
+    top: 4vw;
+    right: 4vw;
+    width: 8vw;
+    height: 4vw;
+  }
+
+  .calc-toggle__knob {
+    width: 3vw;
+    height: 3vw;
+    left: 0.4vw;
+  }
+
+  .calc-toggle--on .calc-toggle__knob {
+    left: calc(100% - 3.4vw);
   }
 
   .calc-config-row {
     flex-wrap: wrap;
+    gap: 3vw;
+    padding: 4vw;
+  }
+
+  .calc-config-row__icon {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .calc-config-row__info {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+
+  .calc-config-row__title {
+    font-size: 4.2vw;
+  }
+
+  .calc-config-row__price {
+    font-size: 3.3vw;
+  }
+
+  .calc-counter {
+    width: calc(50% - 1.5vw);
+  }
+
+  .calc-counter__label {
+    font-size: 2.6vw;
+  }
+
+  .calc-counter__control {
+    height: 9vw;
+    padding: 0 3vw;
+  }
+
+  .calc-counter__btn {
+    font-size: 4vw;
+  }
+
+  .calc-counter__value {
+    width: 8vw;
+    height: 6vw;
+    font-size: 3.4vw;
   }
 
   .calc-results {
     grid-column: 1;
-    grid-template-columns: 1fr;
+  }
+
+  .calc-stat {
+    padding: 5vw 4vw;
+  }
+
+  .calc-stat__icon {
+    width: 4.5vw;
+  }
+
+  .calc-stat__trend {
+    font-size: 3.4vw;
+  }
+
+  .calc-stat__value {
+    font-size: 6vw;
+  }
+
+  .calc-stat__label {
+    font-size: 2.6vw;
+  }
+
+  .calc__pdf-btn {
+    margin-top: 5vw;
+    height: 11vw;
+    padding: 0 5vw;
+    font-size: 3.4vw;
+  }
+
+  .calc__actions {
+    margin-top: 6vw;
+  }
+
+  .calc__back-step {
+    height: 11vw;
+    padding: 0 5vw;
+    font-size: 3.4vw;
+  }
+
+  .calc__panel-info .calc__back-step {
+    margin-top: 3vw;
   }
 
   .calc__contact {
     max-width: none;
+    margin: 8vw auto;
+    padding: 5vw;
+    gap: 3vw;
+  }
+
+  .calc__contact-title {
+    font-size: 4.2vw;
+    margin-bottom: 2vw;
+  }
+
+  .modal__dialog {
+    max-width: none;
+    width: 85vw;
+    padding: 5vw;
+  }
+
+  .modal__title {
+    font-size: 4.5vw;
+    margin-bottom: 3vw;
+  }
+
+  .modal__text {
+    font-size: 3.4vw;
+    margin-bottom: 4vw;
+  }
+
+  .modal__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3vw;
   }
 }

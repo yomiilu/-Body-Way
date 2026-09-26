@@ -34,7 +34,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-navy);
+  background-color: var(--color-cream);
+  border: 0.07vw solid var(--color-navy);
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  overflow: hidden;
+}
+
+.team-card__photo picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.team-card__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .team-card__photo-label {
@@ -180,6 +195,7 @@
 
   .team-card__photo {
     flex: 0 0 44%;
+    border-radius: 4vw 0 0 4vw;
   }
 
   .team-card__photo-label {

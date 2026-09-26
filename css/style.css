@@ -6,10 +6,6 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: var(--color-cream);
   color: var(--color-ink);
@@ -588,12 +584,46 @@ button, input {
   gap: 1.111vw;
   font-size: 1.111vw;
   color: var(--color-ink);
-  padding: 0.694vw 0;
-  transition: opacity 0.2s ease;
+  padding: 0.694vw 0.833vw;
+  transition: background-color 0.2s ease;
+  animation: service-item-cycle 3.6s linear infinite;
 }
 
 .service__list-item:hover {
-  opacity: 0.65;
+  background-color: var(--color-gray);
+}
+
+.service__list li:nth-child(1) .service__list-item {
+  animation-delay: 0s;
+}
+
+.service__list li:nth-child(2) .service__list-item {
+  animation-delay: 0.6s;
+}
+
+.service__list li:nth-child(3) .service__list-item {
+  animation-delay: 1.2s;
+}
+
+.service__list li:nth-child(4) .service__list-item {
+  animation-delay: 1.8s;
+}
+
+.service__list li:nth-child(5) .service__list-item {
+  animation-delay: 2.4s;
+}
+
+.service__list li:nth-child(6) .service__list-item {
+  animation-delay: 3s;
+}
+
+@keyframes service-item-cycle {
+  0%, 16.666% {
+    background-color: var(--color-gray);
+  }
+  16.667%, 100% {
+    background-color: transparent;
+  }
 }
 
 .service__list-item span {
@@ -605,6 +635,16 @@ button, input {
   width: 2.778vw;
   height: 1.111vw;
   opacity: 1;
+  animation: service-arrow-nudge 1.4s ease-in-out infinite;
+}
+
+@keyframes service-arrow-nudge {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(0.417vw);
+  }
 }
 
 .service__list li + li {
@@ -648,6 +688,8 @@ button, input {
 }
 
 .tags__item {
+  display: inline-flex;
+  align-items: center;
   border: 0.07vw solid var(--color-white);
   border-radius: var(--radius-lg);
   background-color: rgba(238, 238, 238, 0.12);
@@ -656,6 +698,11 @@ button, input {
   font-size: 0.903vw;
   text-transform: uppercase;
   padding: 0.694vw 1.25vw;
+  cursor: pointer;
+}
+
+.tags__item:hover {
+  background-color: rgba(238, 238, 238, 0.3);
 }
 
 .offer-card {
@@ -668,7 +715,8 @@ button, input {
   padding: 1.528vw 2.222vw;
 }
 
-.offer-card .btn {
+.offer-card .btn,
+.service .btn {
   margin-top: auto;
 }
 
@@ -1245,7 +1293,7 @@ button, input {
   }
 
   .flip-card {
-    min-height: 32vw;
+    min-height: 82vw;
   }
 
   .need-list {
@@ -1266,6 +1314,29 @@ button, input {
   .btn__arrow {
     width: 4.5vw;
     height: 4.5vw;
+  }
+
+  .form-card {
+    gap: 3vw;
+    padding: 5vw 4.5vw 6vw;
+  }
+
+  .form-card__input {
+    height: 11vw;
+    border-radius: 3vw;
+    padding: 0 4vw;
+    font-size: 3.4vw;
+  }
+
+  .form-card__checkbox {
+    gap: 2.5vw;
+    font-size: 3vw;
+    margin-top: 1vw;
+  }
+
+  .form-card__checkbox input {
+    width: 3.5vw;
+    height: 3.5vw;
   }
 
   .footer {

@@ -223,6 +223,20 @@
     </div>
   </div>
 
+  <div class="modal" id="pdfConfirmModal" hidden>
+    <div class="modal__overlay" id="pdfConfirmOverlay"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="pdfConfirmTitle">
+      <h3 class="modal__title" id="pdfConfirmTitle">Скачивание результатов</h3>
+      <p class="modal__text">Для скачивания результатов расчёта нам потребуется передать введённые вами данные компании BodyWay — это поможет нам улучшить работу калькулятора. Продолжить скачивание?</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--navy" id="pdfConfirmDownload">
+          <span>Скачать всё равно</span>
+        </button>
+        <button type="button" class="calc__back-step" id="pdfConfirmCancel">Отменить</button>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <form class="calc__contact" id="calcContactForm">
       <h3 class="calc__contact-title">Остались ещё вопросы? С радостью ответим на них!</h3>
