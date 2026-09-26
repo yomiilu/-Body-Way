@@ -108,7 +108,8 @@ function initGallery() {
   function update() {
     var rect = gallery.getBoundingClientRect();
     var vh = window.innerHeight;
-    var progress = (vh - rect.top) / (vh + rect.height);
+    var slowdown = window.matchMedia('(max-width: 900px)').matches ? 2.2 : 1;
+    var progress = (vh - rect.top) / ((vh + rect.height) * slowdown);
     progress = Math.max(0, Math.min(1, progress));
 
     var x = -progress * maxTranslate;
