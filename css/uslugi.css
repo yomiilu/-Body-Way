@@ -291,8 +291,13 @@
 
 .event-card__arrow {
   display: flex;
+  align-self: flex-start;
   align-items: center;
   justify-content: center;
+  width: 3.611vw;
+  height: 3.611vw;
+  border-radius: 50%;
+  background-color: var(--color-navy);
   transition: opacity 0.2s ease;
 }
 
@@ -301,8 +306,8 @@
 }
 
 .event-card__arrow img {
-  width: 2.639vw;
-  height: 2.639vw;
+  width: 1.667vw;
+  height: 1.667vw;
 }
 
 /* ===== Section 03 ===== */
@@ -488,9 +493,14 @@
     margin-top: 0;
   }
 
+  .event-card__arrow {
+    width: 11vw;
+    height: 11vw;
+  }
+
   .event-card__arrow img {
-    width: 9vw;
-    height: 9vw;
+    width: 5vw;
+    height: 5vw;
   }
 
   .personal-section {
