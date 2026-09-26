@@ -1338,6 +1338,10 @@ button, input {
     gap: 7vw;
   }
 
+  .section--why {
+    padding-bottom: 55vw;
+  }
+
   .why__col .section__title {
     font-size: 7vw;
     margin-top: 6vw;
