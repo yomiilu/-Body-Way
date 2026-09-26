@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/kvizy.css?v=1">
 </head>
 <body>
 
@@ -67,10 +68,139 @@
   </nav>
 </header>
 
-<main class="empty-main">
-  <h1 class="empty-main__title">Квизы</h1>
+<main>
+
+  <section class="section quiz-intro">
+    <div class="container">
+      <h1 class="section__title">Определите, что вам нужно<br><span class="quiz-title-accent">прямо сейчас</span></h1>
+      <p class="quiz-intro__desc">Короткие тесты помогут за минуту понять, что нужно вам или вашей команде прямо сейчас, и подскажут, какая программа BodyWay подойдёт лучше всего.</p>
+    </div>
+  </section>
+
+  <section class="section quiz-catalog" id="quizCatalog">
+    <div class="container">
+      <div class="quiz-grid">
+
+        <article class="quiz-card">
+          <span class="quiz-card__icon"><img src="assets/icons/icon-refresh.svg" alt=""></span>
+          <h3 class="quiz-card__title">Экспресс-компас вашего состояния</h3>
+          <p class="quiz-card__desc">Узнайте, какой ресурс важнее всего восполнить прямо сейчас, и получите персональную рекомендацию.</p>
+          <div class="quiz-card__meta">
+            <span>5 вопросов</span>
+            <span>~30 секунд</span>
+          </div>
+          <button type="button" class="btn btn--navy btn--full quiz-card__start" data-quiz="compass">
+            <span>Пройти квиз</span>
+            <img src="assets/icons/arrow-light.svg" alt="" class="btn__arrow">
+          </button>
+        </article>
+
+        <article class="quiz-card quiz-card--soon">
+          <span class="quiz-card__icon"><img src="assets/icons/icon-briefcase.svg" alt=""></span>
+          <h3 class="quiz-card__title">Риск выгорания команды</h3>
+          <p class="quiz-card__desc">Экспресс-диагностика для руководителей: где команда теряет энергию и эффективность.</p>
+          <div class="quiz-card__meta">
+            <span>Скоро</span>
+          </div>
+          <button type="button" class="btn btn--cream btn--full" disabled>
+            <span>Скоро</span>
+          </button>
+        </article>
+
+        <article class="quiz-card quiz-card--soon">
+          <span class="quiz-card__icon"><img src="assets/icons/icon-badge.svg" alt=""></span>
+          <h3 class="quiz-card__title">Какой формат подойдёт вашей команде</h3>
+          <p class="quiz-card__desc">Подберём оптимальный набор well-being программ под задачи и график вашей компании.</p>
+          <div class="quiz-card__meta">
+            <span>Скоро</span>
+          </div>
+          <button type="button" class="btn btn--cream btn--full" disabled>
+            <span>Скоро</span>
+          </button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section quiz-flow" id="quizFlow" hidden>
+    <div class="container">
+      <button type="button" class="quiz-flow__back" id="quizBackBtn">
+        <span>← Все квизы</span>
+      </button>
+
+      <div class="quiz-flow__card">
+        <div class="quiz-flow__progress">
+          <div class="quiz-flow__progress-bar">
+            <div class="quiz-flow__progress-fill" id="quizProgressFill"></div>
+          </div>
+          <span class="quiz-flow__progress-label" id="quizProgressLabel"></span>
+        </div>
+
+        <div id="quizPanelHost"></div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
+<footer class="footer">
+  <div class="container">
+    <div class="footer__columns">
+      <div class="footer__col">
+        <h5 class="footer__heading">Услуги</h5>
+        <a href="uslugi.html" class="footer__link">Выездной массаж</a>
+        <a href="uslugi.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="uslugi.html" class="footer__link">Психолог</a>
+        <a href="uslugi.html" class="footer__link">Нутрициолог</a>
+        <a href="uslugi.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Статьи</h5>
+        <a href="stati.html" class="footer__link">Выездной массаж</a>
+        <a href="stati.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="stati.html" class="footer__link">Психолог</a>
+        <a href="stati.html" class="footer__link">Нутрициолог</a>
+        <a href="stati.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Квизы</h5>
+        <a href="kvizy.html" class="footer__link">Выездной массаж</a>
+        <a href="kvizy.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="kvizy.html" class="footer__link">Психолог</a>
+        <a href="kvizy.html" class="footer__link">Нутрициолог</a>
+        <a href="kvizy.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Контакты</h5>
+        <a href="kontakty.html" class="footer__link">Выездной массаж</a>
+        <a href="kontakty.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="kontakty.html" class="footer__link">Психолог</a>
+        <a href="kontakty.html" class="footer__link">Нутрициолог</a>
+        <a href="kontakty.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">FAQ</h5>
+        <a href="faq.html" class="footer__link">Выездной массаж</a>
+        <a href="faq.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="faq.html" class="footer__link">Психолог</a>
+        <a href="faq.html" class="footer__link">Нутрициолог</a>
+        <a href="faq.html" class="footer__link">Ароматерапия</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <img src="assets/icons/logo-white.svg" alt="BodyWay" class="footer__logo">
+      <a href="kontakty.html" class="btn btn--cream">
+        <span>Заказать</span>
+        <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+      </a>
+    </div>
+  </div>
+  <div class="footer__stripe"></div>
+</footer>
+
 <script src="js/main.js"></script>
+<script src="js/kvizy.js"></script>
 </body>
 </html>

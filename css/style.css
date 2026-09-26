@@ -1652,10 +1652,12 @@ button, input {
   }
 
   .btn {
+    gap: 3vw;
     height: 11vw;
     padding-left: 5vw;
     padding-right: 5vw;
     font-size: 3.4vw;
+    border-radius: 999px;
   }
 
   .btn__arrow {

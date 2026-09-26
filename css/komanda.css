@@ -52,6 +52,11 @@
   object-fit: contain;
 }
 
+.team-card__photo-img--anna {
+  transform: scale(0.9);
+  transform-origin: bottom center;
+}
+
 .team-card__photo-label {
   font-family: var(--font-body);
   font-weight: 700;
