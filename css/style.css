@@ -448,7 +448,7 @@ button, input {
   position: absolute;
   left: 1.84vw;
   top: 1.84vw;
-  height: 21.6vw;
+  bottom: 1.84vw;
   width: 0.111vw;
   background-color: var(--color-navy);
   opacity: 0.35;
@@ -1339,7 +1339,8 @@ button, input {
   }
 
   .section--why {
-    padding-bottom: 55vw;
+    position: static;
+    padding-bottom: 20vw;
   }
 
   .why__col .section__title {
