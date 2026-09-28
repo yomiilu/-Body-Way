@@ -883,3 +883,179 @@
     gap: 3vw;
   }
 }
+
+/* ===== Print / PDF export ===== */
+
+.calc-print {
+  display: none;
+}
+
+@media print {
+  body > *:not(.calc-print) {
+    display: none !important;
+  }
+
+  .calc-print {
+    display: block !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+
+  .print-page {
+    page-break-after: always;
+  }
+
+  .print-page:last-child {
+    page-break-after: auto;
+  }
+
+  .print-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10mm;
+    padding-bottom: 4mm;
+    border-bottom: 0.5mm solid #1E3A8A;
+  }
+
+  .print-logo {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 500;
+    font-size: 16pt;
+    color: #1E3A8A;
+    text-transform: uppercase;
+  }
+
+  .print-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    color: #666666;
+  }
+
+  .print-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 18pt;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: #252525;
+    margin-bottom: 8mm;
+  }
+
+  .print-title--center {
+    text-align: center;
+    margin-top: 26mm;
+    margin-bottom: 18mm;
+  }
+
+  .print-section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 13pt;
+    text-transform: uppercase;
+    color: #1E3A8A;
+    margin: 8mm 0 4mm;
+  }
+
+  .print-facts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .print-fact,
+  .print-service__row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    padding: 2.2mm 0;
+    border-bottom: 0.25mm solid #e0e0e0;
+  }
+
+  .print-fact span:first-child,
+  .print-service__row span:first-child {
+    color: #666666;
+  }
+
+  .print-fact span:last-child,
+  .print-service__row span:last-child {
+    font-weight: 600;
+    color: #252525;
+  }
+
+  .print-services {
+    display: flex;
+    flex-direction: column;
+    gap: 5mm;
+  }
+
+  .print-service {
+    padding: 4mm 5mm;
+    background-color: #eeeeee;
+    border-radius: 3mm;
+  }
+
+  .print-service__title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11.5pt;
+    color: #1E3A8A;
+    margin-bottom: 1mm;
+  }
+
+  .print-service__row--cost {
+    border-bottom: none;
+    margin-top: 1mm;
+    padding-top: 2.2mm;
+    border-top: 0.25mm solid #cccccc;
+  }
+
+  .print-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8mm;
+    padding: 5mm 6mm;
+    background-color: #1E3A8A;
+    border-radius: 3mm;
+    color: #fffcf7;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13pt;
+    text-transform: uppercase;
+  }
+
+  .print-empty {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    color: #888888;
+  }
+
+  .print-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+  }
+
+  .print-stat {
+    text-align: center;
+    padding: 10mm 4mm;
+    background-color: #1E3A8A;
+    border-radius: 4mm;
+    color: #fffcf7;
+  }
+
+  .print-stat__value {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 26pt;
+    margin-bottom: 3mm;
+  }
+
+  .print-stat__label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+  }
+}

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=11">
-<link rel="stylesheet" href="css/uslugi.css?v=3">
+<link rel="stylesheet" href="css/uslugi.css?v=9">
 </head>
 <body>
 
@@ -335,42 +335,137 @@
   <section class="section">
     <div class="container">
       <h2 class="section__title" id="meropriyatiya">02. Выезды на&nbsp;мероприятия</h2>
-      <div class="events-grid">
-        <div class="event-card">
-          <h3 class="event-card__title">Выставки и&nbsp;конференции</h3>
-          <ul class="event-card__list">
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Экспресс-массаж воротниковой зоны за&nbsp;10 минут</span></li>
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Компактная зона отдыха на&nbsp;стенде</span></li>
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Привлекает трафик посетителей</span></li>
-          </ul>
-          <a href="kontakty.html" class="event-card__arrow"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></a>
+      <div class="events-grid" id="eventsGrid">
+        <div class="flip-card event-flip-card">
+          <div class="flip-card__inner">
+            <div class="flip-card__face flip-card__face--front event-card">
+              <h3 class="event-card__title">Выставки и&nbsp;конференции</h3>
+              <ul class="event-card__list">
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Экспресс-массаж воротниковой зоны за&nbsp;10 минут</span></li>
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Компактная зона отдыха на&nbsp;стенде</span></li>
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Привлекает трафик посетителей</span></li>
+              </ul>
+              <button type="button" class="event-card__arrow"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+            </div>
+            <div class="flip-card__face flip-card__face--back event-card-back">
+              <button type="button" class="event-card-back__close" aria-label="Свернуть"><span></span><span></span></button>
+              <h3 class="event-card-back__title">Выставки и&nbsp;конференции</h3>
+              <p class="event-card-back__text">Разворачиваем компактную well-being-зону прямо на&nbsp;вашем стенде или&nbsp;в&nbsp;зоне отдыха конференции. Гости и&nbsp;сотрудники получают экспресс-массаж воротниковой зоны за&nbsp;10 минут, восстанавливают концентрацию между сессиями и&nbsp;с&nbsp;удовольствием возвращаются к&nbsp;стенду снова — это работает как&nbsp;естественный магнит трафика и&nbsp;повод для&nbsp;разговора с&nbsp;вашей командой.</p>
+              <div class="event-card-back__gallery">
+                <div class="event-card-back__gallery-track">
+                  <img src="assets/img/gallery-1.jpg" alt="" class="event-card-back__gallery-img">
+                  <img src="assets/img/gallery-2.jpg" alt="" class="event-card-back__gallery-img">
+                  <img src="assets/img/gallery-3.jpg" alt="" class="event-card-back__gallery-img">
+                </div>
+                <button type="button" class="event-card-back__gallery-arrow event-card-back__gallery-arrow--prev" aria-label="Предыдущее фото"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+                <button type="button" class="event-card-back__gallery-arrow event-card-back__gallery-arrow--next" aria-label="Следующее фото"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+                <div class="event-card-back__gallery-dots">
+                  <span class="event-card-back__gallery-dot event-card-back__gallery-dot--active"></span>
+                  <span class="event-card-back__gallery-dot"></span>
+                  <span class="event-card-back__gallery-dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="event-card">
-          <h3 class="event-card__title">Стратегические сессии</h3>
-          <ul class="event-card__list">
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Снятие напряжения между блоками программы</span></li>
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Поддержка концентрации команды весь день</span></li>
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Форматы под&nbsp;закрытые встречи руководства</span></li>
-          </ul>
-          <a href="kontakty.html" class="event-card__arrow"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></a>
+
+        <div class="flip-card event-flip-card">
+          <div class="flip-card__inner">
+            <div class="flip-card__face flip-card__face--front event-card">
+              <h3 class="event-card__title">Стратегические сессии</h3>
+              <ul class="event-card__list">
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Снятие напряжения между блоками программы</span></li>
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Поддержка концентрации команды весь день</span></li>
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Форматы под&nbsp;закрытые встречи руководства</span></li>
+              </ul>
+              <button type="button" class="event-card__arrow"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+            </div>
+            <div class="flip-card__face flip-card__face--back event-card-back">
+              <button type="button" class="event-card-back__close" aria-label="Свернуть"><span></span><span></span></button>
+              <h3 class="event-card-back__title">Стратегические сессии</h3>
+              <p class="event-card-back__text">Для&nbsp;интенсивных стратегических сессий подбираем формат, который не&nbsp;отвлекает от&nbsp;повестки, а&nbsp;поддерживает её: короткие паузы на&nbsp;восстановление между блоками программы, работа с&nbsp;концентрацией и&nbsp;энергией на&nbsp;протяжении всего дня. Соблюдаем полную конфиденциальность и&nbsp;легко встраиваемся в&nbsp;закрытые встречи руководства любого масштаба.</p>
+              <div class="event-card-back__gallery">
+                <div class="event-card-back__gallery-track">
+                  <img src="assets/img/gallery-2.jpg" alt="" class="event-card-back__gallery-img">
+                  <img src="assets/img/gallery-3.jpg" alt="" class="event-card-back__gallery-img">
+                  <img src="assets/img/gallery-4.jpg" alt="" class="event-card-back__gallery-img">
+                </div>
+                <button type="button" class="event-card-back__gallery-arrow event-card-back__gallery-arrow--prev" aria-label="Предыдущее фото"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+                <button type="button" class="event-card-back__gallery-arrow event-card-back__gallery-arrow--next" aria-label="Следующее фото"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+                <div class="event-card-back__gallery-dots">
+                  <span class="event-card-back__gallery-dot event-card-back__gallery-dot--active"></span>
+                  <span class="event-card-back__gallery-dot"></span>
+                  <span class="event-card-back__gallery-dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="event-card">
-          <h3 class="event-card__title">Корпоративы и&nbsp;тимбилдинги</h3>
-          <ul class="event-card__list">
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Развлекательный формат well-being активностей</span></li>
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Работает как&nbsp;ледокол между отделами</span></li>
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Фото и&nbsp;видео контент для&nbsp;соцсетей компании</span></li>
-          </ul>
-          <a href="kontakty.html" class="event-card__arrow"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></a>
+
+        <div class="flip-card event-flip-card">
+          <div class="flip-card__inner">
+            <div class="flip-card__face flip-card__face--front event-card">
+              <h3 class="event-card__title">Корпоративы и&nbsp;тимбилдинги</h3>
+              <ul class="event-card__list">
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Развлекательный формат well-being активностей</span></li>
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Работает как&nbsp;ледокол между отделами</span></li>
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Фото и&nbsp;видео контент для&nbsp;соцсетей компании</span></li>
+              </ul>
+              <button type="button" class="event-card__arrow"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+            </div>
+            <div class="flip-card__face flip-card__face--back event-card-back">
+              <button type="button" class="event-card-back__close" aria-label="Свернуть"><span></span><span></span></button>
+              <h3 class="event-card-back__title">Корпоративы и&nbsp;тимбилдинги</h3>
+              <p class="event-card-back__text">Превращаем корпоратив в&nbsp;тёплый, живой опыт: наши активности работают как&nbsp;ледокол между отделами, снимают неловкость первых минут и&nbsp;быстро включают гостей в&nbsp;общее веселье. Каждый формат — это ещё и&nbsp;красивый контент: яркие фото и&nbsp;видео, которые потом органично ложатся в&nbsp;соцсети компании.</p>
+              <div class="event-card-back__gallery">
+                <div class="event-card-back__gallery-track">
+                  <img src="assets/img/gallery-3.jpg" alt="" class="event-card-back__gallery-img">
+                  <img src="assets/img/gallery-4.jpg" alt="" class="event-card-back__gallery-img">
+                  <img src="assets/img/gallery-5.jpg" alt="" class="event-card-back__gallery-img">
+                </div>
+                <button type="button" class="event-card-back__gallery-arrow event-card-back__gallery-arrow--prev" aria-label="Предыдущее фото"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+                <button type="button" class="event-card-back__gallery-arrow event-card-back__gallery-arrow--next" aria-label="Следующее фото"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+                <div class="event-card-back__gallery-dots">
+                  <span class="event-card-back__gallery-dot event-card-back__gallery-dot--active"></span>
+                  <span class="event-card-back__gallery-dot"></span>
+                  <span class="event-card-back__gallery-dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="event-card">
-          <h3 class="event-card__title">Спортивные мероприятия</h3>
-          <ul class="event-card__list">
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Восстановление мышц после нагрузки</span></li>
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Профилактика травм и&nbsp;растяжений</span></li>
-            <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Зона поддержки прямо у&nbsp;трассы или&nbsp;зала</span></li>
-          </ul>
-          <a href="kontakty.html" class="event-card__arrow"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></a>
+
+        <div class="flip-card event-flip-card">
+          <div class="flip-card__inner">
+            <div class="flip-card__face flip-card__face--front event-card">
+              <h3 class="event-card__title">Спортивные мероприятия</h3>
+              <ul class="event-card__list">
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Восстановление мышц после нагрузки</span></li>
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Профилактика травм и&nbsp;растяжений</span></li>
+                <li class="event-card__list-item"><img src="assets/icons/icon-check-circle.svg" alt="" class="event-card__list-icon"><span>Зона поддержки прямо у&nbsp;трассы или&nbsp;зала</span></li>
+              </ul>
+              <button type="button" class="event-card__arrow"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+            </div>
+            <div class="flip-card__face flip-card__face--back event-card-back">
+              <button type="button" class="event-card-back__close" aria-label="Свернуть"><span></span><span></span></button>
+              <h3 class="event-card-back__title">Спортивные мероприятия</h3>
+              <p class="event-card-back__text">Разворачиваем зону восстановления прямо у&nbsp;трассы или&nbsp;в&nbsp;зале: спортивный массаж снимает мышечное напряжение после нагрузки, ускоряет восстановление и&nbsp;снижает риск травм и&nbsp;растяжений. Участники и&nbsp;болельщики получают поддержку в&nbsp;моменте — без&nbsp;очередей и&nbsp;лишней логистики.</p>
+              <div class="event-card-back__gallery">
+                <div class="event-card-back__gallery-track">
+                  <img src="assets/img/gallery-4.jpg" alt="" class="event-card-back__gallery-img">
+                  <img src="assets/img/gallery-5.jpg" alt="" class="event-card-back__gallery-img">
+                  <img src="assets/img/gallery-1.jpg" alt="" class="event-card-back__gallery-img">
+                </div>
+                <button type="button" class="event-card-back__gallery-arrow event-card-back__gallery-arrow--prev" aria-label="Предыдущее фото"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+                <button type="button" class="event-card-back__gallery-arrow event-card-back__gallery-arrow--next" aria-label="Следующее фото"><img src="assets/icons/icon-arrow-right-cream.svg" alt=""></button>
+                <div class="event-card-back__gallery-dots">
+                  <span class="event-card-back__gallery-dot event-card-back__gallery-dot--active"></span>
+                  <span class="event-card-back__gallery-dot"></span>
+                  <span class="event-card-back__gallery-dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -464,7 +559,7 @@
   <div class="footer__stripe"></div>
 </footer>
 
-<script src="js/main.js"></script>
-<script src="js/forms.js"></script>
+<script src="js/main.js?v=4"></script>
+<script src="js/forms.js?v=2"></script>
 </body>
 </html>

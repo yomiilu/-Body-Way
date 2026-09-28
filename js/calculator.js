@@ -79,6 +79,7 @@ function initCalculator() {
   var configWrap = document.getElementById('calcConfig');
   var resultsWrap = document.getElementById('calcResults');
   var pdfBtn = document.getElementById('calcPdfBtn');
+  var printWrap = document.getElementById('calcPrint');
 
   function fmtMoney(n) {
     return Math.round(n).toLocaleString('ru-RU') + ' ₽';
@@ -345,6 +346,65 @@ function initCalculator() {
       '</div>';
   }
 
+  function buildPrintable() {
+    var r = calculate();
+    var salaryMonthly = parseFloat(document.getElementById('calcSalary').value) || 0;
+    var employees = parseFloat(document.getElementById('calcEmployees').value) || 0;
+    var turnoverPercent = parseFloat(document.getElementById('calcTurnover').value) || 0;
+
+    var serviceRows = '';
+    var programCost = 0;
+
+    Object.keys(SERVICES).forEach(function (key) {
+      if (!state.enabled[key]) return;
+      var svc = SERVICES[key];
+      var cfg = state.config[key];
+      var cost = computeCost(svc, cfg.a, cfg.b);
+      programCost += cost;
+
+      serviceRows +=
+        '<div class="print-service">' +
+          '<div class="print-service__title">' + svc.label + '</div>' +
+          '<div class="print-service__row"><span>' + svc.fieldA.label.replace('?', '') + '</span><span>' + fmtInt(cfg.a) + '</span></div>' +
+          '<div class="print-service__row"><span>' + svc.fieldB.label.replace('?', '') + '</span><span>' + fmtInt(cfg.b) + '</span></div>' +
+          '<div class="print-service__row print-service__row--cost"><span>Стоимость в год</span><span>' + fmtMoney(cost) + '</span></div>' +
+        '</div>';
+    });
+
+    var printHtml =
+      '<section class="print-page">' +
+        '<div class="print-header">' +
+          '<div class="print-logo">BodyWay</div>' +
+          '<div class="print-date">' + new Date().toLocaleDateString('ru-RU') + '</div>' +
+        '</div>' +
+        '<h1 class="print-title">Расчёт выгоды от&nbsp;внедрения well-being услуг</h1>' +
+
+        '<h2 class="print-section-title">Данные о&nbsp;компании</h2>' +
+        '<div class="print-facts">' +
+          '<div class="print-fact"><span>Средняя зарплата сотрудника</span><span>' + fmtMoney(salaryMonthly) + '</span></div>' +
+          '<div class="print-fact"><span>Количество сотрудников</span><span>' + fmtInt(employees) + ' человек</span></div>' +
+          '<div class="print-fact"><span>Текучесть кадров в год</span><span>' + turnoverPercent + '%</span></div>' +
+        '</div>' +
+
+        '<h2 class="print-section-title">Выбранная программа</h2>' +
+        '<div class="print-services">' + (serviceRows || '<p class="print-empty">Услуги не выбраны</p>') + '</div>' +
+
+        '<div class="print-total"><span>Стоимость программы в год</span><span>' + fmtMoney(programCost) + '</span></div>' +
+      '</section>' +
+
+      '<section class="print-page print-page--results">' +
+        '<h1 class="print-title print-title--center">Результат для&nbsp;вашей компании</h1>' +
+        '<div class="print-stats">' +
+          '<div class="print-stat"><div class="print-stat__value">' + fmtMoney(r.totalBenefit) + '</div><div class="print-stat__label">Потенциальная экономия в&nbsp;год</div></div>' +
+          '<div class="print-stat"><div class="print-stat__value">' + Math.round(r.productivityPct) + '%</div><div class="print-stat__label">Рост продуктивности</div></div>' +
+          '<div class="print-stat"><div class="print-stat__value">' + Math.round(r.costReductionPct) + '%</div><div class="print-stat__label">Потенциальное снижение расходов</div></div>' +
+          '<div class="print-stat"><div class="print-stat__value">' + Math.round(r.turnoverReductionPct) + '%</div><div class="print-stat__label">Снижение текучести</div></div>' +
+        '</div>' +
+      '</section>';
+
+    printWrap.innerHTML = printHtml;
+  }
+
   /* ---------- PDF download confirmation ---------- */
 
   var pdfModal = document.getElementById('pdfConfirmModal');
@@ -366,6 +426,7 @@ function initCalculator() {
 
     pdfConfirmBtn.addEventListener('click', function () {
       closePdfModal();
+      buildPrintable();
       window.print();
     });
 
