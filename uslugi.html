@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=11">
 <link rel="stylesheet" href="css/uslugi.css?v=3">
 </head>
 <body>
@@ -379,8 +379,10 @@
   <section class="section personal-section">
     <div class="container">
       <h2 class="section__title" id="personalnye">03. Персональные программы</h2>
-      <form class="personal-box" id="personalContactForm">
+      <form class="personal-box" id="personalContactForm" action="send-form.php" method="post" data-ajax-form>
         <h3 class="personal-box__title">Остались ещё вопросы? С&nbsp;радостью ответим на&nbsp;них!</h3>
+        <input type="hidden" name="form_source" value="Услуги">
+        <input type="text" name="website" class="form-card__hp" tabindex="-1" autocomplete="off">
         <label class="form-card__field">
           <input type="text" name="name" placeholder="Ваше имя" class="form-card__input">
         </label>
@@ -463,5 +465,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/forms.js"></script>
 </body>
 </html>

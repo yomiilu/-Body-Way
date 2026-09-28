@@ -2,6 +2,7 @@
 
 .calc__top {
   padding-top: 2.5vw;
+  padding-bottom: 6.5vw;
 }
 
 .calc__back {
@@ -85,6 +86,7 @@
   align-items: center;
   gap: 0.694vw;
   background: none;
+  cursor: pointer;
 }
 
 .calc__step-circle {
@@ -605,6 +607,7 @@
 @media (max-width: 900px) {
   .calc__top {
     padding-top: 5vw;
+    padding-bottom: 14vw;
   }
 
   .calc__back {

@@ -118,6 +118,13 @@ function initCalculator() {
     if (step === 4) renderResults();
   }
 
+  stepper.querySelectorAll('.calc__step').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var s = parseInt(el.dataset.step, 10);
+      if (s !== state.step) goTo(s);
+    });
+  });
+
   backBtn.addEventListener('click', function () {
     if (state.step > 1) goTo(state.step - 1);
   });

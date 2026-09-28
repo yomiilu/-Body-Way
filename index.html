@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=11">
 </head>
 <body>
 
@@ -88,6 +88,7 @@
     </div>
   </section>
 
+  <div class="pin-stack">
   <section class="section section--pinned section--why" id="why-us">
     <div class="container">
       <div class="why">
@@ -381,7 +382,9 @@
                   <img src="assets/icons/icon-consult.svg" alt="" class="cta-card__icon">
                 </div>
 
-                <form class="flip-card__face flip-card__face--back form-card" action="#" method="post">
+                <form class="flip-card__face flip-card__face--back form-card" action="send-form.php" method="post" data-ajax-form>
+                  <input type="hidden" name="form_source" value="Главная — Получить КП">
+                  <input type="text" name="website" class="form-card__hp" tabindex="-1" autocomplete="off">
                   <label class="form-card__field">
                     <input type="text" name="name" placeholder="Ваше ФИО" class="form-card__input">
                   </label>
@@ -421,6 +424,7 @@
       </div>
     </div>
   </section>
+  </div>
 
 </main>
 
@@ -481,5 +485,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/forms.js"></script>
 </body>
 </html>
