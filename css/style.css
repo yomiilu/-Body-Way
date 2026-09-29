@@ -29,7 +29,7 @@ ul, ol {
   list-style: none;
 }
 
-button, input {
+button, input, textarea, select {
   font-family: inherit;
   font-size: inherit;
   border: none;

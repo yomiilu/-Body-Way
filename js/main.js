@@ -5,7 +5,23 @@ document.addEventListener('DOMContentLoaded', function () {
   initMobileMenu();
   initKpFlipCard();
   initEventsFlip();
+  initReviewPhotos();
 });
+
+function initReviewPhotos() {
+  var wrap = document.getElementById('reviewFormPhotos');
+  if (!wrap) return;
+
+  var imgs = wrap.querySelectorAll('.review-form-photos__img');
+  if (imgs.length < 2) return;
+
+  var index = 0;
+  setInterval(function () {
+    imgs[index].classList.remove('review-form-photos__img--active');
+    index = (index + 1) % imgs.length;
+    imgs[index].classList.add('review-form-photos__img--active');
+  }, 3000);
+}
 
 function initEventsFlip() {
   var grid = document.getElementById('eventsGrid');

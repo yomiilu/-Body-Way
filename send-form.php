@@ -36,7 +36,12 @@ $fieldLabels = [
     'name' => 'Имя',
     'company' => 'Компания',
     'phone' => 'Телефон',
+    'email' => 'Email',
     'contact' => 'Способ связи',
+    'interests' => 'Интересует',
+    'message' => 'Комментарий',
+    'rating' => 'Оценка',
+    'review' => 'Текст отзыва',
     'consent' => 'Согласие на обработку данных',
 ];
 
@@ -57,7 +62,16 @@ foreach ($fieldLabels as $key => $label) {
         continue;
     }
 
-    $value = clean_field($_POST[$key]);
+    if (is_array($_POST[$key])) {
+        $items = array_map('clean_field', $_POST[$key]);
+        $items = array_filter($items, function ($item) { return $item !== ''; });
+        if (empty($items)) {
+            continue;
+        }
+        $value = implode(', ', $items);
+    } else {
+        $value = clean_field($_POST[$key]);
+    }
 
     if ($key === 'contact' && isset($contactLabels[$value])) {
         $value = $contactLabels[$value];
@@ -65,6 +79,10 @@ foreach ($fieldLabels as $key => $label) {
 
     if ($key === 'consent') {
         $value = 'Да';
+    }
+
+    if ($key === 'rating') {
+        $value = $value . ' из 5';
     }
 
     if ($value === '') {

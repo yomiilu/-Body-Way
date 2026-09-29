@@ -8,6 +8,11 @@ function initCalculator() {
   var SICK_DAYS_PER_PERSON = 10;
   var REPLACE_COST_FACTOR = 0.5;
 
+  var CONFIG_HINTS = {
+    massage: 'Чем чаще массаж — тем выше эффект. Еженедельные сеансы дают максимальную пользу.',
+    bos: 'Золотая зона эффективности БОС-терапии: 18–25 сессий в год на участника, минимум 1 сессия в неделю в активной фазе (8–12 недель). Эффект сохраняется 6–12 месяцев после курса.'
+  };
+
   var SERVICES = {
     massage: {
       label: 'Выездной массаж',
@@ -79,6 +84,7 @@ function initCalculator() {
   var configWrap = document.getElementById('calcConfig');
   var resultsWrap = document.getElementById('calcResults');
   var pdfBtn = document.getElementById('calcPdfBtn');
+  var consultBtn = document.getElementById('calcConsultBtn');
   var printWrap = document.getElementById('calcPrint');
 
   function fmtMoney(n) {
@@ -105,15 +111,18 @@ function initCalculator() {
       el.classList.toggle('calc__step--done', s < step);
     });
 
-    backBtn.hidden = step === 1;
-    nextBtn.hidden = step === 4;
-    actionsWrap.classList.toggle('calc__actions--split', step > 1);
-
-    if (step === 4) {
-      pdfBtn.insertAdjacentElement('afterend', backBtn);
-    } else if (backBtn.parentElement !== actionsWrap) {
-      actionsWrap.insertBefore(backBtn, actionsWrap.firstChild);
+    var arrowFill = document.getElementById('calcStepperFill');
+    var arrowHead = document.getElementById('calcStepperHead');
+    if (arrowFill && arrowHead) {
+      var pct = ((step - 1) / 3) * 100;
+      arrowFill.style.width = pct + '%';
+      arrowHead.style.left = pct + '%';
     }
+
+    backBtn.hidden = step === 1 || step === 4;
+    nextBtn.hidden = step === 4;
+    consultBtn.hidden = step !== 4;
+    actionsWrap.classList.toggle('calc__actions--split', step > 1 && step < 4);
 
     if (step === 3) renderConfigStep();
     if (step === 4) renderResults();
@@ -175,6 +184,7 @@ function initCalculator() {
         '<div class="calc-config-row__info">' +
           '<h4 class="calc-config-row__title">' + svc.label + '</h4>' +
           '<p class="calc-config-row__price">от ' + fmtInt(svc.price) + ' ₽/ сеанс</p>' +
+          (CONFIG_HINTS[key] ? '<p class="calc-config-row__hint">' + CONFIG_HINTS[key] + '</p>' : '') +
         '</div>' +
         '<div class="calc-counter" data-field="a">' +
           '<span class="calc-counter__label">' + svc.fieldA.label + '</span>' +
@@ -270,6 +280,7 @@ function initCalculator() {
 
     var sickSavings = 0, turnoverSavings = 0, prodGain = 0, programCost = 0;
     var salaryBase = 0, leaversBase = 0;
+    var breakdown = [];
 
     Object.keys(SERVICES).forEach(function (key) {
       if (!state.enabled[key]) return;
@@ -286,14 +297,30 @@ function initCalculator() {
       var turnEff = svc.effects.turnover * intensity;
       var prodEff = svc.effects.prod * intensity;
 
-      sickSavings += participants * SICK_DAYS_PER_PERSON * dailyRate * sickEff;
+      var svcSick = participants * SICK_DAYS_PER_PERSON * dailyRate * sickEff;
+      sickSavings += svcSick;
 
       var leavers = participants * turnoverRate;
-      turnoverSavings += leavers * salary * REPLACE_COST_FACTOR * turnEff;
+      var svcTurnover = leavers * salary * REPLACE_COST_FACTOR * turnEff;
+      turnoverSavings += svcTurnover;
       leaversBase += leavers * salary * REPLACE_COST_FACTOR;
 
-      prodGain += participants * salary * prodEff;
+      var svcProd = participants * salary * prodEff;
+      prodGain += svcProd;
       salaryBase += participants * salary;
+
+      breakdown.push({
+        label: svc.label,
+        participants: participants,
+        leavers: leavers,
+        sickEff: sickEff,
+        turnEff: turnEff,
+        prodEff: prodEff,
+        sick: svcSick,
+        turnover: svcTurnover,
+        prod: svcProd,
+        cost: cost
+      });
     });
 
     var totalBenefit = sickSavings + turnoverSavings + prodGain;
@@ -316,7 +343,18 @@ function initCalculator() {
       programCost: programCost,
       productivityPct: productivityPct,
       costReductionPct: costReductionPct,
-      turnoverReductionPct: turnoverReductionPct
+      turnoverReductionPct: turnoverReductionPct,
+      breakdown: breakdown,
+      dailyRate: dailyRate,
+      salary: salary,
+      employees: employees,
+      turnoverRate: turnoverRate,
+      salaryBase: salaryBase,
+      leaversBase: leaversBase,
+      totalLoss: totalLoss,
+      sickLossTotal: sickLossTotal,
+      turnoverLossTotal: turnoverLossTotal,
+      productivityLossTotal: productivityLossTotal
     };
   }
 
@@ -328,21 +366,25 @@ function initCalculator() {
         '<div class="calc-stat__head"><img src="assets/icons/icon-massage-cream.svg" alt="" class="calc-stat__icon"></div>' +
         '<div class="calc-stat__value">' + fmtMoney(r.totalBenefit) + '</div>' +
         '<div class="calc-stat__label">Потенциальная экономия в год</div>' +
+        '<div class="calc-stat__hint">Больничные ' + fmtMoney(r.sickSavings) + ' + текучесть ' + fmtMoney(r.turnoverSavings) + ' + продуктивность ' + fmtMoney(r.prodGain) + '</div>' +
       '</div>' +
       '<div class="calc-stat">' +
         '<div class="calc-stat__head"><span class="calc-stat__trend calc-stat__trend--up">↑</span></div>' +
         '<div class="calc-stat__value">' + Math.round(r.productivityPct) + '%</div>' +
         '<div class="calc-stat__label">Рост продуктивности</div>' +
+        '<div class="calc-stat__hint">' + fmtMoney(r.prodGain) + ' ÷ ФОТ участников ' + fmtMoney(r.salaryBase) + '</div>' +
       '</div>' +
       '<div class="calc-stat">' +
         '<div class="calc-stat__head"><span class="calc-stat__trend calc-stat__trend--down">↓</span></div>' +
         '<div class="calc-stat__value">' + Math.round(r.costReductionPct) + '%</div>' +
         '<div class="calc-stat__label">Потенциальное снижение расходов</div>' +
+        '<div class="calc-stat__hint">' + fmtMoney(r.totalBenefit) + ' ÷ потери без программы ' + fmtMoney(r.totalLoss) + '</div>' +
       '</div>' +
       '<div class="calc-stat">' +
         '<div class="calc-stat__head"><span class="calc-stat__trend calc-stat__trend--down">↓</span></div>' +
         '<div class="calc-stat__value">' + Math.round(r.turnoverReductionPct) + '%</div>' +
         '<div class="calc-stat__label">Снижение текучести</div>' +
+        '<div class="calc-stat__hint">' + fmtMoney(r.turnoverSavings) + ' ÷ потери от текучести ' + fmtMoney(r.leaversBase) + '</div>' +
       '</div>';
   }
 
@@ -400,9 +442,83 @@ function initCalculator() {
           '<div class="print-stat"><div class="print-stat__value">' + Math.round(r.costReductionPct) + '%</div><div class="print-stat__label">Потенциальное снижение расходов</div></div>' +
           '<div class="print-stat"><div class="print-stat__value">' + Math.round(r.turnoverReductionPct) + '%</div><div class="print-stat__label">Снижение текучести</div></div>' +
         '</div>' +
-      '</section>';
+      '</section>' +
+
+      buildFormulaPage(r);
 
     printWrap.innerHTML = printHtml;
+  }
+
+  function pct1(x) {
+    return (x * 100).toFixed(1).replace('.', ',') + '%';
+  }
+
+  function buildFormulaPage(r) {
+    var sickLines = r.breakdown.map(function (item) {
+      return '<div class="print-formula-line"><span>' + item.label + '</span><span>' +
+        fmtInt(item.participants) + ' чел. × 10 дней × ' + fmtMoney(r.dailyRate) + '/день × ' + pct1(item.sickEff) +
+        ' = ' + fmtMoney(item.sick) + '</span></div>';
+    }).join('');
+
+    var turnoverLines = r.breakdown.map(function (item) {
+      return '<div class="print-formula-line"><span>' + item.label + '</span><span>' +
+        item.leavers.toFixed(1).replace('.', ',') + ' чел. × ' + fmtMoney(r.salary) + '/год × 50% × ' + pct1(item.turnEff) +
+        ' = ' + fmtMoney(item.turnover) + '</span></div>';
+    }).join('');
+
+    var prodLines = r.breakdown.map(function (item) {
+      return '<div class="print-formula-line"><span>' + item.label + '</span><span>' +
+        fmtInt(item.participants) + ' чел. × ' + fmtMoney(r.salary) + '/год × ' + pct1(item.prodEff) +
+        ' = ' + fmtMoney(item.prod) + '</span></div>';
+    }).join('');
+
+    return (
+      '<section class="print-page print-page--formula">' +
+        '<h1 class="print-title">Как мы считаем</h1>' +
+
+        '<h2 class="print-section-title">1. Потенциальная экономия в&nbsp;год — ' + fmtMoney(r.totalBenefit) + '</h2>' +
+        '<p class="print-formula-intro">Больничные ' + fmtMoney(r.sickSavings) + ' + текучесть ' + fmtMoney(r.turnoverSavings) + ' + продуктивность ' + fmtMoney(r.prodGain) + '</p>' +
+
+        '<div class="print-formula-item">' +
+          '<div class="print-formula-item__title">Экономия на&nbsp;больничных — ' + fmtMoney(r.sickSavings) + '</div>' +
+          '<div class="print-formula-item__formula">Участники × 10 дней в&nbsp;год × дневная ставка (' + fmtMoney(r.dailyRate) + '/день) × коэффициент эффективности услуги</div>' +
+          sickLines +
+        '</div>' +
+
+        '<div class="print-formula-item">' +
+          '<div class="print-formula-item__title">Экономия на&nbsp;текучести — ' + fmtMoney(r.turnoverSavings) + '</div>' +
+          '<div class="print-formula-item__formula">Число увольнений среди участников (текучесть ' + Math.round(r.turnoverRate * 100) + '% × участники) × годовая зарплата (' + fmtMoney(r.salary) + ') × 50% (стоимость найма и&nbsp;адаптации) × коэффициент эффективности услуги</div>' +
+          turnoverLines +
+        '</div>' +
+
+        '<div class="print-formula-item">' +
+          '<div class="print-formula-item__title">Рост продуктивности — ' + fmtMoney(r.prodGain) + '</div>' +
+          '<div class="print-formula-item__formula">Участники × годовая зарплата (' + fmtMoney(r.salary) + ') × коэффициент роста продуктивности услуги</div>' +
+          prodLines +
+        '</div>' +
+
+        '<h2 class="print-section-title">2. Рост продуктивности — ' + Math.round(r.productivityPct) + '%</h2>' +
+        '<div class="print-formula-item">' +
+          '<div class="print-formula-item__formula">Рост продуктивности в&nbsp;деньгах ÷ ФОТ участников программы × 100</div>' +
+          '<div class="print-formula-line"><span>Расчёт</span><span>' + fmtMoney(r.prodGain) + ' ÷ ' + fmtMoney(r.salaryBase) + ' × 100 = ' + Math.round(r.productivityPct) + '%</span></div>' +
+        '</div>' +
+
+        '<h2 class="print-section-title">3. Потенциальное снижение расходов — ' + Math.round(r.costReductionPct) + '%</h2>' +
+        '<div class="print-formula-item">' +
+          '<div class="print-formula-item__formula">Потенциальная экономия ÷ потери компании без&nbsp;программы (на&nbsp;всех ' + fmtInt(r.employees) + ' сотрудниках) × 100</div>' +
+          '<div class="print-formula-line"><span>Потери без программы</span><span>больничные ' + fmtMoney(r.sickLossTotal) + ' + текучесть ' + fmtMoney(r.turnoverLossTotal) + ' + продуктивность ' + fmtMoney(r.productivityLossTotal) + ' = ' + fmtMoney(r.totalLoss) + '</span></div>' +
+          '<div class="print-formula-line"><span>Расчёт</span><span>' + fmtMoney(r.totalBenefit) + ' ÷ ' + fmtMoney(r.totalLoss) + ' × 100 = ' + Math.round(r.costReductionPct) + '%</span></div>' +
+        '</div>' +
+
+        '<h2 class="print-section-title">4. Снижение текучести — ' + Math.round(r.turnoverReductionPct) + '%</h2>' +
+        '<div class="print-formula-item">' +
+          '<div class="print-formula-item__formula">Экономия на&nbsp;текучести ÷ потери от&nbsp;текучести среди участников программы × 100</div>' +
+          '<div class="print-formula-line"><span>Расчёт</span><span>' + fmtMoney(r.turnoverSavings) + ' ÷ ' + fmtMoney(r.leaversBase) + ' × 100 = ' + Math.round(r.turnoverReductionPct) + '%</span></div>' +
+        '</div>' +
+
+        '<p class="print-formula-note">Дневная ставка = годовая зарплата ÷ 247 (рабочих дней в&nbsp;году). Потери от&nbsp;больничных — на&nbsp;основе данных ФСС РФ и&nbsp;производственного календаря. Оценка потерь продуктивности от&nbsp;выгорания и&nbsp;презентеизма — ~10% ФОТ (Gallup, Deloitte). Коэффициент эффективности услуги зависит от&nbsp;интенсивности её использования (частота сеансов на&nbsp;участника).</p>' +
+      '</section>'
+    );
   }
 
   /* ---------- PDF download confirmation ---------- */

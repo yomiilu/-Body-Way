@@ -235,6 +235,20 @@
   gap: 1.389vw;
 }
 
+.events-order {
+  display: flex;
+  align-items: center;
+  gap: 1.667vw;
+  margin-top: 2.222vw;
+}
+
+.events-order__line {
+  flex: 1;
+  height: 0.07vw;
+  background-color: var(--color-navy);
+  opacity: 0.35;
+}
+
 .event-flip-card {
   min-height: 22vw;
   transition: height 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -596,6 +610,15 @@
   .events-grid {
     grid-template-columns: 1fr;
     gap: 5vw;
+  }
+
+  .events-order {
+    margin-top: 6vw;
+    gap: 3vw;
+  }
+
+  .events-order .btn {
+    flex-shrink: 0;
   }
 
   .event-flip-card {

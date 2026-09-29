@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
-<link rel="stylesheet" href="css/calculator.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/calculator.css?v=12">
 </head>
 <body>
 
@@ -84,7 +84,7 @@
           <span class="calc__title-accent">Калькулятор выгоды</span>
           от&nbsp;внедрения well-being услуг
         </h1>
-        <p class="calc__intro-desc">Заполните четыре коротких шага — и&nbsp;получите персональный расчёт потенциальной экономии и&nbsp;роста эффективности для&nbsp;вашей компании.</p>
+        <p class="calc__intro-desc">3&nbsp;шага к&nbsp;вашей цели — и&nbsp;вы получите персональный расчёт потенциальной экономии и&nbsp;роста эффективности для&nbsp;вашей компании.</p>
       </div>
       <div class="calc__intro-media">
         <img src="assets/img/why-us.jpg" alt="" class="calc__intro-img">
@@ -94,19 +94,25 @@
     <ol class="calc__stepper" id="calcStepper">
       <li class="calc__step" data-step="1">
         <span class="calc__step-circle">1</span>
-        <span class="calc__step-label">О компании</span>
+        <span class="calc__step-label">Данные о&nbsp;компании</span>
       </li>
       <li class="calc__step" data-step="2">
         <span class="calc__step-circle">2</span>
-        <span class="calc__step-label">Программа</span>
+        <span class="calc__step-label">Выбор программы</span>
       </li>
       <li class="calc__step" data-step="3">
         <span class="calc__step-circle">3</span>
-        <span class="calc__step-label">Настройки</span>
+        <span class="calc__step-label">Настройки программы</span>
       </li>
       <li class="calc__step" data-step="4">
         <span class="calc__step-circle">4</span>
-        <span class="calc__step-label">Результат</span>
+        <span class="calc__step-label">Ваша выгода</span>
+      </li>
+      <li class="calc__stepper-arrow" aria-hidden="true">
+        <span class="calc__stepper-arrow-track">
+          <span class="calc__stepper-arrow-fill" id="calcStepperFill"></span>
+        </span>
+        <span class="calc__stepper-arrow-head" id="calcStepperHead"></span>
       </li>
     </ol>
 
@@ -165,18 +171,21 @@
             <h3 class="calc-service__title">Выездной массаж</h3>
             <p class="calc-service__price">от 2 500 ₽/ сеанс</p>
             <p class="calc-service__desc">Снимает усталость, повышает энергию и&nbsp;работоспособность сотрудников</p>
+            <p class="calc-service__source">Средняя рыночная цена для&nbsp;Москвы: сеанс (20–30 минут) — от&nbsp;2&nbsp;000 до&nbsp;3&nbsp;000 ₽ в&nbsp;зависимости от&nbsp;провайдера и&nbsp;количества сеансов.</p>
             <button type="button" class="calc-toggle calc-toggle--on" data-service-toggle="massage" aria-label="Включить/выключить"><span class="calc-toggle__knob"></span></button>
           </div>
           <div class="calc-service" data-service="yoga">
             <h3 class="calc-service__title">Йога</h3>
             <p class="calc-service__price">от 6 500 ₽/ сеанс</p>
             <p class="calc-service__desc">Снимает усталость, повышает энергию и&nbsp;работоспособность сотрудников</p>
+            <p class="calc-service__source">Средняя рыночная цена группового занятия (60–90 минут) — варьируется в&nbsp;зависимости от&nbsp;формата и&nbsp;провайдера.</p>
             <button type="button" class="calc-toggle calc-toggle--on" data-service-toggle="yoga" aria-label="Включить/выключить"><span class="calc-toggle__knob"></span></button>
           </div>
           <div class="calc-service" data-service="bos">
             <h3 class="calc-service__title">Психолог / БОС*</h3>
             <p class="calc-service__price">от 6 500 ₽/ сеанс</p>
             <p class="calc-service__desc">Понижает уровень стресса и&nbsp;помогает справиться с&nbsp;выгоранием.</p>
+            <p class="calc-service__source">Средняя рыночная цена сессии психолога с&nbsp;аппаратом биологической обратной связи (45 минут) — от&nbsp;4&nbsp;000 до&nbsp;8&nbsp;000 ₽.</p>
             <p class="calc-service__note">* БОС — аппарат биологической обратной связи</p>
             <button type="button" class="calc-toggle" data-service-toggle="bos" aria-label="Включить/выключить"><span class="calc-toggle__knob"></span></button>
           </div>
@@ -213,6 +222,10 @@
             <span>Скачать результаты в&nbsp;PDF</span>
             <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
           </button>
+          <a href="kontakty.html" class="btn btn--cream calc__consult-btn" id="calcConsultBtn" hidden>
+            <span>Проконсультироваться</span>
+            <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+          </a>
         </div>
         <div class="calc-results" id="calcResults"></div>
       </section>
@@ -301,8 +314,8 @@
   <div class="footer__stripe"></div>
 </footer>
 
-<script src="js/main.js?v=4"></script>
+<script src="js/main.js?v=5"></script>
 <script src="js/forms.js?v=2"></script>
-<script src="js/calculator.js?v=2"></script>
+<script src="js/calculator.js?v=8"></script>
 </body>
 </html>

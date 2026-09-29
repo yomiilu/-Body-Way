@@ -34,7 +34,7 @@ function initAjaxForm(form) {
         if (!data.ok) {
           throw new Error(data.error || 'unknown');
         }
-        statusEl.textContent = 'Спасибо! Заявка отправлена, мы скоро свяжемся с вами.';
+        statusEl.textContent = form.dataset.successMessage || 'Спасибо! Заявка отправлена, мы скоро свяжемся с вами.';
         statusEl.classList.add('form-status--success');
         form.reset();
       })

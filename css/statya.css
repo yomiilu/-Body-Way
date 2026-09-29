@@ -26,9 +26,9 @@
 
 .article-hero__tag {
   display: block;
-  font-family: var(--font-heading);
-  font-size: 0.833vw;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.389vw;
   color: var(--color-navy);
   margin-bottom: 0.972vw;
 }
@@ -167,11 +167,15 @@
 
 /* ===== CTA ===== */
 
+.article-cta {
+  padding-top: 2.5vw;
+}
+
 .article-cta__box {
   background-color: var(--color-navy);
   border-radius: var(--radius-md);
   padding: 3.056vw 3.333vw;
-  text-align: center;
+  text-align: left;
   max-width: 50vw;
   margin: 0 auto;
 }
@@ -196,7 +200,7 @@
 .article-cta__actions {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.111vw;
 }
 
@@ -219,7 +223,7 @@
   }
 
   .article-hero__tag {
-    font-size: 3vw;
+    font-size: 3.1vw;
     margin-bottom: 2.5vw;
   }
 
@@ -277,6 +281,10 @@
 
   .article-step__text + .article-step__text {
     margin-top: 1.5vw;
+  }
+
+  .article-cta {
+    padding-top: 4vw;
   }
 
   .article-cta__box {

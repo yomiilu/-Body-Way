@@ -11,7 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/kontakty.css?v=8">
 </head>
 <body>
 
@@ -71,10 +72,236 @@
   </nav>
 </header>
 
-<main class="empty-main">
-  <h1 class="empty-main__title">Контакты</h1>
+<main>
+
+  <section class="section kontakty-intro">
+    <div class="container">
+      <h1 class="section__title">01. Свяжитесь с&nbsp;нами</h1>
+      <p class="kontakty-intro__desc">Расскажите о&nbsp;задаче — подберём формат, посчитаем стоимость и&nbsp;согласуем даты. Отвечаем в&nbsp;течение рабочего дня.</p>
+    </div>
+  </section>
+
+  <section class="section kontakty-form-section">
+    <div class="container">
+      <div class="request-box">
+        <h2 class="request-box__title">Оставьте заявку</h2>
+        <p class="request-box__desc">Заполните форму — укажите, что вас интересует, и&nbsp;мы подготовим предложение под&nbsp;вашу задачу.</p>
+
+        <form class="request-form" action="send-form.php" method="post" data-ajax-form data-success-message="Спасибо! Заявка отправлена, мы свяжемся с вами в течение рабочего дня.">
+          <input type="hidden" name="form_source" value="Контакты — Заявка">
+          <input type="text" name="website" class="form-card__hp" tabindex="-1" autocomplete="off">
+
+          <div class="request-form__row">
+            <label class="form-card__field">
+              <span class="request-form__label">Имя</span>
+              <input type="text" name="name" placeholder="Ваше имя" class="form-card__input" required>
+            </label>
+            <label class="form-card__field">
+              <span class="request-form__label">Компания</span>
+              <input type="text" name="company" placeholder="Название компании" class="form-card__input">
+            </label>
+          </div>
+
+          <label class="form-card__field">
+            <span class="request-form__label">Телефон</span>
+            <input type="tel" name="phone" placeholder="Ваш номер телефона" class="form-card__input" required>
+          </label>
+
+          <label class="form-card__field">
+            <span class="request-form__label">Где с&nbsp;вами связаться?</span>
+            <select name="contact" class="form-card__input form-card__select">
+              <option value="" disabled selected hidden>Выберите способ</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="telegram">Telegram</option>
+              <option value="phone">По телефону</option>
+              <option value="max">Max</option>
+            </select>
+          </label>
+
+          <div class="request-form__field-block">
+            <span class="request-form__label">Что вас интересует?</span>
+            <div class="interest-chips">
+              <label class="interest-chip"><input type="checkbox" name="interests[]" value="Выездной массаж"><span>Выездной массаж</span></label>
+              <label class="interest-chip"><input type="checkbox" name="interests[]" value="Йога"><span>Йога</span></label>
+              <label class="interest-chip"><input type="checkbox" name="interests[]" value="Психолог / БОС"><span>Психолог / БОС</span></label>
+              <label class="interest-chip"><input type="checkbox" name="interests[]" value="Нутрициолог"><span>Нутрициолог</span></label>
+              <label class="interest-chip"><input type="checkbox" name="interests[]" value="Ароматерапия"><span>Ароматерапия</span></label>
+              <label class="interest-chip"><input type="checkbox" name="interests[]" value="Мероприятие"><span>Well-being на&nbsp;мероприятии</span></label>
+              <label class="interest-chip"><input type="checkbox" name="interests[]" value="Персональная программа"><span>Персональная программа</span></label>
+              <label class="interest-chip"><input type="checkbox" name="interests[]" value="Другое"><span>Другое</span></label>
+            </div>
+          </div>
+
+          <label class="form-card__field">
+            <span class="request-form__label">Комментарий</span>
+            <textarea name="message" placeholder="Расскажите подробнее о задаче — необязательно" class="form-card__input request-form__textarea"></textarea>
+          </label>
+
+          <button type="submit" class="btn btn--cream btn--full">
+            <span>Отправить заявку</span>
+            <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section kontakty-reviews">
+    <div class="container">
+      <h2 class="section__title">02. Отзывы клиентов</h2>
+      <p class="kontakty-reviews__desc">Что говорят клиенты о&nbsp;работе с&nbsp;BodyWay.</p>
+
+      <div class="review-list">
+        <div class="review-card">
+          <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
+          <p class="review-card__text">Запустили выездной массаж три месяца назад — количество больничных заметно снизилось, а&nbsp;в&nbsp;опросах вовлечённости сотрудники отдельно отмечают эту программу. Отдельное спасибо за&nbsp;гибкий график и&nbsp;быструю связь.</p>
+          <div class="review-card__author">
+            <span class="review-card__name">Елена Смирнова</span>
+            <span class="review-card__company">HR-директор, ТехноСтрой</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
+          <p class="review-card__text">Заказывали well-being зону на&nbsp;двухдневную конференцию — организовали всё под&nbsp;ключ, специалисты подстроились под&nbsp;тайминг мероприятия. Гости выстраивались в&nbsp;очередь и&nbsp;оставляли много положительных отзывов.</p>
+          <div class="review-card__author">
+            <span class="review-card__name">Дмитрий Волков</span>
+            <span class="review-card__company">Ивент-менеджер, GreenExpo</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card__stars" aria-label="4 из 5">★★★★<span class="review-card__star--empty">★</span></div>
+          <p class="review-card__text">Йога в&nbsp;офисе стала любимой активностью пятницы. Единственное — пару раз пришлось согласовывать перенос из-за загруженности переговорной, но&nbsp;в&nbsp;целом очень довольны результатом и&nbsp;отношением команды.</p>
+          <div class="review-card__author">
+            <span class="review-card__name">Марина Котова</span>
+            <span class="review-card__company">Руководитель отдела, Baltic Logistics</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
+          <p class="review-card__text">Перед запуском программы посчитали выгоду через калькулятор на&nbsp;сайте — цифры сошлись с&nbsp;реальностью. Собрали персональный пакет услуг, уложились в&nbsp;бюджет, эффект по&nbsp;производительности видим уже сейчас.</p>
+          <div class="review-card__author">
+            <span class="review-card__name">Артём Панов</span>
+            <span class="review-card__company">Операционный директор, NovaRetail</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-form-wrap">
+      <div class="review-form-box">
+        <h3 class="review-form-box__title">Оставить отзыв</h3>
+        <p class="review-form-box__desc">Отзыв не&nbsp;публикуется автоматически — мы читаем каждый и&nbsp;добавляем на&nbsp;сайт после проверки.</p>
+
+        <form class="request-form" action="send-form.php" method="post" data-ajax-form data-success-message="Спасибо за отзыв! Он появится на сайте после модерации.">
+          <input type="hidden" name="form_source" value="Контакты — Отзыв">
+          <input type="text" name="website" class="form-card__hp" tabindex="-1" autocomplete="off">
+
+          <div class="request-form__row">
+            <label class="form-card__field">
+              <span class="request-form__label">Имя</span>
+              <input type="text" name="name" placeholder="Ваше имя" class="form-card__input" required>
+            </label>
+            <label class="form-card__field">
+              <span class="request-form__label">Компания</span>
+              <input type="text" name="company" placeholder="Необязательно" class="form-card__input">
+            </label>
+          </div>
+
+          <div class="request-form__field-block">
+            <span class="request-form__label">Ваша оценка</span>
+            <div class="star-rating">
+              <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5">★</label>
+              <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4">★</label>
+              <input type="radio" id="star3" name="rating" value="3" checked><label for="star3" title="3">★</label>
+              <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2">★</label>
+              <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1">★</label>
+            </div>
+          </div>
+
+          <label class="form-card__field">
+            <span class="request-form__label">Текст отзыва</span>
+            <textarea name="review" placeholder="Поделитесь впечатлениями от работы с нами" class="form-card__input request-form__textarea" required></textarea>
+          </label>
+
+          <button type="submit" class="btn btn--cream btn--full">
+            <span>Отправить отзыв</span>
+            <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+          </button>
+        </form>
+      </div>
+
+      <div class="review-form-photos" id="reviewFormPhotos">
+        <img src="assets/img/gallery-1.jpg" alt="" class="review-form-photos__img review-form-photos__img--active">
+        <img src="assets/img/gallery-2.jpg" alt="" class="review-form-photos__img">
+        <img src="assets/img/gallery-3.jpg" alt="" class="review-form-photos__img">
+        <img src="assets/img/gallery-4.jpg" alt="" class="review-form-photos__img">
+        <img src="assets/img/gallery-5.jpg" alt="" class="review-form-photos__img">
+      </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<script src="js/main.js?v=4"></script>
+<footer class="footer">
+  <div class="container">
+    <div class="footer__columns">
+      <div class="footer__col">
+        <h5 class="footer__heading">Услуги</h5>
+        <a href="uslugi.html" class="footer__link">Выездной массаж</a>
+        <a href="uslugi.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="uslugi.html" class="footer__link">Психолог</a>
+        <a href="uslugi.html" class="footer__link">Нутрициолог</a>
+        <a href="uslugi.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Статьи</h5>
+        <a href="stati.html" class="footer__link">Выездной массаж</a>
+        <a href="stati.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="stati.html" class="footer__link">Психолог</a>
+        <a href="stati.html" class="footer__link">Нутрициолог</a>
+        <a href="stati.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Квизы</h5>
+        <a href="kvizy.html" class="footer__link">Выездной массаж</a>
+        <a href="kvizy.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="kvizy.html" class="footer__link">Психолог</a>
+        <a href="kvizy.html" class="footer__link">Нутрициолог</a>
+        <a href="kvizy.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">Контакты</h5>
+        <a href="kontakty.html" class="footer__link">Выездной массаж</a>
+        <a href="kontakty.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="kontakty.html" class="footer__link">Психолог</a>
+        <a href="kontakty.html" class="footer__link">Нутрициолог</a>
+        <a href="kontakty.html" class="footer__link">Ароматерапия</a>
+      </div>
+      <div class="footer__col">
+        <h5 class="footer__heading">FAQ</h5>
+        <a href="faq.html" class="footer__link">Выездной массаж</a>
+        <a href="faq.html" class="footer__link">Йога в&nbsp;офисе</a>
+        <a href="faq.html" class="footer__link">Психолог</a>
+        <a href="faq.html" class="footer__link">Нутрициолог</a>
+        <a href="faq.html" class="footer__link">Ароматерапия</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <img src="assets/icons/logo-white.svg" alt="BodyWay" class="footer__logo">
+      <a href="kontakty.html" class="btn btn--cream">
+        <span>Заказать</span>
+        <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+      </a>
+    </div>
+  </div>
+  <div class="footer__stripe"></div>
+</footer>
+
+<script src="js/main.js?v=5"></script>
+<script src="js/forms.js?v=2"></script>
 </body>
 </html>
