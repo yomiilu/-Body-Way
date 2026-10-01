@@ -1985,6 +1985,7 @@ button, input, textarea, select {
     gap: 5vw;
     max-width: none;
     margin: 0;
+    padding-left: 6vw;
   }
 
   .footer__logo {
