@@ -308,6 +308,11 @@
     margin-bottom: 6vw;
   }
 
+  .article-level__head .section__title {
+    font-size: 7vw;
+    margin-bottom: 4vw;
+  }
+
   .article-level__intro {
     font-size: 3.6vw;
     line-height: 1.5;
