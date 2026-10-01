@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initGallery();
   initMobileMenu();
   initKpFlipCard();
+  initGuaranteesFlipCard();
   initEventsFlip();
   initReviewPhotos();
 });
@@ -137,6 +138,64 @@ function initKpFlipCard() {
       }
     });
   }
+}
+
+function initGuaranteesFlipCard() {
+  var card = document.getElementById('guaranteesFlipCard');
+  var trigger = document.getElementById('guaranteesFlipTrigger');
+  var backFace = card ? card.querySelector('.flip-card__face--back') : null;
+  if (!card || !trigger || !backFace) return;
+
+  function measureHeight(el, width) {
+    var clone = el.cloneNode(true);
+    clone.style.position = 'static';
+    clone.style.visibility = 'hidden';
+    clone.style.transform = 'none';
+    clone.style.height = 'auto';
+    clone.style.width = width + 'px';
+    document.body.appendChild(clone);
+    var h = clone.getBoundingClientRect().height;
+    document.body.removeChild(clone);
+    return h;
+  }
+
+  var frontH = 0;
+
+  function sizeCard() {
+    card.style.height = '';
+    var width = card.getBoundingClientRect().width;
+
+    var siblingMax = 0;
+    var row = card.parentElement;
+    if (row) {
+      Array.prototype.forEach.call(row.children, function (child) {
+        if (child !== card) {
+          siblingMax = Math.max(siblingMax, child.getBoundingClientRect().height);
+        }
+      });
+    }
+
+    frontH = Math.max(measureHeight(trigger, width), siblingMax);
+    card.style.height = frontH + 'px';
+  }
+
+  sizeCard();
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(sizeCard, 150);
+  });
+
+  trigger.addEventListener('click', function () {
+    card.classList.add('flip-card--flipped');
+  });
+
+  backFace.addEventListener('click', function (e) {
+    if (!e.target.closest('input, select, button, label')) {
+      card.classList.remove('flip-card--flipped');
+    }
+  });
 }
 
 function initMobileMenu() {

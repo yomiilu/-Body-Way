@@ -35,6 +35,7 @@
 
 .kontakty-form-section {
   padding-top: 1.5vw;
+  scroll-margin-top: var(--header-h);
 }
 
 .request-box {
@@ -149,6 +150,7 @@
 
 .kontakty-reviews {
   padding-top: 2vw;
+  scroll-margin-top: var(--header-h);
 }
 
 .kontakty-reviews .section__title {

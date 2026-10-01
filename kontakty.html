@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=12">
-<link rel="stylesheet" href="css/kontakty.css?v=8">
+<link rel="stylesheet" href="css/style.css?v=19">
+<link rel="stylesheet" href="css/kontakty.css?v=9">
 </head>
 <body>
 
@@ -32,6 +32,7 @@
             <li class="dropdown__item"><a href="uslugi.html#personalnye" class="dropdown__link">Персональные программы под&nbsp;ключ</a></li>
           </ul>
         </li>
+        <li class="nav__item"><a href="calculator.html" class="nav__link">Расчёт ROI</a></li>
         <li class="nav__item"><a href="stati.html" class="nav__link">Статьи</a></li>
         <li class="nav__item"><a href="komanda.html" class="nav__link">Команда</a></li>
         <li class="nav__item"><a href="kvizy.html" class="nav__link">Квизы</a></li>
@@ -63,6 +64,7 @@
           <li><a href="uslugi.html#personalnye" class="mobile-nav__sublink">Персональные программы под&nbsp;ключ</a></li>
         </ul>
       </li>
+      <li><a href="calculator.html" class="mobile-nav__link">Расчёт ROI</a></li>
       <li><a href="stati.html" class="mobile-nav__link">Статьи</a></li>
       <li><a href="komanda.html" class="mobile-nav__link">Команда</a></li>
       <li><a href="kvizy.html" class="mobile-nav__link">Квизы</a></li>
@@ -81,7 +83,7 @@
     </div>
   </section>
 
-  <section class="section kontakty-form-section">
+  <section class="section kontakty-form-section" id="request-form">
     <div class="container">
       <div class="request-box">
         <h2 class="request-box__title">Оставьте заявку</h2>
@@ -111,9 +113,9 @@
             <span class="request-form__label">Где с&nbsp;вами связаться?</span>
             <select name="contact" class="form-card__input form-card__select">
               <option value="" disabled selected hidden>Выберите способ</option>
-              <option value="whatsapp">WhatsApp</option>
-              <option value="telegram">Telegram</option>
               <option value="phone">По телефону</option>
+              <option value="email">По электронной почте</option>
+              <option value="telegram">Telegram</option>
               <option value="max">Max</option>
             </select>
           </label>
@@ -137,6 +139,11 @@
             <textarea name="message" placeholder="Расскажите подробнее о задаче — необязательно" class="form-card__input request-form__textarea"></textarea>
           </label>
 
+          <label class="form-card__checkbox">
+            <input type="checkbox" name="consent" checked>
+            <span>Я согласен(-а) на&nbsp;обработку персональных данных</span>
+          </label>
+
           <button type="submit" class="btn btn--cream btn--full">
             <span>Отправить заявку</span>
             <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
@@ -146,7 +153,7 @@
     </div>
   </section>
 
-  <section class="section kontakty-reviews">
+  <section class="section kontakty-reviews" id="reviews">
     <div class="container">
       <h2 class="section__title">02. Отзывы клиентов</h2>
       <p class="kontakty-reviews__desc">Что говорят клиенты о&nbsp;работе с&nbsp;BodyWay.</p>
@@ -154,7 +161,7 @@
       <div class="review-list">
         <div class="review-card">
           <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
-          <p class="review-card__text">Запустили выездной массаж три месяца назад — количество больничных заметно снизилось, а&nbsp;в&nbsp;опросах вовлечённости сотрудники отдельно отмечают эту программу. Отдельное спасибо за&nbsp;гибкий график и&nbsp;быструю связь.</p>
+          <p class="review-card__text">Хорошее отвлечение от&nbsp;работы и&nbsp;реальная помощь в&nbsp;поддержании самочувствия команды. Нравится индивидуальный подход, но&nbsp;записаться на&nbsp;массаж бывает непросто — места разбирают на&nbsp;месяц вперёд. Хорошо, что график захватывает обе половины недели, хотя мест всё равно не&nbsp;хватает — настолько это популярно.</p>
           <div class="review-card__author">
             <span class="review-card__name">Елена Смирнова</span>
             <span class="review-card__company">HR-директор, ТехноСтрой</span>
@@ -163,7 +170,7 @@
 
         <div class="review-card">
           <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
-          <p class="review-card__text">Заказывали well-being зону на&nbsp;двухдневную конференцию — организовали всё под&nbsp;ключ, специалисты подстроились под&nbsp;тайминг мероприятия. Гости выстраивались в&nbsp;очередь и&nbsp;оставляли много положительных отзывов.</p>
+          <p class="review-card__text">Первая конференция, на&nbsp;которой участникам делали массаж, — и&nbsp;это сработало на&nbsp;ура! BodyWay, вы&nbsp;ломаете все привычные форматы мероприятий.</p>
           <div class="review-card__author">
             <span class="review-card__name">Дмитрий Волков</span>
             <span class="review-card__company">Ивент-менеджер, GreenExpo</span>
@@ -172,7 +179,7 @@
 
         <div class="review-card">
           <div class="review-card__stars" aria-label="4 из 5">★★★★<span class="review-card__star--empty">★</span></div>
-          <p class="review-card__text">Йога в&nbsp;офисе стала любимой активностью пятницы. Единственное — пару раз пришлось согласовывать перенос из-за загруженности переговорной, но&nbsp;в&nbsp;целом очень довольны результатом и&nbsp;отношением команды.</p>
+          <p class="review-card__text">Массаж и&nbsp;нутрициолог — супер, а&nbsp;вот с&nbsp;БОС пока не&nbsp;разобралась, как работает метод: возможно, нужно больше сеансов, чтобы прочувствовать эффект. В&nbsp;остальном результатом довольны.</p>
           <div class="review-card__author">
             <span class="review-card__name">Марина Котова</span>
             <span class="review-card__company">Руководитель отдела, Baltic Logistics</span>
@@ -181,7 +188,7 @@
 
         <div class="review-card">
           <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
-          <p class="review-card__text">Перед запуском программы посчитали выгоду через калькулятор на&nbsp;сайте — цифры сошлись с&nbsp;реальностью. Собрали персональный пакет услуг, уложились в&nbsp;бюджет, эффект по&nbsp;производительности видим уже сейчас.</p>
+          <p class="review-card__text">Программа отличная, спасибо компании за&nbsp;такую возможность для&nbsp;сотрудников. Специалисты сильные — это сразу располагает. Отдельно отмечу ароматерапию: масло действительно помогает быстрее успокоиться после сложных переговоров.</p>
           <div class="review-card__author">
             <span class="review-card__name">Артём Панов</span>
             <span class="review-card__company">Операционный директор, NovaRetail</span>
@@ -212,9 +219,9 @@
           <div class="request-form__field-block">
             <span class="request-form__label">Ваша оценка</span>
             <div class="star-rating">
-              <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5">★</label>
+              <input type="radio" id="star5" name="rating" value="5" checked><label for="star5" title="5">★</label>
               <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4">★</label>
-              <input type="radio" id="star3" name="rating" value="3" checked><label for="star3" title="3">★</label>
+              <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3">★</label>
               <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2">★</label>
               <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1">★</label>
             </div>
@@ -223,6 +230,11 @@
           <label class="form-card__field">
             <span class="request-form__label">Текст отзыва</span>
             <textarea name="review" placeholder="Поделитесь впечатлениями от работы с нами" class="form-card__input request-form__textarea" required></textarea>
+          </label>
+
+          <label class="form-card__checkbox">
+            <input type="checkbox" name="consent" checked>
+            <span>Я согласен(-а) на&nbsp;обработку персональных данных</span>
           </label>
 
           <button type="submit" class="btn btn--cream btn--full">
@@ -250,58 +262,50 @@
     <div class="footer__columns">
       <div class="footer__col">
         <h5 class="footer__heading">Услуги</h5>
-        <a href="uslugi.html" class="footer__link">Выездной массаж</a>
-        <a href="uslugi.html" class="footer__link">Йога в&nbsp;офисе</a>
-        <a href="uslugi.html" class="footer__link">Психолог</a>
-        <a href="uslugi.html" class="footer__link">Нутрициолог</a>
-        <a href="uslugi.html" class="footer__link">Ароматерапия</a>
+        <a href="uslugi.html#otdelnye" class="footer__link">Отдельные услуги</a>
+        <a href="uslugi.html#meropriyatiya" class="footer__link">Выезды на&nbsp;мероприятия</a>
+        <a href="uslugi.html#personalnye" class="footer__link">Персональные программы</a>
       </div>
       <div class="footer__col">
         <h5 class="footer__heading">Статьи</h5>
-        <a href="stati.html" class="footer__link">Выездной массаж</a>
-        <a href="stati.html" class="footer__link">Йога в&nbsp;офисе</a>
-        <a href="stati.html" class="footer__link">Психолог</a>
-        <a href="stati.html" class="footer__link">Нутрициолог</a>
-        <a href="stati.html" class="footer__link">Ароматерапия</a>
+        <a href="statya-privychki.html" class="footer__link">Здоровые привычки</a>
+        <a href="stati.html" class="footer__link">Питание и&nbsp;энергия</a>
+        <a href="stati.html" class="footer__link">Выгорание команды</a>
       </div>
       <div class="footer__col">
         <h5 class="footer__heading">Квизы</h5>
-        <a href="kvizy.html" class="footer__link">Выездной массаж</a>
-        <a href="kvizy.html" class="footer__link">Йога в&nbsp;офисе</a>
-        <a href="kvizy.html" class="footer__link">Психолог</a>
-        <a href="kvizy.html" class="footer__link">Нутрициолог</a>
-        <a href="kvizy.html" class="footer__link">Ароматерапия</a>
+        <a href="kvizy.html" class="footer__link">Компас состояния</a>
+        <a href="kvizy.html" class="footer__link">Выгорание команды</a>
+        <a href="kvizy.html" class="footer__link">Подбор формата</a>
       </div>
       <div class="footer__col">
         <h5 class="footer__heading">Контакты</h5>
-        <a href="kontakty.html" class="footer__link">Выездной массаж</a>
-        <a href="kontakty.html" class="footer__link">Йога в&nbsp;офисе</a>
-        <a href="kontakty.html" class="footer__link">Психолог</a>
-        <a href="kontakty.html" class="footer__link">Нутрициолог</a>
-        <a href="kontakty.html" class="footer__link">Ароматерапия</a>
+        <a href="kontakty.html" class="footer__link">Связаться с&nbsp;нами</a>
+        <a href="kontakty.html#request-form" class="footer__link">Оставить заявку</a>
+        <a href="kontakty.html#reviews" class="footer__link">Отзывы клиентов</a>
       </div>
       <div class="footer__col">
         <h5 class="footer__heading">FAQ</h5>
-        <a href="faq.html" class="footer__link">Выездной массаж</a>
-        <a href="faq.html" class="footer__link">Йога в&nbsp;офисе</a>
-        <a href="faq.html" class="footer__link">Психолог</a>
-        <a href="faq.html" class="footer__link">Нутрициолог</a>
-        <a href="faq.html" class="footer__link">Ароматерапия</a>
+        <a href="faq.html" class="footer__link">Стоимость и&nbsp;бюджет</a>
+        <a href="faq.html" class="footer__link">Польза well-being</a>
+        <a href="faq.html" class="footer__link">Без отвлечения</a>
+        <a href="faq.html" class="footer__link">Нет помещения</a>
+        <a href="faq.html" class="footer__link">Выезд к&nbsp;вам</a>
       </div>
     </div>
 
     <div class="footer__bottom">
       <img src="assets/icons/logo-white.svg" alt="BodyWay" class="footer__logo">
-      <a href="kontakty.html" class="btn btn--cream">
-        <span>Заказать</span>
-        <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
-      </a>
+      <div class="footer__legal">
+        <p class="footer__legal-text">ИП Алимичев Дмитрий Юрьевич<br>ИНН: 390805475394</p>
+        <a href="https://body-way.ru/policy" target="_blank" rel="noopener" class="footer__legal-link">Политика конфиденциальности</a>
+      </div>
     </div>
   </div>
   <div class="footer__stripe"></div>
 </footer>
 
-<script src="js/main.js?v=5"></script>
+<script src="js/main.js?v=9"></script>
 <script src="js/forms.js?v=2"></script>
 </body>
 </html>

@@ -46,9 +46,9 @@ $fieldLabels = [
 ];
 
 $contactLabels = [
-    'whatsapp' => 'WhatsApp',
-    'telegram' => 'Telegram',
     'phone' => 'По телефону',
+    'email' => 'По электронной почте',
+    'telegram' => 'Telegram',
     'max' => 'Max',
 ];
 
