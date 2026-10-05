@@ -21,8 +21,8 @@
 
 .faq-list {
   position: relative;
-  max-width: 52vw;
-  margin: 0 auto;
+  max-width: 66.667vw;
+  margin: 0;
 }
 
 .faq-list::before {
