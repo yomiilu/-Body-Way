@@ -11,7 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20">
+<link rel="preload" as="image" href="assets/video/hero-poster.jpg">
+<link rel="stylesheet" href="css/style.css?v=30">
 </head>
 <body>
 
@@ -77,16 +78,29 @@
 
   <section class="hero">
     <div class="hero__bg">
-      <img src="assets/img/hero-bg.jpg" alt="" class="hero__bg-img">
+      <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
       <div class="hero__overlay"></div>
     </div>
 
-    <div class="hero__card">
+    <button type="button" class="hero__sound" id="heroSound" aria-label="Включить звук" aria-pressed="false">
+      <svg class="hero__sound-icon hero__sound-icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      <svg class="hero__sound-icon hero__sound-icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.2 6.5a8 8 0 0 1 0 11"/></svg>
+    </button>
+
+    <div class="hero__content">
       <h1 class="hero__title">
-        <span class="hero__title-accent">BodyWay:</span>
-        Превращаем ресурсное состояние в&nbsp;финансовый результат.
+        <span class="hero__plate"><img src="assets/icons/logo-navy.svg" alt="BodyWay" class="hero__logo"></span>
+        <span class="hero__tagline">Превращаем ресурсное состояние <mark class="hero__mark">в&nbsp;финансовый результат.</mark></span>
       </h1>
       <p class="hero__text">Мы объединили данные нейроинтерфейсов и&nbsp;работу с&nbsp;телом для&nbsp;точного управления продуктивностью и&nbsp;сокращения ваших расходов.</p>
+      <div class="hero__actions">
+        <a href="calculator.html" class="btn btn--cream">
+          <span>Рассчитать выгоду</span>
+          <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
+        </a>
+      </div>
     </div>
   </section>
 
@@ -142,42 +156,42 @@
             <ul class="service__list">
               <li>
                 <a href="uslugi.html#massage" class="service__list-item">
-                  <img src="assets/icons/icon-massage.svg" alt="" class="service__icon service__icon--massage">
+                  <img src="assets/icons/icon-massage.svg?v=3" alt="" class="service__icon service__icon--massage">
                   <span>Выездной массаж</span>
                   <img src="assets/icons/icon-arrow-right.svg" alt="" class="service__list-arrow">
                 </a>
               </li>
               <li>
                 <a href="uslugi.html#aroma" class="service__list-item">
-                  <img src="assets/icons/icon-perfume.svg" alt="" class="service__icon service__icon--perfume">
+                  <img src="assets/icons/icon-perfume.svg?v=2" alt="" class="service__icon service__icon--perfume">
                   <span>Ароматерапия</span>
                   <img src="assets/icons/icon-arrow-right.svg" alt="" class="service__list-arrow">
                 </a>
               </li>
               <li>
-                <a href="uslugi.html#relax-massage" class="service__list-item">
-                  <img src="assets/icons/icon-play.svg" alt="" class="service__icon service__icon--play">
+                <a href="uslugi.html#concentration" class="service__list-item">
+                  <img src="assets/icons/icon-play.svg?v=2" alt="" class="service__icon service__icon--play">
                   <span>Тренировки концентрации и&nbsp;расслабления</span>
                   <img src="assets/icons/icon-arrow-right.svg" alt="" class="service__list-arrow">
                 </a>
               </li>
               <li>
                 <a href="uslugi.html#yoga" class="service__list-item">
-                  <img src="assets/icons/icon-yoga.svg" alt="" class="service__icon service__icon--yoga">
+                  <img src="assets/icons/icon-yoga.svg?v=2" alt="" class="service__icon service__icon--yoga">
                   <span>Йога</span>
                   <img src="assets/icons/icon-arrow-right.svg" alt="" class="service__list-arrow">
                 </a>
               </li>
               <li>
                 <a href="uslugi.html#psychology" class="service__list-item">
-                  <img src="assets/icons/icon-psychology.svg" alt="" class="service__icon service__icon--psychology">
+                  <img src="assets/icons/icon-psychology.svg?v=2" alt="" class="service__icon service__icon--psychology">
                   <span>Услуги психолога</span>
                   <img src="assets/icons/icon-arrow-right.svg" alt="" class="service__list-arrow">
                 </a>
               </li>
               <li>
                 <a href="uslugi.html#nutrition" class="service__list-item">
-                  <img src="assets/icons/icon-leaf.svg" alt="" class="service__icon service__icon--leaf">
+                  <img src="assets/icons/icon-nutrition.svg?v=2" alt="" class="service__icon service__icon--nutrition">
                   <span>Услуги нутрициолога</span>
                   <img src="assets/icons/icon-arrow-right.svg" alt="" class="service__list-arrow">
                 </a>
@@ -511,7 +525,7 @@
   <div class="footer__stripe"></div>
 </footer>
 
-<script src="js/main.js?v=9"></script>
+<script src="js/main.js?v=11"></script>
 <script src="js/forms.js?v=2"></script>
 </body>
 </html>

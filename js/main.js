@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initGallery();
   initMobileMenu();
   initKpFlipCard();
-  initGuaranteesFlipCard();
+  initGuaranteesFlipCard(); initHeroVideo();
   initEventsFlip();
   initReviewPhotos();
 });
@@ -140,6 +140,32 @@ function initKpFlipCard() {
   }
 }
 
+function initHeroVideo() {
+  var video = document.getElementById('heroVideo');
+  var btn = document.getElementById('heroSound');
+  if (!video || !btn) return;
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.pause();
+  } else {
+    var p = video.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
+  btn.addEventListener('click', function () {
+    var turnOn = video.muted;
+    video.muted = !turnOn;
+    if (turnOn) {
+      video.volume = 1;
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    btn.classList.toggle('hero__sound--on', turnOn);
+    btn.setAttribute('aria-pressed', turnOn ? 'true' : 'false');
+    btn.setAttribute('aria-label', turnOn ? 'Выключить звук' : 'Включить звук');
+  });
+}
+
 function initGuaranteesFlipCard() {
   var card = document.getElementById('guaranteesFlipCard');
   var trigger = document.getElementById('guaranteesFlipTrigger');
@@ -154,7 +180,7 @@ function initGuaranteesFlipCard() {
     clone.style.height = 'auto';
     clone.style.width = width + 'px';
     document.body.appendChild(clone);
-    var h = clone.getBoundingClientRect().height;
+    var h = clone.offsetHeight;
     document.body.removeChild(clone);
     return h;
   }
@@ -162,24 +188,33 @@ function initGuaranteesFlipCard() {
   var frontH = 0;
 
   function sizeCard() {
+    var prevH = card.style.height;
     card.style.height = '';
-    var width = card.getBoundingClientRect().width;
+    var width = card.offsetWidth;
 
     var siblingMax = 0;
     var row = card.parentElement;
     if (row) {
       Array.prototype.forEach.call(row.children, function (child) {
         if (child !== card) {
-          siblingMax = Math.max(siblingMax, child.getBoundingClientRect().height);
+          siblingMax = Math.max(siblingMax, child.offsetHeight);
         }
       });
     }
 
     frontH = Math.max(measureHeight(trigger, width), siblingMax);
-    card.style.height = frontH + 'px';
+    card.style.height = (frontH + 'px' === prevH) ? prevH : frontH + 'px';
   }
 
   sizeCard();
+  window.addEventListener('load', sizeCard);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeCard);
+  if (window.ResizeObserver && card.parentElement) {
+    var ro = new ResizeObserver(sizeCard);
+    Array.prototype.forEach.call(card.parentElement.children, function (child) {
+      if (child !== card) ro.observe(child);
+    });
+  }
 
   var resizeTimer;
   window.addEventListener('resize', function () {
