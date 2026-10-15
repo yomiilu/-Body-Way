@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initGallery();
   initMobileMenu();
   initKpFlipCard();
-  initGuaranteesFlipCard(); initHeroVideo();
+  initGuaranteesFlipCard(); initHeroVideo(); initServiceCycle();
   initEventsFlip();
   initReviewPhotos();
 });
@@ -164,6 +164,52 @@ function initHeroVideo() {
     btn.setAttribute('aria-pressed', turnOn ? 'true' : 'false');
     btn.setAttribute('aria-label', turnOn ? 'Выключить звук' : 'Включить звук');
   });
+}
+
+function initServiceCycle() {
+  var list = document.querySelector('.service__list');
+  if (!list) return;
+  var items = Array.prototype.slice.call(list.querySelectorAll('.service__list-item'));
+  if (!items.length) return;
+
+  var index = 0;
+  var timer = null;
+
+  function show(i) {
+    index = i;
+    items.forEach(function (el, k) {
+      el.classList.toggle('service__list-item--active', k === i);
+    });
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(function () {
+      show((index + 1) % items.length);
+    }, 600);
+  }
+
+  function stop() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  items.forEach(function (el, i) {
+    el.addEventListener('pointerenter', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      stop();
+      show(i);
+    });
+    el.addEventListener('pointerleave', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      start();
+    });
+  });
+
+  show(0);
+  start();
 }
 
 function initGuaranteesFlipCard() {

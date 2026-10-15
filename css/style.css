@@ -650,44 +650,10 @@ button, input, textarea, select {
   color: var(--color-ink);
   padding: 0.694vw 0.833vw;
   transition: background-color 0.2s ease;
-  animation: service-item-cycle 3.6s linear infinite;
 }
 
-.service__list-item:hover {
+.service__list-item--active {
   background-color: var(--color-gray);
-}
-
-.service__list li:nth-child(1) .service__list-item {
-  animation-delay: 0s;
-}
-
-.service__list li:nth-child(2) .service__list-item {
-  animation-delay: 0.6s;
-}
-
-.service__list li:nth-child(3) .service__list-item {
-  animation-delay: 1.2s;
-}
-
-.service__list li:nth-child(4) .service__list-item {
-  animation-delay: 1.8s;
-}
-
-.service__list li:nth-child(5) .service__list-item {
-  animation-delay: 2.4s;
-}
-
-.service__list li:nth-child(6) .service__list-item {
-  animation-delay: 3s;
-}
-
-@keyframes service-item-cycle {
-  0%, 16.666% {
-    background-color: var(--color-gray);
-  }
-  16.667%, 100% {
-    background-color: transparent;
-  }
 }
 
 .service__list-item span {
