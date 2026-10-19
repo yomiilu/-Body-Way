@@ -52,6 +52,11 @@
   object-fit: contain;
 }
 
+.team-card__photo-img--cover {
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
 .team-card__photo-img--anna {
   transform: scale(0.9);
   transform-origin: bottom center;
