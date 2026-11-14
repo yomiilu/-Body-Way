@@ -57,6 +57,11 @@
   object-position: 50% 20%;
 }
 
+.team-card__photo-img--kirill {
+  transform: scale(1.5);
+  transform-origin: 50% 4%;
+}
+
 .team-card__photo-img--anna {
   transform: scale(0.9);
   transform-origin: bottom center;
