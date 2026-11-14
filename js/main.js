@@ -213,6 +213,7 @@ function initHeroReel() {
   if (frame) {
     frame.addEventListener('click', function (e) {
       if (e.target.closest('.hero__sound, .hero-reel__bar')) return;
+      if (vids.length < 2) return;
       activate((current + 1) % vids.length, true);
     });
   }
