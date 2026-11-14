@@ -16,7 +16,7 @@ function initCalculator() {
   var SERVICES = {
     massage: {
       label: 'Выездной массаж',
-      icon: 'assets/icons/icon-massage.svg',
+      icon: 'assets/icons/icon-massage.png?v=6',
       price: 2500,
       effects: { sick: 0.25, turnover: 0.10, prod: 0.10 },
       fieldA: { label: 'Сотрудников в сеанс?', default: 26 },
@@ -25,7 +25,7 @@ function initCalculator() {
     },
     yoga: {
       label: 'Йога',
-      icon: 'assets/icons/icon-yoga.svg',
+      icon: 'assets/icons/icon-yoga.png?v=6',
       price: 6500,
       effects: { sick: 0.18, turnover: 0.15, prod: 0.06 },
       fieldA: { label: 'Сотрудников за занятие?', default: 18 },
@@ -52,7 +52,7 @@ function initCalculator() {
     },
     aroma: {
       label: 'Ароматерапия',
-      icon: 'assets/icons/icon-perfume.svg',
+      icon: 'assets/icons/icon-perfume.png?v=6',
       price: 2500,
       effects: { sick: 0.12, turnover: 0.05, prod: 0.05 },
       fieldA: { label: 'Сотрудников в сеанс?', default: 20 },
@@ -363,7 +363,7 @@ function initCalculator() {
 
     resultsWrap.innerHTML =
       '<div class="calc-stat">' +
-        '<div class="calc-stat__head"><img src="assets/icons/icon-massage-cream.svg" alt="" class="calc-stat__icon"></div>' +
+        '<div class="calc-stat__head"><img src="assets/icons/icon-massage-cream.png?v=6" alt="" class="calc-stat__icon"></div>' +
         '<div class="calc-stat__value">' + fmtMoney(r.totalBenefit) + '</div>' +
         '<div class="calc-stat__label">Потенциальная экономия в год</div>' +
         '<div class="calc-stat__hint">Больничные ' + fmtMoney(r.sickSavings) + ' + текучесть ' + fmtMoney(r.turnoverSavings) + ' + продуктивность ' + fmtMoney(r.prodGain) + '</div>' +

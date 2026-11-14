@@ -43,7 +43,7 @@
 /* ===== Service blocks (section 01) ===== */
 
 .service-block {
-  padding: 3.611vw 0;
+  padding: 5.4vw 0;
   scroll-margin-top: var(--header-h);
 }
 
@@ -56,9 +56,10 @@
 }
 
 .service-block__inner {
+  --sb-gap: 3.5vw;
   display: flex;
   align-items: stretch;
-  gap: 2.222vw;
+  gap: var(--sb-gap);
 }
 
 .service-block--reverse .service-block__inner {
@@ -114,15 +115,15 @@
 }
 
 .service-block__icon img {
-  width: 1.944vw;
-  height: 1.944vw;
+  width: 2.6vw;
+  height: 2.6vw;
 }
 
 .service-block__title {
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 1.944vw;
-  margin-bottom: 1.111vw;
+  margin-bottom: 1.5vw;
 }
 
 .service-block--dark .service-block__title {
@@ -135,8 +136,8 @@
 
 .service-block__text {
   font-size: 1.111vw;
-  line-height: 1.5;
-  margin-bottom: 1.111vw;
+  line-height: 1.55;
+  margin-bottom: 1.5vw;
 }
 
 .service-block--dark .service-block__text {
@@ -150,8 +151,8 @@
 .service-block__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.694vw;
-  margin-top: 1.389vw;
+  gap: 0.833vw;
+  margin-top: 2.1vw;
 }
 
 .service-block__tag {
@@ -180,14 +181,14 @@
   justify-content: space-between;
   background-color: var(--color-gray);
   border-radius: var(--radius-md);
-  padding: 1.667vw;
+  padding: 2.2vw;
 }
 
 .service-block__meta-list {
   display: flex;
   flex-direction: column;
-  gap: 1.111vw;
-  margin-bottom: 1.667vw;
+  gap: 1.5vw;
+  margin-bottom: 2vw;
 }
 
 .service-block__meta-item {
@@ -206,12 +207,33 @@
   margin-top: 0.1vw;
 }
 
+.service-block--reverse .service-block__meta {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.service-block--reverse .service-block__photo {
+  margin-left: 0;
+  margin-right: calc(var(--sb-gap) * -1);
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.service-block__meta-icon--img {
+  width: 2vw;
+  height: 2vw;
+  margin: 0.288vw 0 -0.888vw -0.31vw;
+}
+
+.service-block__meta {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
 .service-block__photo {
+  margin-left: calc(var(--sb-gap) * -1);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
   position: relative;
   flex: 1 1 20vw;
   min-height: 27.1vw;
   min-width: 0;
-  border-radius: var(--radius-md);
   overflow: hidden;
 }
 
@@ -235,14 +257,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: start;
-  gap: 1.389vw;
+  gap: 1.944vw;
 }
 
 .events-order {
   display: flex;
   align-items: center;
   gap: 1.667vw;
-  margin-top: 2.222vw;
+  margin-top: 3.2vw;
 }
 
 .events-order__line {
@@ -299,7 +321,7 @@
   font-size: 0.972vw;
   line-height: 1.55;
   color: rgba(255, 252, 247, 0.9);
-  flex: 1;
+  flex: 0 0 auto;
 }
 
 .event-card-back__note {
@@ -312,7 +334,7 @@
 
 .event-card-back__gallery {
   position: relative;
-  flex-shrink: 0;
+  flex: 1 0 auto;
   width: 100%;
   aspect-ratio: 1 / 1;
   margin-top: 1.111vw;
@@ -544,7 +566,7 @@
   }
 
   .service-block {
-    padding: 8vw 0;
+    padding: 11vw 0;
   }
 
   .service-block__inner,
@@ -555,6 +577,17 @@
 
   .service-block__info {
     padding-left: 9vw;
+  }
+
+  .service-block__meta,
+  .service-block--reverse .service-block__meta {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .service-block__photo,
+  .service-block--reverse .service-block__photo {
+    margin: -6vw 0 0;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
   }
 
   .service-block__info::before {
@@ -568,8 +601,8 @@
   }
 
   .service-block__icon img {
-    width: 3.6vw;
-    height: 3.6vw;
+    width: 4.8vw;
+    height: 4.8vw;
   }
 
   .service-block__title {
@@ -579,12 +612,12 @@
 
   .service-block__text {
     font-size: 3.4vw;
-    margin-bottom: 3vw;
+    margin-bottom: 3.6vw;
   }
 
   .service-block__tags {
     gap: 2vw;
-    margin-top: 3vw;
+    margin-top: 4.4vw;
   }
 
   .service-block__tag {
@@ -617,6 +650,12 @@
     width: 4.5vw;
     height: 4.5vw;
     margin-top: 0;
+  }
+
+  .service-block__meta-icon--img {
+    width: 6.4vw;
+    height: 6.4vw;
+    margin: 0.947vw 0 -2.867vw -0.95vw;
   }
 
   .service-block__photo {
@@ -759,5 +798,128 @@
   .personal-box__title {
     font-size: 4.4vw;
     margin-bottom: 2vw;
+  }
+}
+
+/* ===== Typography: no ragged edges or dangling words ===== */
+
+.services-hero__desc,
+.service-block__text,
+.event-card-back__text,
+.event-card-back__note,
+.service-block__meta-item span,
+.personal-box__desc {
+  text-wrap: pretty;
+}
+
+.services-hero__title,
+.section__title,
+.service-block__title,
+.event-card__title,
+.event-card__list-item span,
+.event-card-back__title,
+.personal-box__title,
+.events-order .btn span {
+  text-wrap: balance;
+}
+
+main {
+  hyphens: manual;
+  overflow-wrap: normal;
+}
+
+
+/* ===== Service photo sliders ===== */
+
+.service-slider__track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0.2, 0.2, 1);
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.service-slider__track.is-dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+.service-block__photo .service-slider__track img {
+  position: static;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.service-slider__bars {
+  position: absolute;
+  top: 1.4vw;
+  left: 1.4vw;
+  right: 1.4vw;
+  z-index: 2;
+  display: flex;
+  gap: 0.4vw;
+}
+
+.service-slider__bar {
+  position: relative;
+  flex: 1;
+  height: 1.1vw;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.service-slider__bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 0.28vw;
+  transform: translateY(-50%);
+  border-radius: 0.2vw;
+  background: rgba(255, 252, 247, 0.38);
+}
+
+.service-slider__bar-fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 1;
+  width: 0;
+  height: 0.28vw;
+  transform: translateY(-50%);
+  border-radius: 0.2vw;
+  background: var(--color-cream);
+  transition: width 0.06s linear;
+}
+
+.service-slider {
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .service-slider__bars,
+  .service-block--reverse .service-slider__bars {
+    top: 3vw;
+    left: 4vw;
+    right: 4vw;
+    gap: 1.2vw;
+  }
+
+  .service-slider__bar {
+    height: 3.6vw;
+  }
+
+  .service-slider__bar::before,
+  .service-slider__bar-fill {
+    height: 0.8vw;
+    border-radius: 0.6vw;
   }
 }

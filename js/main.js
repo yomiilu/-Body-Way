@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
   initGallery();
   initMobileMenu();
   initKpFlipCard();
-  initGuaranteesFlipCard(); initHeroVideo(); initServiceCycle();
+  initGuaranteesFlipCard(); initHeroReel(); initServiceCycle();
   initEventsFlip();
+  initServiceSliders();
   initReviewPhotos();
 });
 
@@ -46,6 +47,13 @@ function initEventsFlip() {
   var sharedFrontH = 0;
   var sharedBackH = 0;
 
+  // on phones the cards are stacked, so each one keeps its own height (square photos)
+  function cardH(card, flipped) {
+    var own = window.matchMedia('(max-width: 900px)').matches;
+    if (flipped) return own ? card._backH : sharedBackH;
+    return own ? card._frontH : sharedFrontH;
+  }
+
   function sizeAllCards() {
     sharedFrontH = 0;
     sharedBackH = 0;
@@ -54,12 +62,14 @@ function initEventsFlip() {
       var front = card.querySelector('.event-card');
       var back = card.querySelector('.event-card-back');
       var width = card.getBoundingClientRect().width;
-      sharedFrontH = Math.max(sharedFrontH, measureHeight(front, width));
-      sharedBackH = Math.max(sharedBackH, measureHeight(back, width));
+      card._frontH = measureHeight(front, width);
+      card._backH = measureHeight(back, width);
+      sharedFrontH = Math.max(sharedFrontH, card._frontH);
+      sharedBackH = Math.max(sharedBackH, card._backH);
     });
 
     cards.forEach(function (card) {
-      card.style.height = (card.classList.contains('flip-card--flipped') ? sharedBackH : sharedFrontH) + 'px';
+      card.style.height = cardH(card, card.classList.contains('flip-card--flipped')) + 'px';
     });
   }
 
@@ -83,14 +93,14 @@ function initEventsFlip() {
 
     front.addEventListener('click', function () {
       card.classList.add('flip-card--flipped');
-      card.style.height = sharedBackH + 'px';
+      card.style.height = cardH(card, true) + 'px';
     });
 
     if (closeBtn) {
       closeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         card.classList.remove('flip-card--flipped');
-        card.style.height = sharedFrontH + 'px';
+        card.style.height = cardH(card, false) + 'px';
         goToSlide(0);
       });
     }
@@ -140,30 +150,103 @@ function initKpFlipCard() {
   }
 }
 
-function initHeroVideo() {
-  var video = document.getElementById('heroVideo');
+function initHeroReel() {
+  var vids = Array.prototype.slice.call(document.querySelectorAll('.hero-reel__video'));
+  var bars = Array.prototype.slice.call(document.querySelectorAll('.hero-reel__bar'));
+  var ambient = Array.prototype.slice.call(document.querySelectorAll('.hero__ambient-img'));
   var btn = document.getElementById('heroSound');
-  if (!video || !btn) return;
+  if (!vids.length) return;
 
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    video.pause();
-  } else {
-    var p = video.play();
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var current = 0;
+  var soundOn = false;
+
+  function safePlay(v) {
+    var p = v.play();
     if (p && p.catch) p.catch(function () {});
   }
 
-  btn.addEventListener('click', function () {
-    var turnOn = video.muted;
-    video.muted = !turnOn;
-    if (turnOn) {
-      video.volume = 1;
-      var p = video.play();
-      if (p && p.catch) p.catch(function () {});
+  function paintBars(progress) {
+    bars.forEach(function (bar, i) {
+      var fill = bar.firstElementChild;
+      fill.style.width = i < current ? '100%' : i === current ? (progress * 100) + '%' : '0%';
+    });
+  }
+
+  function activate(i, autoplay) {
+    current = i;
+    vids.forEach(function (v, k) {
+      var on = k === i;
+      v.classList.toggle('hero-reel__video--active', on);
+      v.muted = !soundOn || !on;
+      if (!on) {
+        v.pause();
+        if (v.readyState > 0) v.currentTime = 0;
+      }
+    });
+    ambient.forEach(function (img, k) {
+      img.classList.toggle('hero__ambient-img--active', k === i);
+    });
+    paintBars(0);
+    if (autoplay) {
+      if (vids[i].readyState > 0) vids[i].currentTime = 0;
+      safePlay(vids[i]);
     }
-    btn.classList.toggle('hero__sound--on', turnOn);
-    btn.setAttribute('aria-pressed', turnOn ? 'true' : 'false');
-    btn.setAttribute('aria-label', turnOn ? 'Выключить звук' : 'Включить звук');
+  }
+
+  vids.forEach(function (v, i) {
+    v.addEventListener('timeupdate', function () {
+      if (i === current && v.duration) paintBars(v.currentTime / v.duration);
+    });
+    v.addEventListener('ended', function () {
+      if (i === current) activate((i + 1) % vids.length, true);
+    });
   });
+
+  bars.forEach(function (bar, i) {
+    bar.addEventListener('click', function () {
+      activate(i, true);
+    });
+  });
+
+  var frame = document.querySelector('.hero-reel__frame');
+  if (frame) {
+    frame.addEventListener('click', function (e) {
+      if (e.target.closest('.hero__sound, .hero-reel__bar')) return;
+      activate((current + 1) % vids.length, true);
+    });
+  }
+
+  vids[0].addEventListener('playing', function onFirst() {
+    vids[0].removeEventListener('playing', onFirst);
+    vids.slice(1).forEach(function (v) {
+      v.preload = 'auto';
+      v.load();
+    });
+  });
+
+  if (reduce) {
+    vids[0].pause();
+  } else {
+    safePlay(vids[0]);
+  }
+  paintBars(0);
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      soundOn = !soundOn;
+      vids.forEach(function (v, k) {
+        v.muted = !soundOn || k !== current;
+      });
+      if (soundOn) {
+        vids[current].volume = 1;
+        safePlay(vids[current]);
+      }
+      btn.classList.toggle('hero__sound--on', soundOn);
+      btn.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+      btn.setAttribute('aria-label', soundOn ? 'Выключить звук' : 'Включить звук');
+    });
+  }
 }
 
 function initServiceCycle() {
@@ -407,4 +490,125 @@ function initGallery() {
 
   measure();
   update();
+}
+
+function initServiceSliders() {
+  var INTERVAL = 1500;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.service-slider').forEach(function (box) {
+    var track = box.querySelector('.service-slider__track');
+    var slides = track ? track.querySelectorAll('img') : [];
+    if (!track || slides.length < 2) return;
+
+    var index = 0;
+    var elapsed = 0;
+    var last = 0;
+    var visible = false;
+    var held = false;
+
+    var barsWrap = document.createElement('div');
+    barsWrap.className = 'service-slider__bars';
+    var bars = [];
+    var fills = [];
+    for (var i = 0; i < slides.length; i++) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'service-slider__bar';
+      b.setAttribute('aria-label', 'Фото ' + (i + 1));
+      var f = document.createElement('span');
+      f.className = 'service-slider__bar-fill';
+      b.appendChild(f);
+      (function (n) {
+        b.addEventListener('click', function (e) { e.stopPropagation(); go(n); });
+      })(i);
+      barsWrap.appendChild(b);
+      bars.push(b);
+      fills.push(f);
+    }
+    box.appendChild(barsWrap);
+
+    function paint() {
+      var p = Math.min(elapsed / INTERVAL, 1);
+      fills.forEach(function (fl, fi) {
+        fl.style.width = (fi < index ? 100 : fi === index ? p * 100 : 0) + '%';
+      });
+    }
+
+    function go(n) {
+      index = (n + slides.length) % slides.length;
+      elapsed = 0;
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      paint();
+    }
+
+    function tick() {
+      var now = performance.now();
+      visible = inView();
+      if (!visible || held || document.hidden || reduceMotion) { last = 0; return; }
+      if (last) elapsed += now - last;
+      last = now;
+      if (elapsed >= INTERVAL) go(index + 1);
+      else paint();
+    }
+
+    function run() { last = 0; }
+
+    function inView() {
+      var r = box.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      var h = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      return h > r.height * 0.4;
+    }
+
+    setInterval(tick, 40);
+
+    document.addEventListener('visibilitychange', run);
+
+    var startX = 0, startY = 0, dx = 0, down = false, decided = false, swiped = false;
+
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      down = true; decided = false; swiped = false; dx = 0;
+      startX = e.clientX; startY = e.clientY;
+    });
+    track.addEventListener('pointermove', function (e) {
+      if (!down) return;
+      dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+      if (!decided && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+        decided = true;
+        if (Math.abs(dy) > Math.abs(dx)) { down = false; return; }
+        swiped = true;
+        held = true;
+        track.classList.add('is-dragging');
+        try { track.setPointerCapture(e.pointerId); } catch (err) {}
+      }
+      if (swiped) {
+        track.style.transform = 'translateX(' + (-index * box.clientWidth + dx) + 'px)';
+      }
+    });
+    function end() {
+      if (!down && !swiped) return;
+      down = false;
+      if (swiped) {
+        track.classList.remove('is-dragging');
+        held = false;
+        var th = box.clientWidth * 0.15;
+        if (dx < -th) go(index + 1);
+        else if (dx > th) go(index - 1);
+        else go(index);
+        run();
+      }
+    }
+    track.addEventListener('pointerup', end);
+    track.addEventListener('pointercancel', end);
+
+    box.addEventListener('click', function () {
+      if (swiped) { swiped = false; return; }
+      go(index + 1);
+    });
+
+    go(0);
+  });
 }
