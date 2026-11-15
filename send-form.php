@@ -24,6 +24,13 @@ if (isset($_POST['form_loaded_at']) && is_numeric($_POST['form_loaded_at'])) {
     }
 }
 
+// Согласие на обработку персональных данных обязательно (152-ФЗ): без него заявку не принимаем.
+if (empty($_POST['consent'])) {
+    http_response_code(400);
+    echo json_encode(['ok' => false, 'error' => 'consent_required']);
+    exit;
+}
+
 function clean_field($value) {
     // Убираем переводы строк и лишние пробелы — защита от инъекции заголовков письма.
     $value = str_replace(["\r", "\n"], ' ', (string) $value);
