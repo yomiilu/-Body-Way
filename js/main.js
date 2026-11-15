@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initGuaranteesFlipCard(); initHeroReel(); initServiceCycle();
   initEventsFlip();
   initServiceSliders();
+  initCookieBanner();
   initReviewPhotos();
 });
 
@@ -611,5 +612,30 @@ function initServiceSliders() {
     });
 
     go(0);
+  });
+}
+
+function initCookieBanner() {
+  var KEY = 'bw_cookie_ok';
+  try {
+    if (localStorage.getItem(KEY) === '1') return;
+  } catch (e) { /* storage may be blocked — banner just shows each time */ }
+
+  var box = document.createElement('div');
+  box.className = 'cookie-banner';
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-label', 'Уведомление об использовании cookie');
+  box.innerHTML =
+    '<p class="cookie-banner__text">Мы используем файлы cookie для корректной работы сайта и анализа трафика. ' +
+    'Продолжая использовать сайт, вы соглашаетесь с <a href="policy.html">Политикой конфиденциальности</a>.</p>' +
+    '<button type="button" class="cookie-banner__btn">Понятно</button>';
+  document.body.appendChild(box);
+
+  setTimeout(function () { box.classList.add('cookie-banner--visible'); }, 600);
+
+  box.querySelector('.cookie-banner__btn').addEventListener('click', function () {
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    box.classList.remove('cookie-banner--visible');
+    setTimeout(function () { if (box.parentNode) box.parentNode.removeChild(box); }, 500);
   });
 }

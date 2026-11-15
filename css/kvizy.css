@@ -440,3 +440,17 @@
     height: 5vw;
   }
 }
+
+.quiz-card--soon .quiz-card__desc {
+  margin-bottom: 1.389vw;
+}
+
+.quiz-card--soon .btn {
+  margin-top: auto;
+}
+
+@media (max-width: 900px) {
+  .quiz-card--soon .quiz-card__desc {
+    margin-bottom: 4vw;
+  }
+}

@@ -923,3 +923,50 @@ main {
     border-radius: 0.6vw;
   }
 }
+
+.personal-box__desc {
+  margin: -0.2vw 0 0.3vw;
+  font-size: 1.042vw;
+  line-height: 1.5;
+  color: rgba(255, 252, 247, 0.85);
+}
+
+@media (max-width: 900px) {
+  .personal-box__desc {
+    margin: 0 0 1vw;
+    font-size: 3.4vw;
+  }
+}
+
+/* "back to home" link in the top-left corner of the hero (same as on the calculator page) */
+.services-hero .container {
+  position: relative;
+}
+
+.services-hero__back {
+  position: absolute;
+  top: 0;
+  left: 2.778vw;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5vw;
+  height: 2.708vw;
+  padding: 0 1.25vw;
+  border: 0.07vw solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-gray);
+  font-family: var(--font-heading);
+  font-size: 0.903vw;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .services-hero__back {
+    position: static;
+    height: 8vw;
+    padding: 0 4vw;
+    font-size: 2.8vw;
+    margin-bottom: 5vw;
+  }
+}

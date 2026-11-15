@@ -1,11 +1,17 @@
 /* ===== Intro ===== */
 
 .calc__top {
+  position: relative;
   padding-top: 2.5vw;
   padding-bottom: 6.5vw;
 }
 
+/* the back link floats in the top-left corner, so the hero starts exactly like on the services page */
 .calc__back {
+  position: absolute;
+  top: 2.5vw;
+  left: 2.778vw;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 0.5vw;
@@ -17,15 +23,14 @@
   font-family: var(--font-heading);
   font-size: 0.903vw;
   text-transform: uppercase;
-  margin-bottom: 2.5vw;
 }
 
 .calc__intro {
   display: grid;
   grid-template-columns: 1fr 41.18vw;
   gap: 3.472vw;
-  align-items: start;
-  margin-bottom: 3.611vw;
+  align-items: center;
+  margin-bottom: 5.6vw;
 }
 
 .calc__title {
@@ -45,14 +50,13 @@
 .calc__intro-desc {
   font-size: 1.111vw;
   line-height: 1.5;
-  max-width: 22vw;
+  max-width: 26vw;
 }
 
 .calc__intro-img {
   width: 100%;
-  height: 34vw;
+  height: 45vw;
   object-fit: cover;
-  object-position: top;
   border-radius: var(--radius-md);
 }
 
@@ -650,35 +654,36 @@
   }
 
   .calc__back {
+    position: static;
     height: 8vw;
     padding: 0 4vw;
     font-size: 2.8vw;
     margin-bottom: 5vw;
   }
 
-  .calc__intro,
+    .calc__intro,
   .calc__panel {
     grid-template-columns: 1fr;
   }
 
   .calc__intro {
     gap: 6vw;
-    margin-bottom: 8vw;
+    margin-bottom: 11vw;
   }
 
   .calc__title {
-    font-size: 7vw;
+    font-size: 6.5vw;
     margin-bottom: 3vw;
   }
 
   .calc__intro-desc {
-    font-size: 3.3vw;
+    font-size: 3.4vw;
     line-height: 1.5;
     max-width: none;
   }
 
   .calc__intro-img {
-    height: 60vw;
+    height: 70vw;
   }
 
   .calc__stepper {
@@ -1237,5 +1242,22 @@
     margin-top: 6mm;
     padding-top: 5mm;
     border-top: 0.25mm solid #cccccc;
+  }
+}
+
+.calc__disclaimer {
+  max-width: 56vw;
+  margin-top: 2vw;
+  font-size: 0.833vw;
+  line-height: 1.5;
+  color: rgba(37, 37, 37, 0.55);
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .calc__disclaimer {
+    max-width: none;
+    margin-top: 6vw;
+    font-size: 2.9vw;
   }
 }

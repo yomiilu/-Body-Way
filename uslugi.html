@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=52">
-<link rel="stylesheet" href="css/uslugi.css?v=36">
+<link rel="stylesheet" href="css/style.css?v=54">
+<link rel="stylesheet" href="css/uslugi.css?v=38">
 </head>
 <body>
 
@@ -78,6 +78,9 @@
 
   <section class="services-hero">
     <div class="container">
+      <a href="index.html" class="services-hero__back">
+        <span>← На&nbsp;главную</span>
+      </a>
       <div class="services-hero__grid">
         <div class="services-hero__text">
           <h1 class="services-hero__title">
@@ -538,11 +541,15 @@
     <div class="container">
       <h2 class="section__title" id="personalnye">03. Персональные программы</h2>
       <form class="personal-box" id="personalContactForm" action="send-form.php" method="post" data-ajax-form>
-        <h3 class="personal-box__title">Остались ещё вопросы? С&nbsp;радостью ответим на&nbsp;них!</h3>
-        <input type="hidden" name="form_source" value="Услуги">
+        <h3 class="personal-box__title">Соберём персональную программу под&nbsp;задачи вашей команды</h3>
+        <p class="personal-box__desc">Оставьте контакты&nbsp;— подберём форматы, график и&nbsp;бюджет под&nbsp;вашу компанию и&nbsp;свяжемся удобным для&nbsp;вас способом.</p>
+        <input type="hidden" name="form_source" value="Услуги — Персональные программы">
         <input type="text" name="website" class="form-card__hp" tabindex="-1" autocomplete="off">
         <label class="form-card__field">
           <input type="text" name="name" placeholder="Ваше имя" class="form-card__input">
+        </label>
+        <label class="form-card__field">
+          <input type="text" name="company" placeholder="Название организации" class="form-card__input">
         </label>
         <label class="form-card__field">
           <select name="contact" class="form-card__input form-card__select">
@@ -561,7 +568,7 @@
           <span>Я даю согласие на&nbsp;обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="policy.html" target="_blank" rel="noopener" class="consent-link">Политикой&nbsp;конфиденциальности</a></span>
         </label>
         <button type="submit" class="btn btn--cream btn--full">
-          <span>Отправить заявку</span>
+          <span>Подобрать программу</span>
           <img src="assets/icons/arrow-dark.svg" alt="" class="btn__arrow">
         </button>
       </form>
@@ -614,11 +621,12 @@
         <a href="policy.html" class="footer__legal-link">Политика конфиденциальности</a>
       </div>
     </div>
+    <p class="footer__disclaimer">Информация, цены и&nbsp;расчёты, представленные на&nbsp;сайте и&nbsp;в&nbsp;калькуляторе, носят исключительно информационно-справочный характер и&nbsp;не&nbsp;являются публичной офертой, определяемой положениями ст.&nbsp;437 ГК&nbsp;РФ. Окончательная стоимость и&nbsp;условия оказания услуг формируются индивидуально по&nbsp;результатам согласования технического задания.</p>
   </div>
   <div class="footer__stripe"></div>
 </footer>
 
-<script src="js/main.js?v=20"></script>
+<script src="js/main.js?v=21"></script>
 <script src="js/forms.js?v=2"></script>
 </body>
 </html>

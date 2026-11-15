@@ -1251,6 +1251,7 @@ button, input, textarea, select {
   color: var(--color-cream-soft);
   cursor: pointer;
   margin-top: 0.625vw;
+  margin-bottom: 1.1vw;
 }
 
 .form-card__checkbox input {
@@ -2116,6 +2117,7 @@ button, input, textarea, select {
     gap: 2.5vw;
     font-size: 3vw;
     margin-top: 1vw;
+    margin-bottom: 3vw;
   }
 
   .form-card__checkbox input {
@@ -2251,5 +2253,105 @@ button, input, textarea, select {
 
   .footer__stripe {
     height: 4vw;
+  }
+}
+
+/* ===== Consent link, footer disclaimer, cookie banner ===== */
+
+.consent-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.footer__disclaimer {
+  max-width: 77.776vw;
+  margin: 2vw auto 0;
+  font-size: 0.764vw;
+  line-height: 1.5;
+  color: var(--color-white);
+  opacity: 0.5;
+  text-wrap: pretty;
+}
+
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 1.4vw;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 1.6vw;
+  width: min(52vw, 1100px);
+  padding: 1.1vw 1.4vw 1.1vw 1.7vw;
+  border-radius: var(--radius-md);
+  background-color: var(--color-navy);
+  color: var(--color-cream-soft);
+  box-shadow: 0 0.6vw 2.4vw rgba(16, 30, 82, 0.35);
+  transform: translate(-50%, 140%);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease;
+}
+
+.cookie-banner--visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.cookie-banner__text {
+  flex: 1;
+  font-size: 0.9vw;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.cookie-banner__text a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.cookie-banner__btn {
+  flex-shrink: 0;
+  padding: 0.75vw 1.6vw;
+  border: 0;
+  border-radius: 10vw;
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9vw;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.cookie-banner__btn:hover {
+  opacity: 0.88;
+}
+
+@media (max-width: 900px) {
+  .footer__disclaimer {
+    max-width: none;
+    margin: 6vw 0 0;
+    font-size: 2.8vw;
+  }
+
+  .cookie-banner {
+    bottom: 3vw;
+    width: calc(100vw - 6vw);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3vw;
+    padding: 4vw 4.5vw;
+    border-radius: 4vw;
+  }
+
+  .cookie-banner__text {
+    font-size: 3.3vw;
+  }
+
+  .cookie-banner__btn {
+    padding: 2.8vw 5vw;
+    font-size: 3.4vw;
   }
 }
