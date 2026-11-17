@@ -29,12 +29,26 @@ ul, ol {
   list-style: none;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 button, input, textarea, select {
   font-family: inherit;
   font-size: inherit;
   border: none;
   outline: none;
   background: none;
+}
+
+/* без этого кнопки без своего цвета (вопросы FAQ, «Все квизы») на телефонах получают системный синий/чёрный */
+button {
+  color: inherit;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ===== Variables ===== */
@@ -1657,7 +1671,10 @@ button, input, textarea, select {
     justify-content: flex-start;
     gap: 0;
     min-height: 0;
-    padding: 0 5vw 10vw;
+    /* первый экран = ровно высота телефона минус шапка (svh — с учётом панелей браузера) */
+    height: calc(100vh - var(--header-h));
+    height: calc(100svh - var(--header-h));
+    padding: 0 5vw 7vw;
   }
 
   .hero__sound {
@@ -1674,6 +1691,7 @@ button, input, textarea, select {
   }
 
   .hero__content {
+    flex: 0 0 auto;
     max-width: none;
     margin-top: -16vw;
     padding: 0;
@@ -1694,7 +1712,9 @@ button, input, textarea, select {
     bottom: auto;
     order: -1;
     width: auto;
-    height: 122vw;
+    flex: 1 1 0;
+    min-height: 0;
+    height: auto;
     margin: 0 -5vw;
   }
 
@@ -2353,5 +2373,14 @@ button, input, textarea, select {
   .cookie-banner__btn {
     padding: 2.8vw 5vw;
     font-size: 3.4vw;
+  }
+}
+
+/* iOS Safari приближает страницу при фокусе на поле со шрифтом меньше 16px — не допускаем этого */
+@media (max-width: 900px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+  select,
+  textarea {
+    font-size: 16px !important;
   }
 }
