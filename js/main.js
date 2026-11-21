@@ -482,7 +482,7 @@ function initGallery() {
 
   function speed() {
     // пикселей в секунду: медленно и спокойно
-    return window.matchMedia('(max-width: 900px)').matches ? 28 : 38;
+    return window.matchMedia('(max-width: 900px)').matches ? 44 : 60;
   }
 
   function tick(ts) {
