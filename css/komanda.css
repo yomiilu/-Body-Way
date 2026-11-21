@@ -68,7 +68,7 @@
 }
 
 .team-card__photo-img--anna {
-  transform: scale(0.9);
+  transform: scale(0.96);
   transform-origin: bottom center;
 }
 
@@ -229,6 +229,26 @@
   .team-card__photo {
     flex: 0 0 44%;
     border-radius: 4vw 0 0 4vw;
+  }
+
+  /* на телефоне фото прижаты к одному и тому же отступу сверху и заполняют рамку, а не «висят» посередине */
+  .team-card__photo picture,
+  .team-card__photo > img {
+    inset: 4.5vw 0 0 0;
+    height: calc(100% - 4.5vw);
+  }
+
+  .team-card__photo-img {
+    object-fit: cover;
+    object-position: 50% 0;
+  }
+
+  .team-card__photo-img--kirill {
+    transform-origin: 50% 0;
+  }
+
+  .team-card__photo-img--anna {
+    transform: none;
   }
 
   .team-card__photo-label {
