@@ -70,6 +70,7 @@ function initContactMethod(form) {
 function initAjaxForm(form) {
   var loadedAt = Date.now();
   var submitBtn = form.querySelector('button[type="submit"]');
+  var flipCard = form.closest('.flip-card');
 
   var statusEl = document.createElement('p');
   statusEl.className = 'form-status';
@@ -84,6 +85,7 @@ function initAjaxForm(form) {
     }
     statusEl.hidden = true;
     statusEl.classList.remove('form-status--success', 'form-status--error');
+    if (flipCard) flipCard.classList.remove('flip-card--has-status');
 
     var formData = new FormData(form);
     formData.append('form_loaded_at', loadedAt);
@@ -109,6 +111,7 @@ function initAjaxForm(form) {
       })
       .finally(function () {
         statusEl.hidden = false;
+        if (flipCard) flipCard.classList.add('flip-card--has-status');
         if (submitBtn) {
           submitBtn.disabled = false;
         }
