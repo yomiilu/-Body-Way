@@ -44,6 +44,7 @@ $fieldLabels = [
     'company' => 'Компания',
     'phone' => 'Телефон',
     'email' => 'Email',
+    'telegram' => 'Telegram',
     'contact' => 'Способ связи',
     'interests' => 'Интересует',
     'message' => 'Комментарий',

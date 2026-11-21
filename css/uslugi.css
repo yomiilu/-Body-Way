@@ -528,7 +528,7 @@
   font-weight: 500;
   font-size: 1.667vw;
   color: var(--color-cream-soft);
-  margin-bottom: 0.556vw;
+  margin-bottom: 0;
 }
 
 /* ===== Responsive ===== */
@@ -925,7 +925,7 @@ main {
 }
 
 .personal-box__desc {
-  margin: -0.2vw 0 0.3vw;
+  margin: -0.14vw 0 0.3vw;
   font-size: 1.042vw;
   line-height: 1.5;
   color: rgba(255, 252, 247, 0.85);
@@ -968,5 +968,73 @@ main {
     padding: 0 4vw;
     font-size: 2.8vw;
     margin-bottom: 5vw;
+  }
+}
+
+/* ===== 03 Персональные программы: шаги слева, форма справа ===== */
+
+.personal-grid {
+  display: grid;
+  grid-template-columns: 1fr 40vw;
+  gap: 4vw;
+  align-items: stretch;
+}
+
+.personal-grid .personal-box {
+  max-width: none;
+  margin: 0;
+  height: 100%;
+}
+
+.personal-grid .personal-box .btn {
+  margin-top: auto;
+}
+
+.personal-steps {
+  width: 100%;
+  margin-left: 0;
+}
+
+.personal-steps .timeline__body {
+  width: auto;
+  flex: 1;
+}
+
+.personal-steps .timeline__text {
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .personal-grid {
+    grid-template-columns: 1fr;
+    gap: 8vw;
+  }
+
+}
+
+/* ===== 03 Персональные программы: анимации ===== */
+
+/* форма появляется чуть позже шагов */
+.personal-grid .personal-box.reveal {
+  transition-delay: 0.25s;
+}
+
+.personal-box .btn__arrow {
+  transition: transform 0.3s ease;
+}
+
+.personal-box .btn:hover .btn__arrow {
+  transform: translate(0.25vw, -0.25vw);
+}
+
+
+
+@media (max-width: 900px) {
+  .personal-box__title {
+    margin-bottom: 0;
+  }
+
+  .personal-box__desc {
+    margin: -0.5vw 0 1vw;
   }
 }

@@ -12,7 +12,7 @@
 .kontakty-intro__desc {
   font-size: 1.111vw;
   line-height: 1.5;
-  max-width: 34vw;
+  max-width: 38vw;
   color: var(--color-ink);
   margin-top: 0;
   margin-bottom: 1.111vw;
@@ -164,14 +164,87 @@
   margin-top: 0;
 }
 
-.review-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.667vw;
+.review-carousel {
   margin: 2.5vw 0 3.333vw;
 }
 
+.review-list {
+  display: flex;
+  gap: 1.667vw;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.review-list::-webkit-scrollbar {
+  display: none;
+}
+
+.review-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.389vw;
+  margin-top: 1.667vw;
+}
+
+.review-carousel__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3vw;
+  height: 3vw;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--color-navy);
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.review-carousel__arrow:hover {
+  transform: scale(1.08);
+}
+
+.review-carousel__arrow[disabled] {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.review-carousel__arrow img {
+  width: 1.1vw;
+  height: 1.1vw;
+}
+
+.review-carousel__arrow--prev img {
+  transform: scaleX(-1);
+}
+
+.review-carousel__dots {
+  display: flex;
+  gap: 0.6vw;
+}
+
+.review-carousel__dot {
+  width: 0.7vw;
+  height: 0.7vw;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(30, 58, 138, 0.22);
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.review-carousel__dot--active {
+  background-color: var(--color-navy);
+  transform: scale(1.25);
+}
+
 .review-card {
+  flex: 0 0 calc((100% - 1.667vw) / 2);
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   background-color: var(--color-gray);
@@ -400,10 +473,40 @@
     margin-top: 0;
   }
 
-  .review-list {
-    grid-template-columns: 1fr;
-    gap: 4vw;
+  .review-carousel {
     margin: 5vw 0 8vw;
+  }
+
+  .review-list {
+    gap: 4vw;
+  }
+
+  .review-card {
+    flex: 0 0 100%;
+  }
+
+  .review-carousel__controls {
+    gap: 4vw;
+    margin-top: 4vw;
+  }
+
+  .review-carousel__arrow {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .review-carousel__arrow img {
+    width: 3.8vw;
+    height: 3.8vw;
+  }
+
+  .review-carousel__dots {
+    gap: 2vw;
+  }
+
+  .review-carousel__dot {
+    width: 2.2vw;
+    height: 2.2vw;
   }
 
   .review-card {
@@ -444,5 +547,24 @@
 
   .star-rating label {
     font-size: 8vw;
+  }
+}
+
+/* единое расстояние от заголовка страницы до абзаца под ним */
+.kontakty-intro .section__title {
+  margin-bottom: 1.25vw;
+}
+
+.kontakty-intro__desc {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .kontakty-intro .section__title {
+    margin-bottom: 3vw;
+  }
+
+  .kontakty-intro__desc {
+    margin-top: 0;
   }
 }

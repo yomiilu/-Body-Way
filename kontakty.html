@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=56">
-<link rel="stylesheet" href="css/kontakty.css?v=9">
+<link rel="stylesheet" href="css/style.css?v=64">
+<link rel="stylesheet" href="css/kontakty.css?v=14">
 </head>
 <body>
 
@@ -79,7 +79,7 @@
   <section class="section kontakty-intro">
     <div class="container">
       <h1 class="section__title">01. Свяжитесь с&nbsp;нами</h1>
-      <p class="kontakty-intro__desc">Расскажите о&nbsp;задаче — подберём формат, посчитаем стоимость и&nbsp;согласуем даты. Отвечаем в&nbsp;течение рабочего дня.</p>
+      <p class="kontakty-intro__desc">Расскажите о&nbsp;задаче&nbsp;— и&nbsp;мы подберём очный комплекс под&nbsp;ключ (или предложим пилотный формат), сделаем расчёт и&nbsp;подготовим персональное предложение. Отвечаем в&nbsp;течение рабочего дня.</p>
     </div>
   </section>
 
@@ -105,11 +105,6 @@
           </div>
 
           <label class="form-card__field">
-            <span class="request-form__label">Телефон</span>
-            <input type="tel" name="phone" placeholder="Ваш номер телефона" class="form-card__input" required>
-          </label>
-
-          <label class="form-card__field">
             <span class="request-form__label">Где с&nbsp;вами связаться?</span>
             <select name="contact" class="form-card__input form-card__select">
               <option value="" disabled selected hidden>Выберите способ</option>
@@ -118,6 +113,11 @@
               <option value="telegram">Telegram</option>
               <option value="max">Max</option>
             </select>
+          </label>
+
+          <label class="form-card__field">
+            <span class="request-form__label">Телефон</span>
+            <input type="tel" name="phone" placeholder="Ваш номер телефона" class="form-card__input">
           </label>
 
           <div class="request-form__field-block">
@@ -156,15 +156,14 @@
   <section class="section kontakty-reviews" id="reviews">
     <div class="container">
       <h2 class="section__title">02. Отзывы клиентов</h2>
-      <p class="kontakty-reviews__desc">Что говорят клиенты о&nbsp;работе с&nbsp;BodyWay.</p>
 
       <div class="review-list">
         <div class="review-card">
           <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
           <p class="review-card__text">Хорошее отвлечение от&nbsp;работы и&nbsp;реальная помощь в&nbsp;поддержании самочувствия команды. Нравится индивидуальный подход, но&nbsp;записаться на&nbsp;массаж бывает непросто — места разбирают на&nbsp;месяц вперёд. Хорошо, что график захватывает обе половины недели, хотя мест всё равно не&nbsp;хватает — настолько это популярно.</p>
           <div class="review-card__author">
-            <span class="review-card__name">Елена Смирнова</span>
-            <span class="review-card__company">HR-директор, ТехноСтрой</span>
+            <span class="review-card__name">Мария З.</span>
+            <span class="review-card__company">HR-директор</span>
           </div>
         </div>
 
@@ -172,8 +171,8 @@
           <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
           <p class="review-card__text">Первая конференция, на&nbsp;которой участникам делали массаж, — и&nbsp;это сработало на&nbsp;ура! BodyWay, вы&nbsp;ломаете все привычные форматы мероприятий.</p>
           <div class="review-card__author">
-            <span class="review-card__name">Дмитрий Волков</span>
-            <span class="review-card__company">Ивент-менеджер, GreenExpo</span>
+            <span class="review-card__name">Дмитрий В.</span>
+            <span class="review-card__company">Менеджер по продажам</span>
           </div>
         </div>
 
@@ -181,8 +180,8 @@
           <div class="review-card__stars" aria-label="4 из 5">★★★★<span class="review-card__star--empty">★</span></div>
           <p class="review-card__text">Массаж и&nbsp;нутрициолог — супер, а&nbsp;вот с&nbsp;БОС пока не&nbsp;разобралась, как работает метод: возможно, нужно больше сеансов, чтобы прочувствовать эффект. В&nbsp;остальном результатом довольны.</p>
           <div class="review-card__author">
-            <span class="review-card__name">Марина Котова</span>
-            <span class="review-card__company">Руководитель отдела, Baltic Logistics</span>
+            <span class="review-card__name">Марина К.</span>
+            <span class="review-card__company">Специалист отдела логистики</span>
           </div>
         </div>
 
@@ -190,8 +189,8 @@
           <div class="review-card__stars" aria-label="5 из 5">★★★★★</div>
           <p class="review-card__text">Программа отличная, спасибо компании за&nbsp;такую возможность для&nbsp;сотрудников. Специалисты сильные — это сразу располагает. Отдельно отмечу ароматерапию: масло действительно помогает быстрее успокоиться после сложных переговоров.</p>
           <div class="review-card__author">
-            <span class="review-card__name">Артём Панов</span>
-            <span class="review-card__company">Операционный директор, NovaRetail</span>
+            <span class="review-card__name">Артём П.</span>
+            <span class="review-card__company">Специалист по работе с клиентами</span>
           </div>
         </div>
       </div>
@@ -307,7 +306,7 @@
   <div class="footer__stripe"></div>
 </footer>
 
-<script src="js/main.js?v=21"></script>
-<script src="js/forms.js?v=2"></script>
+<script src="js/main.js?v=25"></script>
+<script src="js/forms.js?v=5"></script>
 </body>
 </html>

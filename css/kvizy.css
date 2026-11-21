@@ -454,3 +454,22 @@
     margin-bottom: 4vw;
   }
 }
+
+/* единое расстояние от заголовка страницы до абзаца под ним */
+.quiz-intro .section__title {
+  margin-bottom: 1.25vw;
+}
+
+.quiz-intro__desc {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .quiz-intro .section__title {
+    margin-bottom: 3vw;
+  }
+
+  .quiz-intro__desc {
+    margin-top: 0;
+  }
+}

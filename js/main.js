@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initEventsFlip();
   initServiceSliders();
   initCookieBanner();
+  initReviewCarousel();
   initReviewPhotos();
 });
 
@@ -310,6 +311,8 @@ function initGuaranteesFlipCard() {
     clone.style.transform = 'none';
     clone.style.height = 'auto';
     clone.style.width = width + 'px';
+    // скрытое поле с контактом тоже занимает место, когда появится
+    Array.prototype.forEach.call(clone.querySelectorAll('[hidden]'), function (e) { e.hidden = false; });
     document.body.appendChild(clone);
     var h = clone.offsetHeight;
     document.body.removeChild(clone);
@@ -333,7 +336,7 @@ function initGuaranteesFlipCard() {
       });
     }
 
-    frontH = Math.max(measureHeight(trigger, width), siblingMax);
+    frontH = Math.max(measureHeight(trigger, width), siblingMax, measureHeight(backFace, width));
     card.style.height = (frontH + 'px' === prevH) ? prevH : frontH + 'px';
   }
 
@@ -437,61 +440,92 @@ function initGallery() {
   var track = document.querySelector('.gallery__track');
   if (!gallery || !track) return;
 
+  var originals = Array.prototype.slice.call(track.querySelectorAll('.gallery__item'));
+  if (!originals.length) return;
+
+  // копии нужны, чтобы лента ехала по кругу без пустого места
+  originals.forEach(function (item) {
+    var clone = item.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
   var items = Array.prototype.slice.call(track.querySelectorAll('.gallery__item'));
-  var maxTranslate = 0;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var x = 0;
+  var loopW = 0;
+  var last = 0;
+  var paused = false;
+  var hovered = null;
+  var visible = true;
+  var resumeTimer = null;
 
   function measure() {
-    maxTranslate = Math.max(0, track.scrollWidth - gallery.clientWidth);
+    loopW = items[originals.length].offsetLeft - items[0].offsetLeft;
   }
 
-  function update() {
-    var rect = gallery.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var slowdown = window.matchMedia('(max-width: 900px)').matches ? 2.2 : 1;
-    var progress = (vh - rect.top) / ((vh + rect.height) * slowdown);
-    progress = Math.max(0, Math.min(1, progress));
-
-    var x = -progress * maxTranslate;
-    track.style.transform = 'translateX(' + x + 'px)';
-
-    var centerX = rect.left + rect.width / 2;
-    var closest = null;
-    var closestDist = Infinity;
-
-    items.forEach(function (item) {
-      var r = item.getBoundingClientRect();
-      var itemCenter = r.left + r.width / 2;
-      var dist = Math.abs(itemCenter - centerX);
-      if (dist < closestDist) {
-        closestDist = dist;
-        closest = item;
-      }
-    });
-
-    items.forEach(function (item) {
-      item.classList.toggle('gallery__item--active', item === closest);
-    });
-  }
-
-  var ticking = false;
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(function () {
-        update();
-        ticking = false;
+  function setActive() {
+    var target = hovered;
+    if (!target) {
+      var center = gallery.clientWidth / 2;
+      var best = Infinity;
+      items.forEach(function (item) {
+        var c = item.offsetLeft + x + item.offsetWidth / 2;
+        var d = Math.abs(c - center);
+        if (d < best) { best = d; target = item; }
       });
-      ticking = true;
     }
+    items.forEach(function (item) {
+      item.classList.toggle('gallery__item--active', item === target);
+    });
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', function () {
-    measure();
-    update();
-  });
+  function speed() {
+    // пикселей в секунду: медленно и спокойно
+    return window.matchMedia('(max-width: 900px)').matches ? 28 : 38;
+  }
 
+  function tick(ts) {
+    if (last) {
+      var dt = Math.min(ts - last, 100);
+      if (!paused && visible && !reduce && loopW) {
+        x -= speed() * dt / 1000;
+        if (-x >= loopW) x += loopW;
+        track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+      }
+    }
+    last = ts;
+    setActive();
+    window.requestAnimationFrame(tick);
+  }
+
+  // наведение: лента останавливается, фото под курсором увеличивается
+  items.forEach(function (item) {
+    item.addEventListener('mouseenter', function () { hovered = item; });
+  });
+  gallery.addEventListener('mouseenter', function () { paused = true; });
+  gallery.addEventListener('mouseleave', function () { paused = false; hovered = null; });
+
+  // на телефоне: пока палец на ленте — стоит, после отпускания продолжает
+  gallery.addEventListener('touchstart', function () {
+    paused = true;
+    clearTimeout(resumeTimer);
+  }, { passive: true });
+  gallery.addEventListener('touchend', function () {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function () { paused = false; }, 1500);
+  }, { passive: true });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+    }).observe(gallery);
+  }
+
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
   measure();
-  update();
+  window.requestAnimationFrame(tick);
 }
 
 function initServiceSliders() {
@@ -638,4 +672,118 @@ function initCookieBanner() {
     box.classList.remove('cookie-banner--visible');
     setTimeout(function () { if (box.parentNode) box.parentNode.removeChild(box); }, 500);
   });
+}
+
+function initReviewCarousel() {
+  var list = document.querySelector('.review-list');
+  if (!list) return;
+  var cards = Array.prototype.slice.call(list.querySelectorAll('.review-card'));
+  if (cards.length < 2) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var AUTOPLAY = 7000;
+
+  var wrap = document.createElement('div');
+  wrap.className = 'review-carousel';
+  list.parentNode.insertBefore(wrap, list);
+  wrap.appendChild(list);
+
+  var controls = document.createElement('div');
+  controls.className = 'review-carousel__controls';
+  function arrow(dir, label) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'review-carousel__arrow review-carousel__arrow--' + dir;
+    b.setAttribute('aria-label', label);
+    b.innerHTML = '<img src="assets/icons/icon-arrow-right-cream.svg" alt="">';
+    return b;
+  }
+  var prev = arrow('prev', 'Предыдущие отзывы');
+  var next = arrow('next', 'Следующие отзывы');
+  var dotsWrap = document.createElement('div');
+  dotsWrap.className = 'review-carousel__dots';
+  controls.appendChild(prev);
+  controls.appendChild(dotsWrap);
+  controls.appendChild(next);
+  wrap.appendChild(controls);
+
+  var dots = [];
+  var positions = 1;
+
+  function step() {
+    var gap = parseFloat(window.getComputedStyle(list).columnGap) || 0;
+    return cards[0].getBoundingClientRect().width + gap;
+  }
+
+  function visibleCount() {
+    return Math.max(1, Math.round((list.clientWidth + 1) / step()));
+  }
+
+  function buildDots() {
+    positions = Math.max(1, cards.length - visibleCount() + 1);
+    dotsWrap.innerHTML = '';
+    dots = [];
+    for (var i = 0; i < positions; i++) {
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'review-carousel__dot';
+      d.setAttribute('aria-label', 'Отзывы ' + (i + 1));
+      (function (n) {
+        d.addEventListener('click', function () { goTo(n); });
+      })(i);
+      dotsWrap.appendChild(d);
+      dots.push(d);
+    }
+    update();
+  }
+
+  function current() {
+    return Math.min(positions - 1, Math.max(0, Math.round(list.scrollLeft / step())));
+  }
+
+  function goTo(i) {
+    list.scrollTo({ left: i * step(), behavior: 'smooth' });
+  }
+
+  function update() {
+    var c = current();
+    dots.forEach(function (d, i) {
+      d.classList.toggle('review-carousel__dot--active', i === c);
+    });
+    prev.disabled = c <= 0;
+    next.disabled = c >= positions - 1;
+  }
+
+  prev.addEventListener('click', function () { goTo(current() - 1); restart(); });
+  next.addEventListener('click', function () { goTo(current() + 1); restart(); });
+  list.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', buildDots);
+
+  // автолистание: раз в несколько секунд, пока блок виден и на него не наведены
+  var timer = null;
+  var hold = false;
+  function visible() {
+    var r = wrap.getBoundingClientRect();
+    return r.bottom > 0 && r.top < (window.innerHeight || 0);
+  }
+  function tick() {
+    if (hold || document.hidden || !visible()) return;
+    var c = current();
+    goTo(c >= positions - 1 ? 0 : c + 1);
+  }
+  function restart() {
+    clearInterval(timer);
+    if (!reduce) timer = setInterval(tick, AUTOPLAY);
+  }
+  wrap.addEventListener('mouseenter', function () { hold = true; });
+  wrap.addEventListener('mouseleave', function () { hold = false; });
+  wrap.addEventListener('focusin', function () { hold = true; });
+  wrap.addEventListener('focusout', function () { hold = false; });
+  wrap.addEventListener('touchstart', function () { hold = true; }, { passive: true });
+  wrap.addEventListener('touchend', function () {
+    setTimeout(function () { hold = false; }, 4000);
+  }, { passive: true });
+
+  buildDots();
+  restart();
 }

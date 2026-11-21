@@ -649,23 +649,32 @@ a, button {
   margin-left: auto;
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 1.84vw;
-  top: 1.84vw;
-  bottom: 1.84vw;
-  width: 0.111vw;
-  background-color: var(--color-navy);
-  opacity: 0.35;
-  z-index: 0;
-}
-
+/* кружок с цифрой стоит по центру своей карточки, а линия идёт только между центрами кружков */
 .timeline__item {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1.667vw;
+}
+
+.timeline__item:not(:first-child)::before,
+.timeline__item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: calc(1.84vw - 0.0555vw);
+  width: 0.111vw;
+  background-color: rgba(30, 58, 138, 0.35);
+  z-index: 0;
+}
+
+.timeline__item:not(:first-child)::before {
+  top: 0;
+  height: 50%;
+}
+
+.timeline__item:not(:last-child)::after {
+  top: 50%;
+  height: calc(50% + 1.667vw);
 }
 
 .timeline__num {
@@ -999,6 +1008,7 @@ a, button {
   line-height: 1.4;
 }
 
+/* лента фото: сама плавно едет, фото по центру крупнее, при наведении лента останавливается */
 .gallery {
   margin-top: 2.778vw;
   padding: 1.667vw 0;
@@ -1112,6 +1122,11 @@ a, button {
 
 .steps__row-num {
   display: none;
+}
+
+/* карточки в конце главной выше обычного — внутри переворота помещается форма с полем для контакта */
+.steps__row .flip-card {
+  min-height: 29vw;
 }
 
 .cta-card {
@@ -1273,6 +1288,10 @@ a, button {
   height: 0.972vw;
   flex-shrink: 0;
   accent-color: var(--color-cream);
+}
+
+.form-card__field[hidden] {
+  display: none;
 }
 
 .form-card .btn {
@@ -1809,15 +1828,17 @@ a, button {
     gap: 5vw;
   }
 
-  .timeline::before {
-    left: 4.2vw;
-    top: 4.2vw;
-    bottom: 4.2vw;
-    height: auto;
-  }
-
   .timeline__item {
     gap: 3.5vw;
+  }
+
+  .timeline__item:not(:first-child)::before,
+  .timeline__item:not(:last-child)::after {
+    left: calc(4.2vw - 0.0555vw);
+  }
+
+  .timeline__item:not(:last-child)::after {
+    height: calc(50% + 5vw);
   }
 
   .timeline__num {
@@ -2099,7 +2120,11 @@ a, button {
   }
 
   .flip-card--flipped {
-    height: 82vw;
+    height: 98vw;
+  }
+
+  .steps__row .flip-card {
+    min-height: 0;
   }
 
   .btn {
@@ -2382,5 +2407,139 @@ a, button {
   select,
   textarea {
     font-size: 16px !important;
+  }
+}
+
+/* ===== Нумерованные списки: анимация (Почему мы, Персональные программы) ===== */
+
+/* карточки шагов выезжают по очереди */
+.timeline__item:nth-child(1) { transition-delay: 0s; }
+.timeline__item:nth-child(2) { transition-delay: 0.14s; }
+.timeline__item:nth-child(3) { transition-delay: 0.28s; }
+.timeline__item:nth-child(4) { transition-delay: 0.42s; }
+
+/* кружок с цифрой «выпрыгивает» */
+.timeline__num {
+  transform: scale(0.3);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s, box-shadow 0.3s ease;
+}
+
+.timeline__item.in-view .timeline__num {
+  transform: scale(1);
+}
+
+.timeline__item:nth-child(2) .timeline__num { transition-delay: 0.34s, 0s; }
+.timeline__item:nth-child(3) .timeline__num { transition-delay: 0.48s, 0s; }
+.timeline__item:nth-child(4) .timeline__num { transition-delay: 0.62s, 0s; }
+
+/* линия между кружками «вытягивается» сверху вниз */
+.timeline__item::before,
+.timeline__item::after {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.45s ease;
+}
+
+.timeline__item.in-view::before,
+.timeline__item.in-view::after {
+  transform: scaleY(1);
+}
+
+.timeline__item::after { transition-delay: 0.55s; }
+.timeline__item:nth-child(2)::after { transition-delay: 0.7s; }
+.timeline__item:nth-child(3)::after { transition-delay: 0.85s; }
+.timeline__item::before { transition-delay: 0.45s; }
+.timeline__item:nth-child(3)::before { transition-delay: 0.75s; }
+.timeline__item:nth-child(4)::before { transition-delay: 0.9s; }
+
+/* при наведении карточка чуть сдвигается, а кружок увеличивается */
+.timeline__body {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline__item:hover .timeline__body {
+  transform: translateX(0.5vw);
+  box-shadow: 0 0.6vw 1.6vw rgba(30, 58, 138, 0.14);
+}
+
+.timeline__item.in-view:hover .timeline__num {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 0.45vw rgba(30, 58, 138, 0.15);
+  transition-delay: 0s;
+}
+
+
+@media (max-width: 900px) {
+  .timeline__item:hover .timeline__body {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline__num,
+  .timeline__item::before,
+  .timeline__item::after,
+  .faq-row__num,
+  .steps__step-circle {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== Три шага (низ главной): линия вытягивается, кружки «выпрыгивают» ===== */
+
+.steps__stepper::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.1s ease 0.2s;
+}
+
+.steps__stepper.in-view::before {
+  transform: scaleX(1);
+}
+
+.steps__step-circle {
+  transform: scale(0.3);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.steps__stepper.in-view .steps__step-circle {
+  transform: scale(1);
+}
+
+.steps__step:nth-child(1) .steps__step-circle { transition-delay: 0.15s; }
+.steps__step:nth-child(2) .steps__step-circle { transition-delay: 0.6s; }
+.steps__step:nth-child(3) .steps__step-circle { transition-delay: 1.05s; }
+
+.steps__row-item:nth-child(2) .reveal { transition-delay: 0.15s; }
+.steps__row-item:nth-child(3) .reveal { transition-delay: 0.3s; }
+
+/* единое расстояние от заголовка страницы до абзаца под ним */
+.stati-intro .section__title {
+  margin-bottom: 1.25vw;
+}
+
+.stati-intro__desc {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .stati-intro .section__title {
+    margin-bottom: 3vw;
+  }
+
+  .stati-intro__desc {
+    margin-top: 0;
+  }
+}
+
+.steps__intro .section__title {
+  margin-bottom: 1.25vw;
+}
+
+@media (max-width: 900px) {
+  .steps__intro .section__title {
+    margin-bottom: 3vw;
   }
 }
