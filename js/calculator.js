@@ -51,7 +51,7 @@ function initCalculator() {
       mode: 'per-person-monthly'
     },
     aroma: {
-      label: 'Ароматерапия',
+      label: 'Нейроароматерапия',
       icon: 'assets/icons/icon-perfume.png?v=6',
       price: 2500,
       effects: { sick: 0.12, turnover: 0.05, prod: 0.05 },

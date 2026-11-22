@@ -1,7 +1,40 @@
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-ajax-form]').forEach(initContactMethod);
+  document.querySelectorAll('[data-ajax-form]').forEach(initRussianValidation);
   document.querySelectorAll('[data-ajax-form]').forEach(initAjaxForm);
 });
+
+// Подсказки браузера («Please fill out this field…») зависят от языка браузера — подменяем их на русские.
+function initRussianValidation(form) {
+  function message(el) {
+    var v = el.validity;
+    if (v.valueMissing) {
+      if (el.type === 'checkbox') return 'Поставьте галочку: нужно согласие на обработку персональных данных.';
+      if (el.type === 'radio') return 'Выберите один из вариантов.';
+      if (el.tagName === 'SELECT') return 'Выберите способ связи из списка.';
+      return 'Заполните это поле.';
+    }
+    if (v.typeMismatch) {
+      return el.type === 'email' ? 'Введите адрес почты в формате name@example.ru.' : 'Проверьте, что значение введено верно.';
+    }
+    if (v.patternMismatch) return 'Проверьте формат: значение введено неверно.';
+    if (v.tooShort) return 'Слишком короткое значение.';
+    if (v.tooLong) return 'Слишком длинное значение.';
+    if (v.rangeUnderflow) return 'Значение слишком маленькое.';
+    if (v.rangeOverflow) return 'Значение слишком большое.';
+    return 'Проверьте это поле.';
+  }
+
+  form.querySelectorAll('input, select, textarea').forEach(function (el) {
+    el.addEventListener('invalid', function () {
+      el.setCustomValidity('');
+      if (!el.validity.valid) el.setCustomValidity(message(el));
+    });
+    function clear() { el.setCustomValidity(''); }
+    el.addEventListener('input', clear);
+    el.addEventListener('change', clear);
+  });
+}
 
 // «Где с вами связаться?» идёт первым, а поле с контактом появляется под ним
 // и подстраивается под выбранный способ (телефон / email / Telegram / Max).
